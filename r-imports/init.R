@@ -12,6 +12,7 @@ p_load(magrittr)
 p_load(readxl)
 p_load(ggplot2)
 p_load(tidyverse)
+p_load(WDI)
 
 
 "%cin%" = function(x,y){str_detect(y,x)}
