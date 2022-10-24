@@ -47,8 +47,8 @@ load("data-transf/data_base.RData")
 ```{r overview statistics: emissions per capita development 1970:2020}
 YEAR = 2019
     
-source("r-analysis/china_and_regions.R", local = TRUE, print.eval = TRUE)
-source("r-plots/china_and_regions.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/per_capita_emissions_china_and_regions", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_bar_per_capita_emissions_2019", local = TRUE, print.eval = TRUE)
 
 
 
