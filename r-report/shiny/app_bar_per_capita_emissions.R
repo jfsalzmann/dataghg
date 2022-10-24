@@ -24,7 +24,8 @@ ui = fluidPage(
     ),
 
     mainPanel(
-         plotOutput("distPlot")
+         plotOutput("plot1"),
+         plotOutput("plot2")
     )
   )
 )
@@ -34,13 +35,23 @@ server = function(input, output) {
 
   setwd("../../")
   
-  output$distPlot = renderPlot({
+  output$plot1 = renderPlot({
     
     YEAR = input$year
     COUNTRY = input$country
     
     source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
     source("r-plots/plot_bar_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
+    
+  })
+  
+  output$plot2 = renderPlot({
+    
+    YEAR = input$year
+    COUNTRY = input$country
+    
+    source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
+    source("r-plots/plot_line_per_capita_emissions_regions.R", local = TRUE, print.eval = TRUE)
     
   })
 }
