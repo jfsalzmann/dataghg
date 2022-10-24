@@ -41,81 +41,16 @@ load("data-transf/data_base.RData")
 ```
 
 
+
+
+
 ```{r overview statistics: emissions per capita development 1970:2020}
-
-#summarize per capita emissions by country
-data_countries <- data_base %>% 
-  group_by(country,year,region_ar6_6,pop) %>% 
-  summarise(GHG_pc=sum(GHG_pc,na.rm=TRUE))  
-
-data_china<-data_countries %>% 
-  filter(country=="China") %>% 
-  rename(region = country)
-   
-
-#to show chinas development in rleations to diffrent world regions
-
-data_regions <- data_countries %>%
-  mutate(pop=replace_na(pop,0)) %>% # check if zero transformation changes statitstics
-  group_by(region_ar6_6,year) %>% 
-  summarise(GHG_pc=weighted.mean(GHG_pc,pop,na.rm=TRUE)) %>% 
-  rename(region = region_ar6_6) %>% 
-  filter(region %ni% c("Intl. Aviation", "Intl. Shipping"))
-
-# combining data frames
-
-china_and_regions <- rbind(data_regions, data_china)
-
-glimpse(china_and_regions)
-
-# plotting
-
-china_and_regions %>% 
-   ggplot( aes(x=year, y=GHG_pc, group=region, color=region)) +
-    geom_line() +
-    theme_ghg()
-
-#set order of vlaues
-
-levels<-china_and_regions %>%
-  filter(year==2019) %>% 
-  arrange(desc(GHG_pc)) %>% 
-  pull(region)
-
-levels
-
-levels<-c("China",levels[-4])
-
-china_and_regions %>%
-  filter(year==2019) %>%
-  mutate(region=fct_relevel(region,levels)) %>% 
-   ggplot(., aes(y=GHG_pc,x=region, fill=as.factor(region) )) + 
-    geom_bar( stat = 'identity') +
-    scale_fill_brewer(palette = "Set2") +
-    theme(legend.position="none")
-  
-
-  
-ggplot(china_and_regions,aes(x=year,y=GHG_pc,fill=region)) +
-  geom_area(color="#636363") +              ## Define a colour (grey) to outline each area 
-  ylab("Total GHG emissions (GtCO2eq)") +   ## replace the label on the y axis
-  theme_bw() +                              ## Use my favourite "black/white" theme 
-  scale_fill_brewer(palette="Set2") +       ## Use my favourite color scale from https://colorbrewer2.org
-  theme(axis.title.x = element_blank()) +   ## Remove the x axis label (years is obvious)
-  ggtitle("Total anthropogenic GHG emissions continue to grow")  
-  
-  
-  #ggplot(.,aes(x=GHG_pc,y=,fill=Region)) +
-  #  geom_density_ridges(color="#636363",alpha=0.5) +
-  #  scale_fill_brewer(palette="Set2") +
-  #  theme_bw() +
-   # xlab("GHG emissions per capita (tCO2eq/capita)") +
-  #  ggtitle("Distribution of emissions by country and region") + 
-  #  theme(legend.position="none",
-  #        axis.title.y = element_blank())
+YEAR = 2019
+    
+source("r-analysis/china_and_regions.R", local = TRUE, print.eval = TRUE)
+source("r-plots/china_and_regions.R", local = TRUE, print.eval = TRUE)
 
 
-  
 
 ```
 
