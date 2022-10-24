@@ -6,7 +6,7 @@ data_countries <- data_base %>%
   summarise(GHG_pc=sum(GHG_pc,na.rm=TRUE))  
 
 data_china<-data_countries %>% 
-  filter(country=="China") %>% 
+  filter(country=={{COUNTRY}}) %>% 
   rename(region = country)
 
 
