@@ -5,6 +5,7 @@ source('r-analysis/meta.R')
 
 p_load(shiny)
 
+
 ui = fluidPage(
   
   titlePanel("GHG Emissions"),
@@ -19,8 +20,7 @@ ui = fluidPage(
           selectInput("country",
                       "Country:",
                       meta_country_list,
-                      selected = "China"
-                      )
+                      selected = "China")
     ),
 
     mainPanel(
@@ -34,23 +34,36 @@ ui = fluidPage(
 server = function(input, output) {
 
   setwd("../../")
+  PDATA = reactiveValues()
+  
+  
+  .init = reactive({
+    
+    YEAR = input$year
+    COUNTRY = input$country
+    
+    source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
+    
+  })
+  
   
   output$plot1 = renderPlot({
     
     YEAR = input$year
     COUNTRY = input$country
+    .init()
     
-    source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
     source("r-plots/plot_bar_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
     
   })
+
   
   output$plot2 = renderPlot({
     
     YEAR = input$year
     COUNTRY = input$country
+    .init()
     
-    source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
     source("r-plots/plot_line_per_capita_emissions_regions.R", local = TRUE, print.eval = TRUE)
     
   })

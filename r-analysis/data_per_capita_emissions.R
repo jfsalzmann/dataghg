@@ -27,7 +27,7 @@ data_regions <- data_countries %>%
 
 # combining data frames
 
-china_and_regions <- data_regions %>% 
+PDATA$china_and_regions <- data_regions %>% 
   rbind(data_china) %>%
   filter(year <= {{YEAR}})
 

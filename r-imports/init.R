@@ -74,3 +74,8 @@ theme_ghg = function(){
       # #based on plot content, don't define it here
     )
 }
+
+
+PDATA = list()
+COUNTRY = "China"
+YEAR = 2019

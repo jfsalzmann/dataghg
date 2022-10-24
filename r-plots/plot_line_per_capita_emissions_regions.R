@@ -1,4 +1,4 @@
-china_and_regions %>%
+PDATA$china_and_regions %>%
   filter(region==c(COUNTRY, "Developed Countries","Asia and developing Pacific")) %>% #think about whether another comparison makes sense? 
   ggplot( aes(x=year, y=GHG_pc, group=region, color=region)) +
   geom_line() +
