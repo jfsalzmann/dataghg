@@ -12,7 +12,7 @@ data_china<-data_countries %>%
 data_EU<-data_countries %>% 
   filter(EU) %>% 
   select(-country) %>%
-  mutate(region_ar6_6 = "EU")
+  mutate(region_ar6_6 = "EU-28")
 
 #to show chinas development in rleations to diffrent world regions
 
