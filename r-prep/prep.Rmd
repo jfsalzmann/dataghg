@@ -45,10 +45,10 @@ data_base = data_gwp100 %>%
   mutate(GHG_pc = GHG/pop) %>%
   mutate(GDP_pc = gdp_ppp/pop) %>%
   filter(year <= 2019) %>% 
-  mutate(EU= case_when(country %cin% eurostat::eu_countries[2]~ "Yes"))
+  mutate(EU= case_when(country %cin% eurostat::eu_countries[2]~ TRUE))
 
 
-
+eurostat::eu_countries[2]
 
 
 save(data_base,file="data-transf/data_base.RData")
