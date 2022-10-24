@@ -47,6 +47,10 @@ load("data-transf/data_base.RData")
 data_countries <- data_base %>% 
   group_by(country,year,region_ar6_6,pop) %>% 
   summarise(GHG_pc=sum(GHG_pc,na.rm=TRUE))  
+
+data_china<-data_countries %>% 
+  filter(country=="China") %>% 
+  rename(region = country)
    
 
 #to show chinas development in rleations to diffrent world regions
@@ -58,21 +62,16 @@ data_regions <- data_countries %>%
   rename(region = region_ar6_6) %>% 
   filter(region %ni% c("Intl. Aviation", "Intl. Shipping"))
 
-
-
 # combining data frames
 
 china_and_regions <- rbind(data_regions, data_china)
 
-
-
-
 glimpse(china_and_regions)
+
 # plotting
 
 china_and_regions %>% 
-  ggplot(.,aes(y=GHG_pc,fill=as.factor(region), x=year)) +
-  geom_line(color="#636363",alpha=0.3) +
+  ggplot(.,aes(y=GHG_pc,color=region, x=year)) +
   theme_ghg()
   
   
