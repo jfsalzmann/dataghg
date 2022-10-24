@@ -43,7 +43,8 @@ data_wdi %<>%
 data_base = data_gwp100 %>%
   left_join(data_wdi,by=c("ISO","year")) %>%
   mutate(GHG_pc = GHG/pop) %>%
-  mutate(GDP_pc = gdp_ppp/pop)
+  mutate(GDP_pc = gdp_ppp/pop) %>%
+  filter(year <= 2019)
 
 save(data_base,file="data-transf/data_base.RData")
 ```
