@@ -39,7 +39,9 @@ data_gwp100 = read_excel("data-raw/essd_ghg_data_gwp100.xlsx",sheet = "data")
 load("data-raw/data_wdi.RData") 
 data_wdi %<>% select(-country)
 
-data_base = data_gwp100 %>% left_join(data_wdi,by=c("ISO","year"))
+data_base = data_gwp100 %>%
+  left_join(data_wdi,by=c("ISO","year")) %>%
+  mutate(GHG_pc = GHG/pop)
 
 save(data_base,file="data-transf/data_base.RData")
 ```
