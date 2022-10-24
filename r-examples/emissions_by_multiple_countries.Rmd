@@ -1,0 +1,162 @@
+---
+title: "extra_code"
+author: "William F. Lamb"
+date: "21 9 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+rm(list = ls())
+library(tidyverse)
+library(readxl)
+
+data_ghg <- read_excel(path ='Data/essd_ghg_data_gwp100.xlsx', sheet = 3)
+
+```
+
+```{r countries_by_sectors, echo=FALSE,fig.width=7,fig.height=6}
+
+## In this example we can sum emissions to 3 dimensions: country, year and sector
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,year,sector_title) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE)/1e6)
+
+## Then instead of showing one plot for a single country, you can use a list to filter multiple countries
+## And use "facet_wrap" to split your plot into multiple subplots based on a variable in your dataset (here using "country")
+
+data_countries %>% 
+  filter(year!=2020) %>% 
+  filter(country %in% c("United States",
+                        "China",
+                        "India",
+                        "Indonesia",
+                        "Japan",
+                        "Russia",
+                        "Germany")) %>%
+  ggplot(.,aes(x=year,y=GHG,fill=sector_title)) +
+  geom_area(color="#636363") +
+  facet_wrap(.~country,scales="free",ncol=2) + ## this splits your plot into multiple subplots, giving each its own scale
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  ylab("GHG emissions (MtCO2eq)") +
+  theme(axis.title.x=element_blank())
+
+
+```
+
+```{r sectors_by_countries, echo=FALSE,fig.width=7,fig.height=6}
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,year,sector_title) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE)/1e6)
+
+## You can facet by any variable, e.g. here we split the plots by sector and color in the fill by country:
+
+data_countries %>% 
+  filter(year!=2020) %>% 
+  filter(country %in% c("United States",
+                        "China",
+                        "India",
+                        "Indonesia",
+                        "Japan",
+                        "Russia",
+                        "Germany")) %>%
+  ggplot(.,aes(x=year,y=GHG,fill=country)) +
+  geom_area(color="#636363") +
+  facet_wrap(.~sector_title,scales="free",ncol=2) + ## this splits your plot into multiple subplots, giving each its own scale
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  ylab("GHG emissions (MtCO2eq)") +
+  theme(axis.title.x=element_blank())
+
+
+```
+
+
+```{r multi_country_trend, echo=FALSE,fig.width=5,fig.height=6}
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,region_ar6_10,year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE)/1e6)
+
+## We can also identify countries computationally, e.g. by calculating the top 15 emitters in a new data frame
+
+country_list <- data_countries %>% 
+  filter(year==2019) %>% 
+  arrange(desc(GHG)) %>% 
+  head(15) %>% 
+  ungroup() %>% 
+  select(ISO) %>% 
+  mutate(include=1)
+
+## Then by re-joining this list and filtering by it
+
+data_countries <- left_join(data_countries,country_list,by="ISO")
+
+data_countries %>% 
+  filter(year!=2020) %>% 
+  filter(include==1) %>% 
+  ggplot(.,aes(x=year,y=GHG)) +
+  geom_path() +
+  facet_wrap(.~country,scales="free",ncol=3) +
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  scale_y_continuous(limits=c(0,NA)) +
+  scale_x_continuous(breaks=c(1980,2000,2019)) +
+  ylab("GHG emissions (MtCO2eq)") +
+  theme(axis.title.x=element_blank())
+
+
+
+```
+
+```{r region_by_sector, echo=FALSE,fig.width=10,fig.height=3}
+
+## Bar plots are another option for showing evolution and comparing between facets. Here we sum emissions to regions, rather than countries.
+
+data_countries <- data_ghg %>% 
+  group_by(region_ar6_10_short,year,sector_title) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE)/1e6)
+
+data_countries %>% 
+  filter(region_ar6_10_short!="AIR") %>% 
+  filter(region_ar6_10_short!="SEA") %>% 
+  filter(year %in% c(1990,2000,2010,2019)) %>% ## filter to four seperate years
+  mutate(year=as.factor(year)) %>% 
+  ggplot(.,aes(x=year,y=GHG,fill=sector_title)) +
+  geom_col(color="#636363") +
+  facet_wrap(.~region_ar6_10_short,nrow=1) +
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  ylab("GHG emissions (MtCO2eq)") +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_text(angle=45,hjust=1))
+
+```
+
+```{r cumulative_fraction, echo=FALSE,fig.width=5,fig.height=6}
+
+## This chunk calculates how many countries add up to a given % of global emissions, when ranked from highest to lowest emitter. This could be another way to identify a distinct group of countries for analysis.
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,region_ar6_10,year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE)/1e6)
+
+country_list <- data_countries %>% 
+  filter(year==2019) %>% 
+  arrange(desc(GHG))
+
+# calculate the cumulative sum of emissions, ranked from highest to lowest
+country_list$cumulative_total <- cumsum(country_list$GHG)
+# calculate the cumulative fraction of total emissions, ranked from highest to lowest
+country_list$cumulative_fraction <- country_list$cumulative_total/sum(country_list$GHG[country_list$year==2019])
+
+# looking at the country_list dataframe, 20 countries account for about 75% of total emissions
+
+
+```
+
+
+

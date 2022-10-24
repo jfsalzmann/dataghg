@@ -1,0 +1,154 @@
+---
+title: "emissions_changes"
+author: "William F. Lamb"
+date: "27 9 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+# load packages
+library(tidyverse)
+library(readxl)
+
+## load data
+data_ghg <- read_excel(path ='Data/essd_ghg_data_gwp100.xlsx', sheet = 3)
+
+
+```
+
+```{r nordstream}
+
+## Whats happening in the Baltic sea right now?
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE))
+
+data_nordstream <- data_countries %>% 
+  filter(year==2019) %>% 
+  filter(GHG<=12e6) %>% 
+  arrange(desc(GHG)) %>% 
+  head(10) %>% 
+  mutate(blarg="2")
+
+data_nordstream <- data_nordstream %>% 
+  ungroup() %>% 
+  add_row(country="Nordstream explosion (Baxter)",GHG=115000*29.8,blarg="1") %>% 
+  add_row(country="Nordstream explosion (Zerger)",GHG=356247*29.8,blarg="1") %>% 
+  mutate(GHG=GHG/1e6)
+
+data_nordstream %>% ggplot(.,aes(x=GHG,y=reorder(country,GHG),fill=blarg)) +
+  geom_col(color="#636363") +
+  theme_bw() +
+  xlab("GHG Emissions at GWP100 (MtCO2eq)") +
+  scale_fill_manual(values=c("#41b6c4","#969696")) +
+  theme(legend.position="none",
+        axis.title.y=element_blank())
+
+```
+
+
+
+```{r calculate_and_plot_changes,fig.width=8,fig.height=3}
+
+## lets calculate emissions changes for total country emissions
+
+data_change <- data_ghg %>% 
+  group_by(ISO,country,region_ar6_6,year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE))
+
+
+## in this next chunk I calculate 3 different types of changes for the time period 2010-2019
+
+data_change <- data_change %>% 
+  filter(year %in% c(2010,2019)) %>% 
+  group_by(ISO,country) %>% 
+  mutate(change_abs = last(GHG)-first(GHG),               ## absolute change, or the difference in emissions between t2 and t1
+         change_rel = change_abs/first(GHG),              ## relative change, or the ratio of absolute change to emissions in t1
+         change_avg_annual = ((last(GHG)/first(GHG))^(1/(2019-2010))-1)) ## average annual change using the CGAR formula
+  
+
+## here I am just making the units nicer
+
+data_change <- data_change %>% 
+  filter(year==2019) %>% ## we dont need all the duplicated rows now
+  mutate(change_abs=change_abs/1e6) %>% ## Megatons for the absolute change
+  mutate(change_rel=change_rel*100) %>% ## % values for the relative change
+  mutate(change_avg_annual=change_avg_annual*100) ## and % for the average annual change
+
+
+## I'd like to plot all three types and compare them, so I need to gather the values into a single variable
+
+data_change <- gather(data_change,var,value,change_abs,change_rel,change_avg_annual)
+
+## this bit is optional. It just creates a nicely formatted label for each facet (subplot) that I can call in ggplot 
+
+data_change <- data_change %>% 
+  mutate(label=ifelse(var=="change_abs","Absolute change (MtCO2eq)",NA)) %>% 
+  mutate(label=ifelse(var=="change_rel","Relative change (%)",label)) %>% 
+  mutate(label=ifelse(var=="change_avg_annual","Avg. annual change (%/yr)",label))
+
+
+data_change %>% 
+  filter(country %in% c("United States",
+                        "China",
+                        "India",
+                        "Indonesia",
+                        "Japan",
+                        "Russia",
+                        "Germany")) %>%
+  ggplot(.,aes(x=value,y=country,fill=country)) +
+  geom_col(color="#636363",width=0.6) +
+  geom_vline(aes(xintercept=0)) +        ## I added this line to emphasize 0: some countries are increasing, others are decreasing
+  facet_grid(.~label,scales="free") +    ## facet_grid is a variation of facet_wrap that lets us fix the x axis to countries and avoid repeating the scale 3 times across each plot. I facet by "label" to get the nice titles.
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  theme(legend.position="none",
+        axis.title = element_blank()) +
+  ggtitle("GHG emissions changes of countries, 2010-2019")
+  
+
+```
+
+```{r plot_decreases,fig.height=6,fig.width=5}
+
+## Now that we have all types of changes calculated, we can rank and plot which countries are decreasing in emissions
+
+data_change %>% 
+  filter(year==2019) %>% 
+  filter(var=="change_avg_annual") %>% 
+  filter(value<=0) %>% 
+  filter(GHG>1e6) %>% ## remove the very small island states
+  head(20) %>% 
+  ggplot(.,aes(x=value,y=reorder(country,-value))) +
+  geom_point() +
+  theme_bw() +
+  xlab("Average annual emissions change (%/yr)") +
+  theme(axis.title.y = element_blank()) +
+  ggtitle("GHG emissions change, 2010-2019")
+
+```
+
+```{r plot_changes_region,fig.height=4,fig.width=8}
+
+## Or we could compare changes across different regions
+
+data_change %>% 
+  filter(year==2019) %>% 
+  filter(var=="change_avg_annual") %>% 
+  filter(country!="Int. Aviation") %>% 
+  filter(country!="Int. Shipping") %>% 
+  ggplot(.,aes(y=region_ar6_6,x=value,fill=region_ar6_6,size=GHG)) +  ##note that we define size (i.e. circle radius) by GHG
+  geom_point(shape=21,alpha=0.5,color="#636363") +  ## geom_point can have different shapes. Here we use circles with a fill inside (https://r-graphics.org/recipe-scatter-shapes)
+  geom_vline(aes(xintercept=0)) +
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  scale_size_continuous(range=c(1.5,10)) + ## and here we set the size range for the circle size
+  xlab("Average annual emissions change of countries (%/yr)") +
+  theme(legend.position="none",
+        axis.title.y = element_blank())
+
+
+
+```

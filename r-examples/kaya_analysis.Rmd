@@ -1,0 +1,102 @@
+---
+title: "kaya_analysis"
+author: "William F. Lamb"
+date: "24 9 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+# load packages
+library(tidyverse)
+library(readxl)
+
+## load data
+data_ghg <- read_excel(path ='Data/essd_ghg_data_gwp100.xlsx', sheet = 3)
+load("Data/data_wdi.RData")
+
+# ## Here I downloaded some data from the IEA and converted into a clean format for our analysis
+# library(countrycode)
+# data_iea <- read_excel(path = 'Data/iea_total_final_energy_use.xlsx',range = "A2:X27")
+# data_iea <- gather(data_iea,year,energy,`2000`:`2020`)
+# data_iea <- data_iea %>% 
+#   mutate(ISO=countrycode(Country,'country.name','iso3c')) %>% 
+#   select(ISO,year,energy) %>% 
+#   mutate(energy=energy*1e6) %>% 
+#   mutate(year=as.numeric(year))
+# 
+# save(data_iea,file="Data/data_iea.RData")
+
+load("Data/data_iea.RData")
+## the energy units are gigajoules (GJ), by the way.
+
+```
+
+```{r summarise_and_join, include=FALSE}
+
+## for this analysis we use only CO2 emissions, as these are tightly linked to energy use, unlike the other gases
+
+data_kaya <- data_ghg %>% 
+  group_by(ISO,country,year) %>% 
+  summarise(CO2=sum(CO2,na.rm=TRUE))
+
+data_kaya <- left_join(data_kaya,data_wdi %>% select(-country),by=c("ISO","year"))
+
+data_kaya <- left_join(data_kaya,data_iea,by=c("ISO","year"))
+
+```
+
+
+```{r calculate_kaya, include=FALSE}
+
+## there are quite a lot of NA values in the dataset. There is no energy data for some countries, so we cant include them in the analysis
+## We can use a simple function - na.omit() - to filter only the "complete" rows
+
+
+data_kaya <- data_kaya %>% 
+  na.omit()
+
+## now simply calculate the kaya identity (we already have CO2 and population)
+
+data_kaya <- data_kaya %>% 
+  mutate(GDP_pc = gdp_ppp/pop) %>% 
+  mutate(energy_intensity = energy/gdp_ppp) %>% 
+  mutate(carbon_intensity = CO2/energy)
+
+```
+
+```{r gather_and_plot, include=FALSE,fig.width=8,fig.height=6}
+
+## we have multiple columns, they need to be in a single column for plotting 
+
+data_kaya <- gather(data_kaya,var,value,CO2,pop,GDP_pc,energy_intensity,carbon_intensity)
+
+## and we need to normalise the value for each country-variable combination to 1 in 2000
+
+data_kaya <- data_kaya %>% 
+  filter(year>=2000) %>% 
+  group_by(ISO,country,var) %>% 
+  mutate(value=value/first(value))
+
+## now we can plot each country in a facet
+
+data_kaya %>% 
+  filter(country %in% c("Australia","Germany","Denmark","France","United Kingdom","Japan","United States","New Zealand")) %>%
+  ggplot(.,aes(x=year,y=value,color=var)) +
+  geom_line(size=1) +
+  geom_hline(aes(yintercept=1)) +
+  facet_wrap(.~country) +
+  theme_bw() +
+  scale_color_brewer(palette="Set2",labels=c("Carbon intensity (CO2/energy)",
+                                             "Carbon emissions",
+                                             "Energy intensity (energy/GDP)",
+                                             "GDP per capita (GDP/pop)",
+                                             "Population"),
+                     guide = guide_legend(reverse = TRUE)) +
+  theme(legend.title=element_blank(),
+        axis.title.x = element_blank())
+
+```
+
+
+

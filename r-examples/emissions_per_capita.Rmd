@@ -1,0 +1,235 @@
+---
+title: "emissions_by_country"
+author: "William F. Lamb"
+date: "17 9 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+rm(list = ls())
+library(tidyverse)
+library(WDI)
+library(readxl)
+
+data_ghg <- read_excel(path ='Data/essd_ghg_data_gwp100.xlsx', sheet = 3)
+
+
+# ### Use the WDI package to call the Worldbank API and download some indicators 
+# ### Look up indicators here: https://data.worldbank.org/
+# ### Data is then saved locally and this code commented out
+# 
+# ## GDP at PPP
+# wdi_gdp<-WDI(country = "all",indicator = "NY.GDP.MKTP.PP.KD",start = 1970,end = 2019,extra=TRUE,language = "en") %>%
+#   select(ISO=iso3c, country, year, gdp_ppp=`NY.GDP.MKTP.PP.KD`) %>%
+#   filter(!is.na(ISO))
+# 
+# # POP
+# wdi_pop<-WDI(country = "all",indicator = "SP.POP.TOTL",start = 1970,end = 2019,extra=TRUE,language = "en")%>%
+#   select(ISO=iso3c, country, year, pop=`SP.POP.TOTL`) %>%
+#   filter(!is.na(ISO))
+# 
+# data_wdi <- left_join(wdi_pop,wdi_gdp,by=c("ISO","year","country"))
+# data_wdi <- data_wdi %>% 
+#   arrange(ISO,country,year)
+# 
+# save(data_wdi,file="Data/data_wdi.RData")
+# 
+# ##
+
+load("Data/data_wdi.RData")
+
+
+```
+
+```{r data_prep_per_capita}
+
+## We want total per capita emissions, so first I would sum GHG emissions to countries
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE))
+
+
+## Now we need to join it with the socio-economic data
+
+## Note: we are not certain that country names from the WDI data will match those in EDGAR
+## Often countries are spelled differently in different databases
+## Therefore we join by country ISO codes, which are have a standardised pattern for each country
+## https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+## Remember to discard the column of country names in one of your databases, as we dont need two
+
+data_countries <- left_join(data_countries,data_wdi %>%
+                              select(-country),by=c("ISO","year"))
+
+
+## calculate per capita GHG emissions
+
+data_countries <- data_countries %>% 
+  mutate(GHG_pc=GHG/pop)
+
+
+```
+
+
+
+```{r plot_per_capita_distribution,fig.width=4,fig.height=3}
+
+## here are some example plots to explore the distribution of per capita emissions
+
+
+data_countries %>% 
+  filter(year==2019) %>% 
+  ggplot(.,aes(x=GHG_pc)) +
+  geom_histogram(bins=50,fill="#66c2a5",color="#636363") +
+  theme_bw()
+
+
+data_countries %>% 
+  filter(year==2019) %>% 
+  ggplot(.,aes(x=GHG_pc)) +
+  geom_density(color="#636363",fill="#66c2a5") +
+  theme_bw()
+
+
+```
+
+```{r plot_per_capita_distribution_by_region,fig.width=6,fig.height=3}
+
+## We now know that emissions are unevenly distributed
+## How do regions compare?
+
+## Option 1: repeat the density plot and give the region variable to the "fill" aesthetic
+## But even with the alpha turned up (transparency), difficult to extract information...
+
+data_countries %>% 
+  filter(year==2019) %>% 
+  ggplot(.,aes(x=GHG_pc,fill=region_ar6_6)) +
+  geom_density(color="#636363",alpha=0.3) +
+  theme_bw()
+
+
+## Option 2: box plots
+
+data_countries %>% 
+  filter(year==2019) %>% 
+  filter(region_ar6_6!="Intl. Shipping") %>% 
+  filter(region_ar6_6!="Intl. Aviation") %>% 
+  ggplot(.,aes(x=GHG_pc,y=region_ar6_6,fill=region_ar6_6)) +
+  geom_boxplot(alpha=0.5) +
+  scale_fill_brewer(palette="Set2") +
+  theme_bw() +
+  xlab("GHG emissions per capita (tCO2eq/capita)") +
+  ggtitle("Distribution of emissions by country and region") + 
+  theme(legend.position="none",
+        axis.title.y = element_blank())
+
+
+## Option 3: a more fancy density plot (https://r-graph-gallery.com/ridgeline-plot.html)
+
+library(ggridges)
+
+data_countries %>% 
+  filter(year==2019) %>% 
+  filter(region_ar6_6!="Intl. Shipping") %>% 
+  filter(region_ar6_6!="Intl. Aviation") %>% 
+  ggplot(.,aes(x=GHG_pc,y=region_ar6_6,fill=region_ar6_6)) +
+  geom_density_ridges(color="#636363",alpha=0.5) +
+  scale_fill_brewer(palette="Set2") +
+  theme_bw() +
+  xlab("GHG emissions per capita (tCO2eq/capita)") +
+  ggtitle("Distribution of emissions by country and region") + 
+  theme(legend.position="none",
+        axis.title.y = element_blank())
+
+```
+
+```{r density_vs_average,fig.width=6,fig.height=3}
+
+## important point: these distributions are weighted by the number of countries, not by the size of their emissions
+## in this sense, the region average can be quite different from the distribution, because of a few high-emitters like the USA or China
+## for example, here are the true region averages overlayed on the density plot
+
+region_average <- data_countries %>% 
+  group_by(region_ar6_6,year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE),pop=sum(pop,na.rm=TRUE)) %>% 
+  mutate(GHG_pc=GHG/pop) %>% 
+  filter(year==2019) %>% 
+  filter(region_ar6_6!="Intl. Shipping") %>% 
+  filter(region_ar6_6!="Intl. Aviation")
+
+world_average <- data_countries %>% 
+  group_by(year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE),pop=sum(pop,na.rm=TRUE)) %>% 
+  mutate(GHG_pc=GHG/pop) %>% 
+  filter(year==2019)
+
+data_countries %>% 
+  filter(year==2019) %>% 
+  filter(region_ar6_6!="Intl. Shipping") %>% 
+  filter(region_ar6_6!="Intl. Aviation") %>% 
+  ggplot(.,aes(x=GHG_pc,y=region_ar6_6,fill=region_ar6_6)) +
+  geom_density_ridges(color="#636363",alpha=0.5) +
+  geom_point(data=region_average,aes(x=GHG_pc,y=region_ar6_6,fill=region_ar6_6),shape=21,size=3) + ##here the region averages
+  geom_vline(data=world_average,aes(xintercept=GHG_pc),linetype="dashed") +
+  scale_fill_brewer(palette="Set2") +
+  theme_bw() +
+  xlab("GHG emissions per capita (tCO2eq/capita)") +
+  ggtitle("Distribution of emissions by country and region") + 
+  theme(legend.position="none",
+        axis.title.y = element_blank())
+
+
+```
+
+```{r plot_ranking,fig.width=5,fig.height=3}
+
+## How do we get a ranking of the top emitters?
+## Simply filter the year and arrange the column you want to rank by in descending order
+## Here I cut the data frame and show only the top 15 rows ("head(15)")
+## I also filter out very small countries (<1e6 population) as their per capita emissions tend to be skewed
+
+p1 <- data_countries %>% 
+  filter(year==2019) %>% 
+  arrange(desc(GHG_pc)) %>% 
+  filter(pop>1e6) %>% 
+  head(15) %>% 
+  ggplot(.,aes(x=GHG_pc,y=reorder(country,GHG_pc))) +
+  geom_col(color="#636363",fill="#66c2a5") +
+  scale_fill_brewer(palette="Set2") +
+  theme_bw() +
+  theme(axis.title.y = element_blank()) +
+  xlab("GHG emissions per capita (tCO2eq/capita)") +
+  ggtitle("The top 15 emitters by per capita emissions")
+
+p2 <- data_countries %>% 
+  filter(year==2019) %>% 
+  arrange(desc(GHG)) %>% 
+  head(15) %>% 
+  mutate(GHG=GHG/1e9) %>% 
+  ggplot(.,aes(x=GHG,y=reorder(country,GHG))) +
+  geom_col(color="#636363",fill="#66c2a5") +
+  scale_fill_brewer(palette="Set2") +
+  theme_bw() +
+  theme(axis.title.y = element_blank()) +
+  xlab("GHG emissions (GtCO2eq)") +
+  ggtitle("The top 15 emitters by total emissions")  
+
+p1
+p2
+
+```
+
+```{r plot_ranking_together,fig.width=6,fig.height=6}
+
+## you can also use the "Patchwork" library to merge figures together
+## https://patchwork.data-imaginist.com/articles/patchwork.html 
+
+
+library(patchwork)
+
+p1  / p2
+
+```
+
+

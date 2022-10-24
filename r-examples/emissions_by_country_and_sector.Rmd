@@ -1,0 +1,66 @@
+---
+title: "emissions_by_country_and_sector"
+author: "William F. Lamb"
+date: "18 9 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+rm(list = ls())
+library(tidyverse)
+library(readxl)
+
+data_ghg <- read_excel(path ='Data/essd_ghg_data_gwp100.xlsx', sheet = 3)
+
+```
+
+```{r country_trend, echo=FALSE,fig.width=4,fig.height=2}
+
+## I divide by 1e6 because country emissions are often reported in Megatons (MtCO2eq)
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,region_ar6_6,year) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE)/1e6) 
+
+data_countries %>% 
+  filter(year!=2020) %>% 
+  filter(country %in% c("United States")) %>% 
+  ggplot(.,aes(x=year,y=GHG)) +
+  geom_path() +
+  theme_bw() +
+  scale_y_continuous(limits=c(0,NA)) +
+  ylab("GHG emissions (MtCO2eq)") +
+  theme(axis.title.x=element_blank()) +
+  ggtitle(paste0("United States GHG emissions"))
+
+
+```
+
+```{r country_sector_trend, echo=FALSE,fig.width=4,fig.height=2}
+
+data_countries <- data_ghg %>% 
+  group_by(ISO,country,region_ar6_6,year,sector_title) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE)/1e6)
+
+data_countries %>% 
+  filter(year!=2020) %>% 
+  filter(country %in% c("United States")) %>% 
+  ggplot(.,aes(x=year,y=GHG,fill=sector_title)) +
+  geom_area(color="#636363") +
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  ylab("GHG emissions (MtCO2eq)") +
+  theme(axis.title.x=element_blank()) +
+  ggtitle(paste0("United States GHG emissions"))
+
+```
+
+
+
+
+
+
+
+
+
