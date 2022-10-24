@@ -4,7 +4,7 @@ country_and_regions %>%
   geom_line() +
   scale_fill_brewer(palette = "Set2") +
   theme(legend.position="none")+            
-  ylab("Per Capita Emissions (GtCO2eq)") +   
+  ylab("Per Capita Emissions (tCO2eq)") +   
   theme_ghg()+                              
   scale_fill_brewer(palette="Set2") +       
   theme(axis.title.x = element_blank()) +   
