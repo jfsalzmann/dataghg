@@ -1,5 +1,5 @@
 country_and_regions %>%
-  filter(region==c(COUNTRY, "Developed Countries","Asia and developing Pacific")) %>% #line breaks 
+  filter(region==c(COUNTRY, "Asia and developing Pacific","EU-28", "United States")) %>% #line breaks 
   ggplot( aes(x=year, y=GHG_pc, group=region, color=region)) +
   geom_line() +
   scale_fill_brewer(palette = "Set2") +
@@ -8,5 +8,5 @@ country_and_regions %>%
   theme_ghg()+                              
   scale_fill_brewer(palette="Set2") +       
   theme(axis.title.x = element_blank()) +   
-  ggtitle("Per Capita Emissions " %.% COUNTRY %.% " vs. Developed Countries vs. Asia & Developing Pacific, 1970-" %.% YEAR)
+  ggtitle("Per Capita Emissions " %.% COUNTRY %.% " vs. selected Regions and US, 1970-" %.% YEAR)
 
