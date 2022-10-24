@@ -42,15 +42,60 @@ load("data-transf/data_base.RData")
 
 
 ```{r overview statistics: emissions per capita development 1970:2020}
-data_countries <- data_ghg %>% 
-  group_by(ISO,country,year) %>% 
-  summarise(GHG=sum(GHG,na.rm=TRUE))
 
-#data_countries <- left_join(data_countries,data_wdi %>%
-#                              select(-country),by=c("ISO","year"))
+#summarize per capita emissions by country
+data_countries <- data_base %>% 
+  group_by(country,year,region_ar6_6,pop) %>% 
+  summarise(GHG_pc=sum(GHG_pc,na.rm=TRUE))  
+   
 
-data_countries <- data_countries %>% 
-  mutate(GHG_pc=GHG/pop)
+#to show chinas development in rleations to diffrent world regions
+
+data_regions <- data_countries %>%
+  mutate(pop=replace_na(pop,0)) %>% # check if zero transformation changes statitstics
+  group_by(region_ar6_6,year) %>% 
+  summarise(GHG_pc=weighted.mean(GHG_pc,pop,na.rm=TRUE)) %>% 
+  rename(region = region_ar6_6) %>% 
+  filter(region %ni% c("Intl. Aviation", "Intl. Shipping"))
+
+
+
+# combining data frames
+
+china_and_regions <- rbind(data_regions, data_china)
+
+
+
+
+glimpse(china_and_regions)
+# plotting
+
+china_and_regions %>% 
+  ggplot(.,aes(y=GHG_pc,fill=as.factor(region), x=year)) +
+  geom_line(color="#636363",alpha=0.3) +
+  theme_ghg()
+  
+  
+ggplot(china_and_regions,aes(x=year,y=GHG_pc,fill=region)) +
+  geom_area(color="#636363") +              ## Define a colour (grey) to outline each area 
+  ylab("Total GHG emissions (GtCO2eq)") +   ## replace the label on the y axis
+  theme_bw() +                              ## Use my favourite "black/white" theme 
+  scale_fill_brewer(palette="Set2") +       ## Use my favourite color scale from https://colorbrewer2.org
+  theme(axis.title.x = element_blank()) +   ## Remove the x axis label (years is obvious)
+  ggtitle("Total anthropogenic GHG emissions continue to grow")  
+  
+  
+  #ggplot(.,aes(x=GHG_pc,y=,fill=Region)) +
+  #  geom_density_ridges(color="#636363",alpha=0.5) +
+  #  scale_fill_brewer(palette="Set2") +
+  #  theme_bw() +
+   # xlab("GHG emissions per capita (tCO2eq/capita)") +
+  #  ggtitle("Distribution of emissions by country and region") + 
+  #  theme(legend.position="none",
+  #        axis.title.y = element_blank())
+
+
+  
 
 ```
 
