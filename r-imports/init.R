@@ -14,6 +14,7 @@ p_load(ggplot2)
 p_load(tidyverse)
 p_load(WDI)
 p_load(ggridges)
+p_load(eurostat)
 
 
 "%cin%" = function(x,y){str_detect(y,x)}
