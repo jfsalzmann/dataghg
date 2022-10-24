@@ -36,7 +36,7 @@ source('r-imports/init.R')
 
 ```{r}
 
-"hi" %>% print()
+gwp100 = read.xlsx("https://zenodo.org/record/6483002/files/essd_ghg_data_gwp100.xlsx?download=1")
 
 ```
 
