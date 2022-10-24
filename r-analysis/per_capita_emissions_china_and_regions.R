@@ -23,3 +23,6 @@ data_regions <- data_countries %>%
 
 china_and_regions <- rbind(data_regions, data_china) %>%
   filter(year <= {{YEAR}})
+
+
+

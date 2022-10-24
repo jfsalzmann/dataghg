@@ -9,3 +9,4 @@ china_and_regions %>%
   scale_fill_brewer(palette="Set2") +       
   theme(axis.title.x = element_blank()) +   
   ggtitle("Per Capita Emissions China vs. Developed Countries vs. Asia & Developing Pacific 1970-2019 ")
+
