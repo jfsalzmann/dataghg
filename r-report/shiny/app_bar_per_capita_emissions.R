@@ -19,7 +19,7 @@ ui = fluidPage(
           selectInput("country",
                       "Country:",
                       meta_country_list,
-                      selected = "CHN"
+                      selected = "China"
                       )
     ),
 
@@ -37,9 +37,10 @@ server = function(input, output) {
   output$distPlot = renderPlot({
     
     YEAR = input$year
+    COUNTRY = input$country
     
-    source("r-analysis/per_capita_emissions_china_and_regions.R", local = TRUE, print.eval = TRUE)
-    source("r-plots/plot_bar_per_capita_emissions_2019.R", local = TRUE, print.eval = TRUE)
+    source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
+    source("r-plots/plot_bar_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
     
   })
 }
