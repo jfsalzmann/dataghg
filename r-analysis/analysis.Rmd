@@ -44,9 +44,9 @@ load("data-transf/data_base.RData")
 
 
 
-```{r overview statistics: emissions per capita development 1970:2020}
+```{r overview statistics: emissions per capita }
 YEAR = 2019
-    
+COUNTRY= "China"    
 source("r-analysis/per_capita_emissions_china_and_regions", local = TRUE, print.eval = TRUE)
 source("r-plots/plot_bar_per_capita_emissions_2019", local = TRUE, print.eval = TRUE)
 
@@ -55,15 +55,36 @@ source("r-plots/plot_bar_per_capita_emissions_2019", local = TRUE, print.eval = 
 ```
 
 
-```{r overview statistics: emissions by sector development 1970:2020 }
-data_countries <- data_ghg %>% 
-  group_by(ISO,country,year,sector) %>% 
+```{r overview statistics: emissions by sector }
+data_countries <- data_base %>% 
+  group_by(ISO,country,year,sector_title) %>% 
   summarise(GHG=sum(GHG,na.rm=TRUE))
+
+
+
+#plot
+
+
 
 
 
 ```
 
+
+```{r overview statistics: absolute emissions by gas}
+data_countries <- data_base %>% 
+  group_by(ISO,country,year,sector_title) %>% 
+  summarise(GHG=sum(GHG,na.rm=TRUE))
+
+
+
+#plot
+
+
+
+
+
+```
 
 ```{r overview statistics: emissions by Gas development 1970:2020 }
 plot_data_gases <- data_ghg %>%       # create a new variable called "data_gases", copied from "data_ghg"
