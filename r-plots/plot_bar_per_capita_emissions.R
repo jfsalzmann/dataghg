@@ -2,10 +2,11 @@
 
 plot_level<-china_and_regions %>%
   filter(year=={{YEAR}}) %>% 
+  filter(country!={{COUNTRY}})
   arrange(desc(GHG_pc)) %>% 
   pull(region)
 
-plot_level<-c("China",level[-4])
+plot_level<-c({{COUNTRY}},level)
 
 #plot
 
