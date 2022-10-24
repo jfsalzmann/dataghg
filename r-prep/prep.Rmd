@@ -58,7 +58,8 @@ data_kaya = data_base %>%
   summarise(CO2=sum(CO2,na.rm=TRUE)) %>%
   left_join(data_iea,data_iea,by=c("ISO","year")) %>%
   mutate(energy_intensity = energy/GDP_pc) %>%
-  mutate(carbon_intensity = CO2/energy)
+  mutate(carbon_intensity = CO2/energy) %>%
+  na.omit()
 
 save(data_base,file="data-transf/data_kaya.RData")
 ```
