@@ -1,6 +1,6 @@
 #set levels
 
-PDATA$plot_level<-country_and_regions %>%
+plot_level<-PDATA$country_and_regions %>%
   filter(year=={{YEAR}}) %>%
   filter(region!={{COUNTRY}}) %>%
   arrange(desc(GHG_pc)) %>%
