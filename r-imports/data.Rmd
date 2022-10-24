@@ -1,0 +1,51 @@
+---
+title: "data import"
+output: pdf_document
+date: "2022-10-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results='hide', message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(fig.height = 4, fig.width = 6)
+options(knitr.kable.NA = '',knitr.table.format = "latex")
+knitr::read_chunk('../r-imports/init.R')
+library(kableExtra)
+```
+
+```{r init-setup}
+```
+
+
+---
+# ##################################################
+# Run this when not knitting (and none of the above)
+---
+
+```{r, eval = FALSE}
+source('r-imports/init.R')
+```
+
+---
+# Any collab code below this line :)
+# ##################################################
+---
+
+
+
+
+
+```{r}
+
+"hi" %>% print()
+
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+
+```

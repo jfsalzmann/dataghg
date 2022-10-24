@@ -1,3 +1,8 @@
+##################################################################################
+## INITIAL SETUP
+## ---- init-setup ----
+
+
 rm(list = ls(envir = globalenv()),envir = globalenv())
 
 if (!require("pacman")) install.packages("pacman")
