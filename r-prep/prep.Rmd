@@ -48,9 +48,6 @@ data_base = data_gwp100 %>%
   mutate(EU= case_when(country %cin% eurostat::eu_countries[2]~ TRUE))
 
 
-eurostat::eu_countries[2]
-
-
 save(data_base,file="data-transf/data_base.RData")
 ```
 

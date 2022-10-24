@@ -1,5 +1,5 @@
-china_and_regions %>%
-  filter(region==c(COUNTRY, "Developed Countries","Asia and developing Pacific")) %>% #think about whether another comparison makes sense? 
+country_and_regions %>%
+  filter(region==c(COUNTRY, "Developed Countries","Asia and developing Pacific")) %>% #line breaks 
   ggplot( aes(x=year, y=GHG_pc, group=region, color=region)) +
   geom_line() +
   scale_fill_brewer(palette = "Set2") +
@@ -8,5 +8,5 @@ china_and_regions %>%
   theme_ghg()+                              
   scale_fill_brewer(palette="Set2") +       
   theme(axis.title.x = element_blank()) +   
-  ggtitle("Per Capita Emissions " %.% COUNTRY %.% " vs. Dev' Countries vs. Asia & Dev' Pacific, 1970-" %.% YEAR)
+  ggtitle("Per Capita Emissions " %.% COUNTRY %.% " vs. Developed Countries vs. Asia & Developing Pacific, 1970-" %.% YEAR)
 

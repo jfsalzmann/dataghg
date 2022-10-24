@@ -5,7 +5,7 @@ data_countries <- data_base %>%
   group_by(country,year,region_ar6_6,pop,EU) %>% 
   summarise(GHG_pc=sum(GHG_pc,na.rm=TRUE))  
 
-data_china<-data_countries %>% 
+data_first_country<-data_countries %>% 
   filter(country=={{COUNTRY}}) %>% 
   rename(region = country)
 
@@ -13,6 +13,10 @@ data_EU<-data_countries %>%
   filter(EU) %>% 
   select(-country) %>%
   mutate(region_ar6_6 = "EU-28")
+
+data_us<-data_countries %>% 
+  filter(country=="United States") %>% 
+  rename(region = country)
 
 #to show chinas development in rleations to diffrent world regions
 
@@ -27,8 +31,8 @@ data_regions <- data_countries %>%
 
 # combining data frames
 
-china_and_regions <- data_regions %>% 
-  rbind(data_china) %>%
+country_and_regions <- data_regions %>% 
+  rbind(data_first_country,data_us) %>%
   filter(year <= {{YEAR}})
 
 

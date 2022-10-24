@@ -1,6 +1,6 @@
 #set levels 
 
-plot_level<-china_and_regions %>%
+plot_level<-country_and_regions %>%
   filter(year=={{YEAR}}) %>% 
   filter(region!={{COUNTRY}}) %>%
   arrange(desc(GHG_pc)) %>% 
@@ -10,7 +10,7 @@ plot_level<-c(COUNTRY,plot_level)
 
 #plot
 
-china_and_regions %>%
+country_and_regions %>%
   filter(year=={{YEAR}}) %>%
   ggplot(., aes(y=GHG_pc,x=factor(region,levels=plot_level), fill=as.factor(region) )) + 
   geom_bar( stat = 'identity') +
