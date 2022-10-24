@@ -25,9 +25,6 @@ library(kableExtra)
 source('r-imports/init.R')
 ```
 
-```{r, eval = FALSE}
-source('../r-imports/init.R')
-```
 
 ---
 # Any collab code below this line :)
