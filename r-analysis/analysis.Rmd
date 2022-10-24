@@ -71,9 +71,30 @@ glimpse(china_and_regions)
 # plotting
 
 china_and_regions %>% 
-  ggplot(.,aes(y=GHG_pc,color=region, x=year)) +
-  theme_ghg()
+   ggplot( aes(x=year, y=GHG_pc, group=region, color=region)) +
+    geom_line() +
+    theme_ghg()
+
+#set order of vlaues
+
+levels<-china_and_regions %>%
+  filter(year==2019) %>% 
+  arrange(desc(GHG_pc)) %>% 
+  pull(region)
+
+levels
+
+levels<-c("China",levels[-4])
+
+china_and_regions %>%
+  filter(year==2019) %>%
+  mutate(region=fct_relevel(region,levels)) %>% 
+   ggplot(., aes(y=GHG_pc,x=region, fill=as.factor(region) )) + 
+    geom_bar( stat = 'identity') +
+    scale_fill_brewer(palette = "Set2") +
+    theme(legend.position="none")
   
+
   
 ggplot(china_and_regions,aes(x=year,y=GHG_pc,fill=region)) +
   geom_area(color="#636363") +              ## Define a colour (grey) to outline each area 
