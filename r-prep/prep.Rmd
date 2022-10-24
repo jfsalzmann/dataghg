@@ -37,18 +37,30 @@ source('r-imports/init.R')
 ```{r}
 data_gwp100 = read_excel("data-raw/essd_ghg_data_gwp100.xlsx",sheet = "data")
 load("data-raw/data_wdi.RData") 
-data_wdi %<>% select(-country)
+data_wdi %<>%
+  select(-country)
 
 data_base = data_gwp100 %>%
   left_join(data_wdi,by=c("ISO","year")) %>%
-  mutate(GHG_pc = GHG/pop)
+  mutate(GHG_pc = GHG/pop) %>%
+  mutate(GDP_pc = gdp_ppp/pop)
 
 save(data_base,file="data-transf/data_base.RData")
 ```
 
 
 ```{r}
+load("data-raw/data_iea.RData")
 
+
+data_kaya = data_base %>% 
+  group_by(ISO,country,year,GDP_pc) %>% 
+  summarise(CO2=sum(CO2,na.rm=TRUE)) %>%
+  left_join(data_iea,data_iea,by=c("ISO","year")) %>%
+  mutate(energy_intensity = energy/GDP_pc) %>%
+  mutate(carbon_intensity = CO2/energy)
+
+save(data_base,file="data-transf/data_kaya.RData")
 ```
 
 
