@@ -44,6 +44,25 @@ download.file("https://zenodo.org/record/6483002/files/essd_ghg_data_gwp100.xlsx
 
 ```{r}
 
+# ### Using the WDI package to call the Worldbank API and download some indicators 
+
+# # gdp at ppp 
+
+wdi_gdp<-WDI(country = "all",indicator = "NY.GDP.MKTP.PP.KD",start = 1970,end = 2019,extra=TRUE,language = "en") %>%
+    select(ISO=iso3c, country, year, gdp_ppp=`NY.GDP.MKTP.PP.KD`) %>%
+    filter(!is.na(ISO))
+# 
+# # POP
+wdi_pop<-WDI(country = "all",indicator = "SP.POP.TOTL",start = 1970,end = 2019,extra=TRUE,language = "en")%>%
+    select(ISO=iso3c, country, year, pop=`SP.POP.TOTL`) %>%
+    filter(!is.na(ISO))
+
+data_wdi <- left_join(wdi_pop,wdi_gdp,by=c("ISO","year","country"))
+data_wdi <- data_wdi %>% 
+   arrange(ISO,country,year)
+ 
+   save(data_wdi,file="data-raw/data_wdi.RData")
+ 
 ```
 
 
