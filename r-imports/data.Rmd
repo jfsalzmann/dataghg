@@ -37,8 +37,7 @@ source('r-imports/init.R')
 
 ```{r}
 
-gwp100 = read.xlsx("https://zenodo.org/record/6483002/files/essd_ghg_data_gwp100.xlsx?download=1")
-gwp100 %>% save(file = "data-raw/gwp100.Rdata")
+download.file("https://zenodo.org/record/6483002/files/essd_ghg_data_gwp100.xlsx?download=1","data-raw/gwp100.xlsx")
 
 ```
 

@@ -9,7 +9,7 @@ if (!require("pacman")) install.packages("pacman")
 library(pacman)
 
 p_load(magrittr)
-p_load(openxlsx)
+p_load(readxl)
 p_load(ggplot2)
 p_load(tidyverse)
 
