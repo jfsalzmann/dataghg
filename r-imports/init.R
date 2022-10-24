@@ -24,5 +24,5 @@ cNA = as.character(NA)
 as.numeric.factor = . %>% as.numeric(levels(.))[.]
 
 if("dataghg/" %cin% getwd()) {
-  setwd("../")
+  setwd("..")
 }
