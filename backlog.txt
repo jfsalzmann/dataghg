@@ -4,15 +4,16 @@ Assumptions:
 
 1) China as EC developing nation?
 
-Developing:
-Developed:
+Developing: -China
+Developed: 
 
 China vs Developing
 China vs Developed
 - Emission Trends: 1850-x Co2, 1970-x GHG, 1990-x
+- Kaya Trends
+
+Methodological:
 - Rolling Average Trends?
-
-
 
 2) Limited remaining budget - historic responsibility sufficient?
 
