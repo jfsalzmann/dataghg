@@ -6,6 +6,7 @@ Assumptions:
 
 Developing: -China
 Developed: 
+Region benchmark: Asia and developing Pacific (6) vs South-East Asia and Pacific (10)
 
 China vs Developing
 China vs Developed

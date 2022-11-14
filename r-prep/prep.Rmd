@@ -53,9 +53,14 @@ data_base = data_gwp100 %>%
   mutate(GDP_pc = gdp_ppp/pop) %>%
   filter(year <= 2019) %>% 
   mutate(
-    EU = case_when(country %in% eurostat::eu_countries[2]$name~ TRUE, TRUE ~ FALSE),
-    
-  )
+    EU = country %in% eurostat::eu_countries[2]$name,
+    woc = country != "China",
+    deving_woc = woc & data_base$region_ar6_dev == "developing",
+    deved = data_base$region_ar6_dev == "developed",
+    adp_region_woc = woc & data_base$region_ar6_6 == "Asia and developing Pacific",
+    adp_region_deving_woc = adp_region_woc & deving_woc
+  ) %>% 
+  select(-woc)
 
 
 save(data_base,file="data-transf/data_base.RData")
