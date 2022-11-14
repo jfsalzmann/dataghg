@@ -67,14 +67,16 @@ load("data-raw/data_iea.RData")
 
 
 data_kaya = data_base %>% 
-  group_by(ISO,country,year,GDP_pc) %>% 
+  group_by(ISO,country,year,GDP_pc,pop) %>% 
   summarise(CO2=sum(CO2,na.rm=TRUE)) %>%
-  left_join(data_iea,data_iea,by=c("ISO","year")) %>%
+  left_join(data_iea,by=c("ISO","year")) %>%
   mutate(energy_intensity = energy/GDP_pc) %>%
   mutate(carbon_intensity = CO2/energy) %>%
-  na.omit()
+  na.omit() %>% 
+  pivot_longer(c(CO2,pop,GDP_pc,energy_intensity,carbon_intensity),names_to = "var",values_to = "value")
 
-save(data_base,file="data-transf/data_kaya.RData")
+
+save(data_kaya,file="data-transf/data_kaya.RData")
 ```
 
 
