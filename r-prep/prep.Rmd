@@ -72,7 +72,7 @@ load("data-raw/data_iea.RData")
 
 
 data_kaya = data_base %>% 
-  group_by(ISO,country,year,GDP_pc,pop,EU,deving_woc,deved,adp_region_woc,adp_region_deving_woc) %>% 
+  group_by(across(-c(sector_title,subsector_title))) %>% 
   summarise(CO2=sum(CO2,na.rm=TRUE)) %>%
   left_join(data_iea,by=c("ISO","year")) %>%
   mutate(energy_intensity = energy/GDP_pc) %>%
