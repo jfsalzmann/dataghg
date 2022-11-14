@@ -25,7 +25,9 @@ ui = fluidPage(
     ),
 
     mainPanel(
-         plotOutput("plot1")
+         plotOutput("plot1"),
+         plotOutput("plot2"),
+         plotOutput("plot3")
     )
   )
 )
@@ -56,6 +58,29 @@ server = function(input, output) {
     .init()
     
     source("r-plots/plot_facet_regions_sectors_emissions.R", local = TRUE, print.eval = TRUE)
+    
+  })
+  
+  output$plot2 = renderPlot({
+    
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
+    COUNTRY = input$country
+    .init()
+    
+    source("r-plots/plot_facet_regions_sectors_emissions_abs.R", local = TRUE, print.eval = TRUE)
+    
+  })
+  
+  
+  output$plot3 = renderPlot({
+    
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
+    COUNTRY = input$country
+    .init()
+    
+    source("r-plots/plot_facet_regions_sectors_emissions_rel.R", local = TRUE, print.eval = TRUE)
     
   })
 
