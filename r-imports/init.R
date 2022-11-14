@@ -79,3 +79,5 @@ theme_ghg = function(){
 PDATA = list()
 COUNTRY = "China"
 YEAR = 2019
+YEAR_L = 1970
+YEAR_U = 2019

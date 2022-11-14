@@ -25,3 +25,5 @@ Methodological:
 später:
 - egr22 ersetzen durch lulucf copernicus data, prep(#40)
 - download issues fixen in data (#43) bzw konsistent via httr
+- über imputation wegen fehlender pop daten für dev countries nachdenken
+- weighted mean über energie??

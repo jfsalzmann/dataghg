@@ -8,7 +8,7 @@ p_load(shiny)
 
 ui = fluidPage(
   
-  titlePanel("GHG Emissions"),
+  titlePanel("Regions & Sectors"),
 
   sidebarLayout(
       sidebarPanel(
@@ -16,7 +16,8 @@ ui = fluidPage(
                       "Year:",
                       min = 1970,
                       max = 2019,
-                      value = c(1970,2019)),
+                      value = c(1970,2019),
+                      sep = ""),
           selectInput("country",
                       "Country:",
                       meta_country_list,
@@ -24,8 +25,7 @@ ui = fluidPage(
     ),
 
     mainPanel(
-         plotOutput("plot1"),
-         plotOutput("plot2")
+         plotOutput("plot1")
     )
   )
 )
@@ -39,34 +39,27 @@ server = function(input, output) {
   
   .init = reactive({
     
-    YEAR = input$year
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
     COUNTRY = input$country
     
-    source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
+    source("r-analysis/data_sector_regions.R", local = TRUE, print.eval = TRUE)
     
   })
   
   
   output$plot1 = renderPlot({
     
-    YEAR = input$year
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
     COUNTRY = input$country
     .init()
     
-    source("r-plots/plot_bar_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
+    source("r-plots/plot_facet_regions_sectors_emissions.R", local = TRUE, print.eval = TRUE)
     
   })
 
   
-  output$plot2 = renderPlot({
-    
-    YEAR = input$year
-    COUNTRY = input$country
-    .init()
-    
-    source("r-plots/plot_line_per_capita_emissions_regions.R", local = TRUE, print.eval = TRUE)
-    
-  })
 }
 
 
