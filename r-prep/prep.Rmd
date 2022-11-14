@@ -55,9 +55,9 @@ data_base = data_gwp100 %>%
   mutate(
     EU = country %in% eurostat::eu_countries[2]$name,
     woc = country != "China",
-    deving_woc = woc & data_base$region_ar6_dev == "developing",
-    deved = data_base$region_ar6_dev == "developed",
-    adp_region_woc = woc & data_base$region_ar6_6 == "Asia and developing Pacific",
+    deving_woc = woc & region_ar6_dev == "developing",
+    deved = region_ar6_dev == "developed",
+    adp_region_woc = woc & region_ar6_6 == "Asia and developing Pacific",
     adp_region_deving_woc = adp_region_woc & deving_woc
   ) %>% 
   select(-woc)
@@ -72,7 +72,7 @@ load("data-raw/data_iea.RData")
 
 
 data_kaya = data_base %>% 
-  group_by(ISO,country,year,GDP_pc,pop) %>% 
+  group_by(ISO,country,year,GDP_pc,pop,EU,deving_woc,deved,adp_region_woc,adp_region_deving_woc) %>% 
   summarise(CO2=sum(CO2,na.rm=TRUE)) %>%
   left_join(data_iea,by=c("ISO","year")) %>%
   mutate(energy_intensity = energy/GDP_pc) %>%
