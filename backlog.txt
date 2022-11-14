@@ -1,5 +1,5 @@
 Assumptions:
-- 2020 Covid lim
+- 2020 Covid lim: prep(#48)
 
 
 1) China as EC developing nation?
