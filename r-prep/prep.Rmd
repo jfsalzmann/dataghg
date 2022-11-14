@@ -35,19 +35,25 @@ source('r-imports/init.R')
 
 
 ```{r}
-data_gwp100 = read_excel("data-raw/egr22_country_data.xlsx",sheet = "data")
+data_gwp100 = read_excel("data-raw/essd_ghg_data_gwp100.xlsx",sheet = "data")
+
+#data_lulucf = read_excel("data-raw/lulucf.xlsx",sheet = "data")
+data_lulucf = read_excel("data-raw/egr22_country_data.xlsx",sheet = "data") %>%
+  rename(ISO = iso, co2_lulucf = CO2_LULUCF_NGHGI) %>%
+  select(ISO, year, co2_lulucf)
+
 load("data-raw/data_wdi.RData") 
 data_wdi %<>%
   select(-country)
 
 data_base = data_gwp100 %>%
-  rename(ISO = iso) %>%
   left_join(data_wdi,by=c("ISO","year")) %>%
+  left_join(data_lulucf,by=c("ISO","year")) %>%
   mutate(GHG_pc = GHG/pop) %>%
   mutate(GDP_pc = gdp_ppp/pop) %>%
-  filter(year <= 2020) %>% 
+  filter(year <= 2019) %>% 
   mutate(
-    EU = case_when(country %cin% eurostat::eu_countries[2]~ TRUE),
+    EU = case_when(country %in% eurostat::eu_countries[2]$name~ TRUE, TRUE ~ FALSE),
     
   )
 
