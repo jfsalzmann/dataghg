@@ -1,5 +1,5 @@
 ---
-title: "countries & logical columns in adp region"
+title: "countries & logical columns: dev'ed countries"
 output: pdf_document
 date: "2022-10-24"
 ---
@@ -30,15 +30,13 @@ source('r-imports/init.R')
 # ##################################################
 ---
 
-
-
 \footnotesize
 
 ```{r, results='asis'}
 load("data-transf/data_base.RData")
 
 data_base %>%
-  filter(region_ar6_6 == "Asia and developing Pacific") %>%
+  filter(deved) %>%
   distinct(country,ISO,EU,deving_woc,deved,adp_region_woc,adp_region_deving_woc) %>%
   kable("latex",booktabs = T, longtable = T)
 ```

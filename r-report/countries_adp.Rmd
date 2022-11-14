@@ -1,0 +1,42 @@
+---
+title: "countries & logical columns: ADP region"
+output: pdf_document
+date: "2022-10-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results='hide', message=FALSE, warning=FALSE)
+knitr::opts_chunk$set(fig.height = 4, fig.width = 6)
+options(knitr.kable.NA = '',knitr.table.format = "latex")
+knitr::read_chunk('r-imports/init.R')
+library(kableExtra)
+```
+
+```{r init-setup}
+```
+
+
+---
+# ##################################################
+# Run this when not knitting (and none of the above)
+---
+
+```{r, eval = FALSE}
+source('r-imports/init.R')
+```
+
+---
+# Any collab code below this line :)
+# ##################################################
+---
+
+\footnotesize
+
+```{r, results='asis'}
+load("data-transf/data_base.RData")
+
+data_base %>%
+  filter(region_ar6_6 == "Asia and developing Pacific") %>%
+  distinct(country,ISO,EU,deving_woc,deved,adp_region_woc,adp_region_deving_woc) %>%
+  kable("latex",booktabs = T, longtable = T)
+```
