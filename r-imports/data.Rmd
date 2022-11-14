@@ -38,7 +38,7 @@ source('r-imports/init.R')
 ```{r}
 
 download.file("https://zenodo.org/record/6483002/files/essd_ghg_data_gwp100.xlsx?download=1","data-raw/gwp100.xlsx")
-download.file("https://zenodo.org/record/7190601/files/LULUCF%20NGHGI%20database%20August%202022.xlsx?download=1","data-raw/lulucf.xlsx")
+#download.file("https://zenodo.org/record/7190601/files/LULUCF%20NGHGI%20database%20August%202022.xlsx?download=1","data-raw/lulucf.xlsx")
 
 library(httr)
 url = "https://zenodo.org/record/7190601/files/LULUCF%20NGHGI%20database%20August%202022.xlsx?download=1"
