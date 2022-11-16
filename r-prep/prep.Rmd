@@ -49,8 +49,11 @@ data_wdi %<>%
 data_base = data_gwp100 %>%
   left_join(data_wdi,by=c("ISO","year")) %>%
   left_join(data_lulucf,by=c("ISO","year")) %>%
-  mutate(GHG_pc = GHG/pop) %>%
-  mutate(GDP_pc = gdp_ppp/pop) %>%
+  mutate(
+    GHG_pc = GHG/pop,
+    GHG_pg = GHG/gdp_ppp,
+    GDP_pc = gdp_ppp/pop
+  ) %>%
   filter(year <= 2019) %>% 
   mutate(
     EU = country %in% eurostat::eu_countries[2]$name,
