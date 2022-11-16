@@ -80,6 +80,11 @@ data_kaya = data_base %>%
   na.omit() %>% 
   pivot_longer(c(CO2,pop,GDP_pc,energy_intensity,carbon_intensity),names_to = "var",values_to = "value")
 
+data_kaya$value[0]<-NA
+
+data_kaya%<>%
+  na.omit()
+
 
 save(data_kaya,file="data-transf/data_kaya.RData")
 ```

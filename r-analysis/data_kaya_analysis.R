@@ -1,9 +1,9 @@
 load("data-transf/data_kaya.RData")
 
 #normalize to 1 in 2000
-data_kaya %<>%
+data_kaya_tests<-data_kaya %>%
   group_by(country,var) %>% 
-  mutate(value=value/first(value))
+  summarise(value=value/first(value))
 
 data_kaya_countries <- data_kaya %>%
   select(c(year,energy,var,value,country)) 
@@ -39,3 +39,4 @@ kaya_regions <- data_kaya_first_country %>%
 
 #make data available to shiny
 PDATA$kaya_regions <-kaya_regions
+
