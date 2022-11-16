@@ -23,6 +23,17 @@ PDATA$data_abs = data_base %>%
   filter(between(year,{{YEAR_L}},{{YEAR_U}}))
 
 
+PDATA$data_absavg = data_base %>%
+  mutate(region = case_when(deving_woc ~ "Developing",country == {{COUNTRY}} ~ {{COUNTRY}},deved ~ "Developed")) %>%
+  filter(!is.na(region)) %>%
+  group_by(region,country,year,sector_title,pop) %>% # !!!! only include pop for na removal consistency
+  summarise(GHG_s=sum(GHG,na.rm=TRUE)) %>% # within country: sum
+  na.omit() %>%
+  group_by(region,year,sector_title) %>%
+  summarise(GHG_s_r_avg=mean(GHG_s,na.rm=TRUE)) %>% # across countries: weighted mean
+  filter(between(year,{{YEAR_L}},{{YEAR_U}}))
+
+
 PDATA$data_rel = data_base %>%
   mutate(region = case_when(deving_woc ~ "Developing",country == {{COUNTRY}} ~ {{COUNTRY}},deved ~ "Developed")) %>%
   filter(!is.na(region)) %>%
