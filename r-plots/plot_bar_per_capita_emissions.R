@@ -1,18 +1,18 @@
 #set levels
 
-plot_level<-PDATA$country_and_regions %>%
-  filter(year=={{YEAR}}) %>%
-  filter(region!={{COUNTRY}}) %>%
-  arrange(desc(GHG_pc)) %>%
-  pull(region)
-
-plot_level<-c(COUNTRY,plot_level)
+# plot_level<-PDATA$country_and_regions %>%
+#   filter(region!={{COUNTRY}}) %>%
+#   arrange(desc(GHG_pc)) %>%
+#   pull(region)
+# 
+# plot_level<-c(COUNTRY,plot_level)
 
 #plot
 
+# ,levels=plot_level
+
 PDATA$country_and_regions %>%
-  filter(year=={{YEAR}}) %>%
-  ggplot(., aes(y=GHG_pc,x=factor(region,levels=plot_level), fill=as.factor(region) )) +
+  ggplot(., aes(y=GHG_pc,x=factor(region), fill=as.factor(region) )) +
   geom_bar( stat = 'identity') +
   scale_fill_brewer(palette = "Set1") +
   theme(legend.position="none")+

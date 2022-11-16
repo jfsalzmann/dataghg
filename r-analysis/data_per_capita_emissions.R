@@ -33,4 +33,4 @@ data_regions <- data_countries %>%
 
 PDATA$country_and_regions <- data_regions %>% 
   rbind(data_first_country,data_us) %>%
-  filter(year <= {{YEAR}})
+  filter(between(year,{{YEAR_L}},{{YEAR_U}}))

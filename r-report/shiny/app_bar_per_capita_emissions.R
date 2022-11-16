@@ -39,7 +39,8 @@ server = function(input, output) {
   
   .init = reactive({
     
-    YEAR = input$year
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
     COUNTRY = input$country
     
     source("r-analysis/data_per_capita_emissions.R", local = TRUE, print.eval = TRUE)
@@ -49,7 +50,8 @@ server = function(input, output) {
   
   output$plot1 = renderPlot({
     
-    YEAR = input$year
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
     COUNTRY = input$country
     .init()
     
@@ -60,7 +62,8 @@ server = function(input, output) {
   
   output$plot2 = renderPlot({
     
-    YEAR = input$year
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
     COUNTRY = input$country
     .init()
     
