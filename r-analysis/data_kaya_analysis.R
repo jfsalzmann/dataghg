@@ -5,22 +5,24 @@ data_kaya<-data_kaya %>%
   group_by(country,var) %>% 
   mutate(value=value/first(value))
 
+#get country level data 
 data_kaya_countries <- data_kaya %>%
   select(c(year,energy,var,value,country)) 
 
-
+#get specific data for country of choice/ China
 data_kaya_first_country<-data_kaya %>%
   select(c(year,energy,var,value,country)) %>% 
   filter(country=={{COUNTRY}}) %>%
   rename(region = country)
 
-
+#filter for developed country Data
 data_kaya_deved<-data_kaya %>%
   filter(deved) %>%
   group_by(year,energy,var,value,country) %>% 
   rename(region = country) %>% 
   mutate(region = "Developed Countries")
 
+#filter for developing country Data
 data_kaya_deving<-data_kaya %>%
   filter(deving_woc) %>%
   select(c(year,energy,var,value,country)) %>% 
