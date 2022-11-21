@@ -71,22 +71,26 @@ save(data_base,file="data-transf/data_base.RData")
 
 
 ```{r}
-load("data-raw/data_iea.RData")
 
+#load("data-raw/data_iea.RData") Thanks to Will we got better Data now. 
+#load better energy data 
+data_energy<-read_excel("data-raw/data_energy_co2_countries.xlsx",sheet = "data")
+# filter for ISO, Year and Energy
+data_energy%<>%
+  select(ISO,year,energy)
 
 data_kaya = data_base %>% 
-  group_by(across(-c(sector_title,subsector_title))) %>% 
-  summarise(CO2=sum(CO2,na.rm=TRUE)) %>%
-  left_join(data_iea,by=c("ISO","year")) %>%
+  group_by(across(-c(sector_title,subsector_title,N2O, CH4,GHG,co2_lulucf,gdp_ppp, Fgas,GHG_pc,GHG_pg,CO2))) %>% 
+  na.omit() %>% 
+  summarise(CO2=sum(CO2,na.rm=T))%>%
+  left_join(data_energy,by=c("ISO","year")) %>%
   mutate(energy_intensity = energy/GDP_pc) %>%
   mutate(carbon_intensity = CO2/energy) %>%
   na.omit() %>% 
   pivot_longer(c(CO2,pop,GDP_pc,energy_intensity,carbon_intensity),names_to = "var",values_to = "value")
 
-data_kaya$value[0]<-NA
 
-data_kaya%<>%
-  na.omit()
+
 
 
 save(data_kaya,file="data-transf/data_kaya.RData")
