@@ -45,6 +45,28 @@ PDATA$data_absavg = data_base %>%
   filter(between(year,{{YEAR_L}},{{YEAR_U}}))
 
 
+PDATA$data_absavg_pc = data_base %>%
+  mutate(region = case_when(deving_woc ~ "Developing",country == {{COUNTRY}} ~ {{COUNTRY}},deved ~ "Developed")) %>%
+  filter(!is.na(region)) %>%
+  group_by(region,country,year,sector_title,pop,gdp_ppp) %>% # !!!! only include pop for na removal consistency
+  summarise(GHG_s=sum(GHG,na.rm=TRUE)) %>% # within country: sum
+  na.omit() %>%
+  group_by(region,year,sector_title) %>%
+  summarise(GHG_s_r_avg=weighted.mean(GHG_s,pop,na.rm=TRUE)) %>% # across countries: weighted mean
+  filter(between(year,{{YEAR_L}},{{YEAR_U}}))
+
+
+PDATA$data_absavg_pg = data_base %>%
+  mutate(region = case_when(deving_woc ~ "Developing",country == {{COUNTRY}} ~ {{COUNTRY}},deved ~ "Developed")) %>%
+  filter(!is.na(region)) %>%
+  group_by(region,country,year,sector_title,pop,gdp_ppp) %>% # !!!! only include pop for na removal consistency
+  summarise(GHG_s=sum(GHG,na.rm=TRUE)) %>% # within country: sum
+  na.omit() %>%
+  group_by(region,year,sector_title) %>%
+  summarise(GHG_s_r_avg=weighted.mean(GHG_s,gdp_ppp,na.rm=TRUE)) %>% # across countries: weighted mean
+  filter(between(year,{{YEAR_L}},{{YEAR_U}}))
+
+
 PDATA$data_rel = data_base %>%
   mutate(region = case_when(deving_woc ~ "Developing",country == {{COUNTRY}} ~ {{COUNTRY}},deved ~ "Developed")) %>%
   filter(!is.na(region)) %>%

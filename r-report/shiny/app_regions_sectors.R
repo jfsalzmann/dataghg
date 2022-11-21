@@ -28,7 +28,9 @@ ui = fluidPage(
          plotOutput("plot1_1"),
          plotOutput("plot1_2"),
          plotOutput("plot2_1"),
-         plotOutput("plot2_2"),
+         plotOutput("plot2_2_1"),
+         plotOutput("plot2_2_2"),
+         plotOutput("plot2_2_3"),
          plotOutput("plot3")
     )
   )
@@ -87,7 +89,7 @@ server = function(input, output) {
   })
   
   
-  output$plot2_2 = renderPlot({
+  output$plot2_2_1 = renderPlot({
     
     YEAR_L = input$year[1]
     YEAR_U = input$year[2]
@@ -95,6 +97,30 @@ server = function(input, output) {
     .init()
     
     source("r-plots/plot_facet_regions_sectors_emissions_absavg.R", local = TRUE, print.eval = TRUE)
+    
+  })
+  
+  
+  output$plot2_2_2 = renderPlot({
+    
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
+    COUNTRY = input$country
+    .init()
+    
+    source("r-plots/plot_facet_regions_sectors_emissions_absavg_pc.R", local = TRUE, print.eval = TRUE)
+    
+  })
+  
+  
+  output$plot2_2_3 = renderPlot({
+    
+    YEAR_L = input$year[1]
+    YEAR_U = input$year[2]
+    COUNTRY = input$country
+    .init()
+    
+    source("r-plots/plot_facet_regions_sectors_emissions_absavg_pg.R", local = TRUE, print.eval = TRUE)
     
   })
   

@@ -11,9 +11,15 @@ PDATA$data_abs = data_base %>%
 
 
 
-PDATA$data_rel = PDATA$data_abs %>%
+PDATA$data_rel = data_base %>%
+  filter(country == {{COUNTRY}}) %>%
+  rename(GAS := {{GAS}}) %>%
+  group_by(year,sector_title) %>%
+  summarise(GAS_s=sum(GAS,na.rm=TRUE)) %>%
+  na.omit() %>%
+  filter(between(year,{{YEAR_L}},{{YEAR_U}})) %>%
   group_by(year) %>%
-  mutate(GAS_s_perc=GAS_s/sum(GAS_s,na.rm=TRUE))
+  mutate(GAS_s_perc=100*GAS_s/sum(GAS_s,na.rm=TRUE))
 
 
 

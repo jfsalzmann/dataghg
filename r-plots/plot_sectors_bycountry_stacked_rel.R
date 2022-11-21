@@ -3,7 +3,7 @@ PDATA$data_rel %>%
   geom_area(color="#636363") +
   theme_bw() +
   scale_fill_brewer(palette="Set2") +
-  ylab(GAS %.% " Emissions (MtCO2eq)") +
+  ylab(GAS %.% " Emissions, %") +
   theme_ghg()+
   theme(axis.title.x=element_blank()) +
   ggtitle("Total Emissions, " %.% COUNTRY %.% ", by Sector, " %.% YEAR_L %.% "-" %.% YEAR_U)
