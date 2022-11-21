@@ -1,6 +1,15 @@
+
+#set levels
+
+
+PDATA$plot_level_kay<-c(COUNTRY,"Developed Countries","Developing Countries")
+
+
+
 #plot
 
-PDATA$kaya_regions %>% 
+PDATA$kaya_regions %>%
+  mutate(region = fct_relevel(region,PDATA$plot_level_kay)) %>% 
   ggplot(.,aes(x=year,y=value,color=var)) +
   geom_line(size=1) +
   geom_hline(aes(yintercept=1)) +
