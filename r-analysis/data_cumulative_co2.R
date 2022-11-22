@@ -2,7 +2,7 @@ load("data-transf/data_hist_co2.RData")
 
 
 #Hard setting yearL
-YEAR_L<-1950
+YEAR_L<-1850
 
 data_cum_co2 = data_hist_co2 %>%
   select(ISO, country, EU,  year, CO2_FFI) %>% 
@@ -42,6 +42,20 @@ data_cum_co2 %>%
   ylab("Cumulative CO2 Emissions, %") +
   theme_ghg()+
   theme(axis.title.x=element_blank(),
-        text = element_text(size = 15)) +
+        text = element_text(size = 20)) +
   guides(fill=guide_legend(title="Country/Region"))+
   ggtitle("Relative Cumulative Emissions of the Top- 5 Polluters " %.% YEAR_L %.% "-" %.% YEAR_U)
+
+
+
+data_cum_co2 %>% 
+  ggplot(aes(x=year,y=CO2,color=region)) +
+  geom_line(size=1)  +
+  theme_bw() +
+  scale_fill_brewer(palette="Set2") +
+  ylab("Absolute Yearly CO2 Emissions, %") +
+  theme_ghg()+
+  theme(axis.title.x=element_blank(),
+        text = element_text(size = 20)) +
+  guides(fill=guide_legend(title="Country/Region"))+
+  ggtitle("Absolute Emissions of the Top- 5 Polluters " %.% YEAR_L %.% "-" %.% YEAR_U)
