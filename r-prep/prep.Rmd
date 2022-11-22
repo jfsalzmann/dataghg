@@ -102,10 +102,11 @@ load("data-raw/data_cumulative_co2.RData")
 
 # need to add filling values when joining
 dev_status=data_base %>% 
-    select(ISO, country, region_ar6_dev, year)
+    group_by(country, year,region_ar6_dev) %>% 
+    summarise()
 
 data_hist_co2=data_cumulative_co2 %>% 
-  left_join(dev_status, by= c("ISO","year","country")) %>% 
+  left_join(dev_status, by= c("country","year")) %>% 
   filter(year <= 2019) %>% 
     mutate(
       EU = country %in% eurostat::eu_countries[2]$name,
@@ -116,6 +117,7 @@ data_hist_co2=data_cumulative_co2 %>%
       adp_region_deving_woc = adp_region_woc & deving_woc
     ) %>% 
   select(-woc)
+
 
 
 save(data_hist_co2,file="data-transf/data_hist_co2.RData")
