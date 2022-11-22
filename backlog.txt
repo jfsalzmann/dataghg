@@ -27,3 +27,21 @@ später:
 - download issues fixen in data (#43) bzw konsistent via httr
 - über imputation wegen fehlender pop daten für dev countries nachdenken
 - weighted mean über energie??
+
+
+
+-----------------------21.11.22
+- weigheted averages bei der sector analyse --> synthetisches developed country 
+	--> Basis : WA nach POP / GDP 
+
+
+- Get Factor Level vor Plots --> APP Bug 
+	- maybe set factor levels in analysis already 
+
+
+- Kaya Issue --> Aggregating Deved and Deving countries 
+		- normalisierung  sinvoll bei land zu regionen vergleich? 
+
+		- eventuell  free scales 
+
+
