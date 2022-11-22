@@ -2,6 +2,7 @@ load("data-transf/data_kaya.RData")
 
 #normalize to 1 in 2000
 data_kaya<-data_kaya %>%
+  filter(year>=2000) %>% 
   group_by(country,var) %>% 
   mutate(value=value/first(value))
 
@@ -41,4 +42,24 @@ kaya_regions <- data_kaya_first_country %>%
 
 #make data available to shiny
 PDATA$kaya_regions <-kaya_regions
+
+#### intermediate plot for presentation
+data_kaya %>% 
+  filter(country %in% c("China")) %>%
+  ggplot(.,aes(x=year,y=value,color=var)) +
+  geom_line(size=1.5) +
+  geom_hline(aes(yintercept=1)) +
+  theme_bw() +
+  scale_color_brewer(palette="Set2",labels=c("Carbon intensity (CO2/energy)",
+                                             "Carbon emissions",
+                                             "Energy intensity (energy/GDP)",
+                                             "GDP per capita (GDP/pop)",
+                                             "Population"),
+                     guide = guide_legend(reverse = TRUE)) +
+  theme(legend.title=element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_blank(),
+        text = element_text(size = 25))+
+  guides(fill=guide_legend(title="Country/Region"))+
+  ggtitle("China's Kaya Identity from 2000-2019")
 

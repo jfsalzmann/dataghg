@@ -8,5 +8,7 @@ PDATA$data_absavg_pg %>%
   ylab("Avg Total Emissions (tCO2eq)") +
   theme_ghg()+
   scale_fill_brewer(palette="Set2") +
-  theme(axis.title.x = element_blank()) +
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5)) +
+  guides(color=guide_legend(title="Country/Category"))+
   ggtitle("Absolute Emissions " %.% COUNTRY %.% " vs. pc-Avg'ed Developed/Developing Countries by Sector, 1970-" %.% YEAR_U)

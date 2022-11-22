@@ -78,3 +78,4 @@ PDATA$data_rel = data_base %>%
   group_by(region,year) %>%
   mutate(GHG_s_r_perc=GHG_s_r/sum(GHG_s_r,na.rm=TRUE)) %>% # 
   filter(between(year,{{YEAR_L}},{{YEAR_U}}))
+
