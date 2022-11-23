@@ -5,7 +5,6 @@ PDATA$data_abs %>%
   scale_fill_brewer(palette="Set2") +
   ylab(GAS %.% " Emissions (MtCO2eq)") +
   theme_ghg()+
-  theme(axis.title.x=element_blank(),
-        text = element_text(size = 25)) +
+  theme(axis.title.x=element_blank()) +
   guides(fill=guide_legend(title="Sectors"))+
   ggtitle("Total Emissions, " %.% COUNTRY %.% ", by Sector, " %.% YEAR_L %.% "-" %.% YEAR_U)

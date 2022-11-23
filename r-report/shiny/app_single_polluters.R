@@ -29,8 +29,8 @@ ui = fluidPage(
     ),
 
     mainPanel(
-         plotOutput("plot1"),
-         plotOutput("plot2")
+         plotlyOutput("plot1"),
+         plotlyOutput("plot2")
     )
   )
 )
@@ -40,6 +40,7 @@ server = function(input, output) {
 
   setwd("../../")
   PDATA = reactiveValues()
+  DIRECT_PLOTTING = FALSE
   
   
   .init = reactive({
@@ -54,7 +55,7 @@ server = function(input, output) {
   })
   
   
-  output$plot1 = renderPlot({
+  output$plot1 = renderPlotly({
     
     YEAR_L = input$year[1]
     YEAR_U = input$year[2]
@@ -63,11 +64,12 @@ server = function(input, output) {
     .init()
     
     source("r-plots/plot_single_polluters_stacked_abs.R", local = TRUE, print.eval = TRUE)
+    plot(OUT)
     
   })
   
   
-  output$plot2 = renderPlot({
+  output$plot2 = renderPlotly({
     
     YEAR_L = input$year[1]
     YEAR_U = input$year[2]
@@ -76,6 +78,7 @@ server = function(input, output) {
     .init()
     
     source("r-plots/plot_single_polluters_stacked_rel.R", local = TRUE, print.eval = TRUE)
+    plot(OUT)
     
   })
   

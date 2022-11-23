@@ -15,6 +15,7 @@ p_load(tidyverse)
 p_load(WDI)
 p_load(ggridges)
 p_load(eurostat)
+p_load(plotly)
 
 
 "%cin%" = function(x,y){str_detect(y,x)}
@@ -25,6 +26,19 @@ p_load(eurostat)
 "%.%" = function(x,y){paste(x,y,sep = "")}
 cNA = as.character(NA)
 as.numeric.factor = . %>% as.numeric(levels(.))[.]
+
+
+`?` <- function(x, y) {
+  xs <- as.list(substitute(x))
+  if (xs[[1]] == as.name("<-")) x <- eval(xs[[3]])
+  r <- eval(sapply(strsplit(deparse(substitute(y)), ":"), function(e) parse(text = e))[[2 - as.logical(x)]])
+  if (xs[[1]] == as.name("<-")) {
+    xs[[3]] <- r
+    eval.parent(as.call(xs))
+  } else {
+    r
+  }
+}
 
 
 theme_ghg = function(){ 
@@ -77,6 +91,8 @@ theme_ghg = function(){
 
 
 PDATA = list()
+DIRECT_PLOTTING = TRUE
+
 COUNTRY = "China"
 YEAR = 2019
 YEAR_L = 1970

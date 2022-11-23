@@ -30,11 +30,11 @@ PDATA$data_rel = data_base %>%
 
 #find out since when china is the single biggest polluter over all GHGs
 
-wide_df<-PDATA$data_rel %>% 
-  select(year,region,GAS_s_perc) %>% 
-  pivot_wider(names_from = region, values_from = GAS_s_perc)
-
-wide_df$year[wide_df$China>wide_df$`United States`]
+# wide_df<-PDATA$data_rel %>% 
+#   select(year,region,GAS_s_perc) %>% 
+#   pivot_wider(names_from = region, values_from = GAS_s_perc)
+# 
+# wide_df$year[wide_df$China>wide_df$`United States`]
 
 # 
 # PDATA$data_rel = data_base %>%
