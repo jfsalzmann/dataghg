@@ -7,5 +7,7 @@ PDATA$data_rel_pc %>%
   ylab(GAS %.% " Emissions, %") +
   theme_ghg()+
   #scale_fill_brewer(palette="Set2") +
-  theme(axis.title.x = element_blank()) +
+  theme(axis.title.x = element_blank(),
+        text = element_text(size = 20))+
+  guides(fill=guide_legend(title="Country/Region"))+
   ggtitle("Relative Emissions " %.% COUNTRY %.% " vs. pc-Avg'ed Developed/Developing Countries, by Sector, " %.% YEAR)
