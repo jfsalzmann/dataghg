@@ -42,12 +42,38 @@ data_lulucf = read_excel("data-raw/egr22_country_data.xlsx",sheet = "data") %>%
   rename(ISO = iso, co2_lulucf = CO2_LULUCF_NGHGI) %>%
   select(ISO, year, co2_lulucf)
 
+# load Consumption emissions
+data_consumption = read_excel("data-raw/National_Fossil_Carbon_Emissions_2022v1.0.xlsx",range =  "Consumption Emissions!A9:IB41")
+data_consumption%<>%
+  pivot_longer(2:236,names_to = "country", values_to = "con_co2") %>% 
+  mutate(year= Year) %>% 
+  select(-Year)
+# worldbank income data for classification 
+
+data_income_wb<-read_excel("data-raw/data_wb.xlsx",range =  "Data!A4:BN270")
+data_income_wb%<>%
+  select(-c("Indicator Name","Indicator Code")) %>% 
+  pivot_longer(3:64,names_to = "year", values_to = "gni_per_capita") %>% 
+  mutate(dev_status_income = case_when(
+        gni_per_capita >=1035 ~ "Lower-middle income",
+        gni_per_capita >=4046 ~ "Upper-middle income",
+        gni_per_capita >=12535 ~ "High income",
+        gni_per_capita= NA ~ "",
+        TRUE ~ "Low income"
+  )) %>% 
+  rename(country="Country Name", ISO = "Country Code") %>% 
+  mutate(year=as.numeric(year)) %>% 
+  select(-country)
+  
+
 load("data-raw/data_wdi.RData") 
 data_wdi %<>%
   select(-country)
 
 data_base = data_gwp100 %>%
   left_join(data_wdi,by=c("ISO","year")) %>%
+  left_join(data_consumption,by=c("country","year")) %>%
+  left_join(data_income_wb,by=c("ISO","year")) %>%
   left_join(data_lulucf,by=c("ISO","year")) %>%
   mutate(
     GHG_pc = GHG/pop,
@@ -70,7 +96,7 @@ save(data_base,file="data-transf/data_base.RData")
 ```
 
 
-```{r}
+```{r- loading and prepping Kaya Data}
 
 #load("data-raw/data_iea.RData") Thanks to Will we got better Data now. 
 #load better energy data 
@@ -97,8 +123,34 @@ save(data_kaya,file="data-transf/data_kaya.RData")
 ```
 
 
-```{r}
+```{r -  Data Cumulative CO2}
 load("data-raw/data_cumulative_co2.RData")
+
+# need to add filling values when joining
+dev_status=data_base %>% 
+    group_by(country, year,region_ar6_dev) %>% 
+    summarise()
+
+data_hist_co2=data_cumulative_co2 %>% 
+  left_join(dev_status, by= c("country","year")) %>% 
+  filter(year <= 2019) %>% 
+    mutate(
+      EU = country %in% eurostat::eu_countries[2]$name,
+      woc = country != "China",
+      deving_woc = woc & region_ar6_dev == "developing",
+      deved = region_ar6_dev == "developed",
+      adp_region_woc = woc & region_ar6_6 == "Asia and developing Pacific",
+      adp_region_deving_woc = adp_region_woc & deving_woc
+    ) %>% 
+  select(-woc)
+
+
+
+save(data_hist_co2,file="data-transf/data_hist_co2.RData")
+```
+
+
+```{r - loading and prepping}
 
 # need to add filling values when joining
 dev_status=data_base %>% 
