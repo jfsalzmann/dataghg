@@ -16,6 +16,7 @@ p_load(WDI)
 p_load(ggridges)
 p_load(eurostat)
 p_load(plotly)
+p_load(imputeTS)
 
 
 "%cin%" = function(x,y){str_detect(y,x)}
@@ -97,4 +98,6 @@ COUNTRY = "China"
 YEAR = 2019
 YEAR_L = 1970
 YEAR_U = 2019
+FYEAR_L = c(2025,2030,2030,2035,2040)
+FYEAR_U = c(2060,2060,2055,2065,2065)
 GAS = "GHG"

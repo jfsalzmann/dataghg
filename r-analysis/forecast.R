@@ -1,85 +1,140 @@
 load("data-transf/data_base.RData")
-library(imputeTS)
-
-years = 2020:2029
-sectors = c("Buildings","Transport","AFOLU","Energy systems","Industry")
-oos_end = expand.grid(year = c(2030), sector_title = sectors) %>% mutate(GAS_s = NA, diff = 0)
-oos = expand.grid(year = years,sector_title = sectors) %>% mutate(GAS_s = NA, diff = NA) %>% rbind(oos_end)
 
 
 data = data_base %>%
   filter(country == "China") %>%
-  rename(GAS := "CO2") %>%
+  rename(GAS := GAS) %>%
   group_by(year,sector_title) %>%
   summarise(GAS_s=sum(GAS,na.rm=TRUE)) %>%
   na.omit() %>%
-  filter(
-      sector_title %in% c("Buildings","Transport") & between(year,2009,2019) |
-      sector_title %in% c("AFOLU","Energy systems") & between(year,2009,2019) |
-        sector_title %in% c("Industry") & between(year,1999,2019)
-  ) %>% 
+  filter(between(year,{{YEAR_L}},{{YEAR_U}})) %>%
   group_by(sector_title) %>%
-  mutate(diff = GAS_s - lag(GAS_s, default = first(GAS_s), order_by = year)) %>%
-  filter(diff != 0)
+  mutate(diff = GAS_s - lag(GAS_s, default = first(GAS_s), order_by = year), forecast = 0)
 
+
+## Model 1: Peak at 2030
+
+oos_end = data.frame(year = FYEAR_L, sector_title = meta_sector_list, GAS_s = c(NA), diff = c(0), forecast=1)
+
+oos = map_dfr(meta_sector_list,~data.frame(
+    year = (YEAR_U+1):(FYEAR_L[meta_sector_alc[.x]]-1),
+    sector_title = .x,
+    GAS_s = NA, diff = NA, forecast = 1
+)) %>% rbind(oos_end)
 
 data_ext = data %>% 
+  filter(diff != 0) %>%
   rbind(oos) %>% 
   group_by(sector_title) %>%
   mutate(diff = na_interpolation(diff)) %>%
-  filter(year>=2019) %>%
+  filter(year>={{YEAR_U}}) %>%
   mutate(GAS_s = ifelse(is.na(GAS_s),max(GAS_s,na.rm = T) + accumulate(diff,sum),GAS_s)) %>%
-  filter(year != 2019)
+  filter(year!={{YEAR_U}})
 
 
+## Model 2: S-Curve Decline to almost 0 before 2060
+
+oos_fade = map_dfr(meta_sector_list,~data.frame(
+  year = (FYEAR_L[meta_sector_alc[.x]]+1):(max(FYEAR_U)),
+  sector_title = .x,
+  GAS_s = NA, diff = NA, forecast = 2
+))
 
 
-data_pred = data %>%
-  nest() %>%
-  mutate(
-    model = map(data, ~lm(log(GAS_s)~year, data = .)),
-    param = map(model, broom::tidy),
-    oos = list(tibble(year = 2020:2060)),
-    pred = map2(model,oos,~broom::augment(.x,newdata=.y)),
-    pred = map(pred,~.x %>% rename(GAS_s := .fitted) %>% mutate(GAS_s = exp(GAS_s)))
-  ) %>% 
-  select(sector_title,pred) %>%
-  unnest(cols=c("pred"))
+s_curve = function(year,base_year=2020,spread=10,start=1){
+  case_when(
+    year <= base_year+spread/3 ~ start*(1.04)*(1/2)*(1+(2/pi)*atan((pi/2)*-(year-base_year-spread/3)/2)),
+    year > base_year+spread/3 ~ start*(1)*(1/2)*(1+(2/pi)*atan((pi/2)*-(year-base_year-spread/3)/2))
+  )
+}
 
 
-data_double = data_ext %>%
-  filter(year == 2020) %>% 
-  mutate(forecast = F)
+data_fade = data_ext %>%
+  filter(year == FYEAR_L[meta_sector_alc[sector_title]]) %>%
+  rbind(oos_fade) %>% 
+  mutate(GAS_s = s_curve(
+    year,
+    FYEAR_L[meta_sector_alc[sector_title]],
+    FYEAR_U[meta_sector_alc[sector_title]]-FYEAR_L[meta_sector_alc[sector_title]],
+    first(GAS_s,order_by=year)
+  )) %>%
+  filter(year != FYEAR_L[meta_sector_alc[sector_title]])
 
-data_comb = data %>%
+
+## Prepare Graph Data & Merge
+
+
+# data_double = data_ext %>%
+#   filter(year == {{YEAR_U}}+1) %>% 
+#   mutate(forecast = 0,diff=NA)
+# 
+# data_double2 = data_fade %>%
+#   filter(year == 2031) %>% 
+#   mutate(forecast = 1,diff=NA)
+
+PDATA$data_comb = data %>%
   rbind(data_ext) %>%
-  mutate(forecast = ifelse(year <= 2019,F,T)) %>%
-  rbind(data_double)
+  rbind(data_fade) %>%
+  mutate(
+    diff = GAS_s - lag(GAS_s, default = first(GAS_s), order_by = year)
+  ) %>%
+  # rbind(data_double) %>%
+  # rbind(data_double2) %>%
+  mutate(forecast = as.factor(forecast))
 
 
-data_comb %>%
-  #rbind(data_pred) %>%
-  ggplot(aes(x=year, y=GAS_s, color=forecast)) +
-    facet_wrap(~sector_title,scales="free_y",ncol=1) +
-    geom_line() +
-    scale_fill_brewer(palette = "Set2") +
-    theme(legend.position="none")+
-    ylab("Total Emissions (tCO2eq)") +
-    theme_ghg()+
-    scale_fill_brewer(palette="Set2") +
-    theme(axis.title.x = element_blank(),axis.text.y=element_blank(),strip.text.x = element_text(size = 5)) +
-    ggtitle("Total Emissions " %.% COUNTRY %.% " vs. Developed/Developing Countries by Sector, 1970-" %.% YEAR_U)
+
+# data_comb %>%
+#   #rbind(data_pred) %>%
+#   ggplot(aes(x=year, y=diff2, color=forecast)) +
+#   facet_wrap(~sector_title,scales="free_y",ncol=1) +
+#   geom_line() +
+#   scale_fill_brewer(palette = "Set2") +
+#   theme(legend.position="none")+
+#   ylab("Total Emissions (tCO2eq)") +
+#   theme_ghg()+
+#   scale_fill_brewer(palette="Set2") +
+#   theme(axis.title.x = element_blank(),axis.text.y=element_blank(),strip.text.x = element_text(size = 5)) +
+#   ggtitle("Total Emissions " %.% COUNTRY %.% " vs. Developed/Developing Countries by Sector, 1970-" %.% YEAR_U)
 
 
-data_comb %>%
-  #rbind(data_pred) %>%
-  ggplot(aes(x=year, y=diff, color=forecast)) +
-  facet_wrap(~sector_title,scales="free_y",ncol=1) +
-  geom_line() +
-  scale_fill_brewer(palette = "Set2") +
-  theme(legend.position="none")+
-  ylab("Total Emissions (tCO2eq)") +
-  theme_ghg()+
-  scale_fill_brewer(palette="Set2") +
-  theme(axis.title.x = element_blank(),axis.text.y=element_blank(),strip.text.x = element_text(size = 5)) +
-  ggtitle("Total Emissions " %.% COUNTRY %.% " vs. Developed/Developing Countries by Sector, 1970-" %.% YEAR_U)
+# 
+# 
+# b = 2030
+# test = data.frame(x = seq(b-10,b+30,0.5))
+# test %<>% mutate(y=s_curve(x,b,10,2))
+# test %$% plot(x,y)
+
+
+# oos2 = oos %>% mutate(diff2=diff)
+#  data_ext2 = data %>% 
+#   filter(year >= 2017) %>%
+#   group_by(sector_title) %>%
+#   mutate(diff = GAS_s - lag(GAS_s, default = first(GAS_s), order_by = year)) %>%
+#   filter(diff != 0) %>%
+#   mutate(diff2 = diff - lag(diff, default = first(diff), order_by = year)) %>%
+#   summarise(diff2 = mean(diff2),diff=last(diff),GAS_s=last(GAS_s),year=last(year)) %>%
+#   filter(diff2 != 0) %>%
+#   rbind(oos2) %>% 
+#   group_by(sector_title) %>%
+#   mutate(diff2 = na_interpolation(diff2)) %>%
+#   filter(year>=2019) %>%
+#   mutate(diff = ifelse(is.na(diff),max(diff,na.rm = T) + accumulate(diff2,sum),diff),
+#          GAS_s = ifelse(is.na(GAS_s),max(GAS_s,na.rm = T) + accumulate(diff,sum),GAS_s)) %>%
+#   filter(year != 2019)
+
+
+
+
+# data_pred = data %>%
+#   nest() %>%
+#   mutate(
+#     model = map(data, ~lm(log(GAS_s)~year, data = .)),
+#     param = map(model, broom::tidy),
+#     oos = list(tibble(year = 2020:2060)),
+#     pred = map2(model,oos,~broom::augment(.x,newdata=.y)),
+#     pred = map(pred,~.x %>% rename(GAS_s := .fitted) %>% mutate(GAS_s = exp(GAS_s)))
+#   ) %>% 
+#   select(sector_title,pred) %>%
+#   unnest(cols=c("pred"))
+

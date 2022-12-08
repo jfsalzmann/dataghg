@@ -17,3 +17,7 @@ meta_gas_transf_list = data_base %>%
   select(-GDP_pc) %>%
   select(contains("_")) %>%
   names() %>% setNames(.,.)
+
+meta_sectors = data_base %>% distinct(sector_title) %>% arrange(sector_title)
+meta_sector_list = meta_sectors %$% setNames(sector_title,sector_title)
+meta_sector_alc = meta_sectors %$% setNames(1:5,sector_title)
