@@ -55,16 +55,16 @@ data_income_wb%<>%
   select(-c("Indicator Name","Indicator Code")) %>% 
   pivot_longer(3:64,names_to = "year", values_to = "gni_per_capita") %>% 
   mutate(dev_status_income = case_when(
-        gni_per_capita >=1035 ~ "Lower-middle income",
-        gni_per_capita >=4046 ~ "Upper-middle income",
-        gni_per_capita >=12535 ~ "High income",
-        gni_per_capita= NA ~ "",
-        TRUE ~ "Low income"
-  )) %>% 
+        between(gni_per_capita,0, 1025) ~ "Low income",
+        between(gni_per_capita,1026, 3095) ~"Lower-middle income",
+        between(gni_per_capita,3996, 12375) ~ "Upper-middle income",
+        gni_per_capita > 12375  ~ "High income",
+        gni_per_capita == NA ~ ""  )) %>% 
   rename(country="Country Name", ISO = "Country Code") %>% 
   mutate(year=as.numeric(year)) %>% 
-  select(-country)
-  
+  select(-country) %>% 
+  filter(year==2019) %>% 
+  select(-year)
 
 load("data-raw/data_wdi.RData") 
 data_wdi %<>%
@@ -73,7 +73,7 @@ data_wdi %<>%
 data_base = data_gwp100 %>%
   left_join(data_wdi,by=c("ISO","year")) %>%
   left_join(data_consumption,by=c("country","year")) %>%
-  left_join(data_income_wb,by=c("ISO","year")) %>%
+  left_join(data_income_wb,by=c("ISO")) %>%
   left_join(data_lulucf,by=c("ISO","year")) %>%
   mutate(
     GHG_pc = GHG/pop,
@@ -96,7 +96,7 @@ save(data_base,file="data-transf/data_base.RData")
 ```
 
 
-```{r- loading and prepping Kaya Data}
+```{r loading and prepping Kaya Data}
 
 #load("data-raw/data_iea.RData") Thanks to Will we got better Data now. 
 #load better energy data 
@@ -107,13 +107,14 @@ data_energy%<>%
 
 data_kaya = data_base %>% 
   group_by(across(-c(sector_title,subsector_title,N2O, CH4,GHG,co2_lulucf,gdp_ppp, Fgas,GHG_pc,GHG_pg,CO2))) %>% 
+  summarise(CO2=sum(CO2,na.rm=T))%>%
   na.omit() %>% 
   summarise(CO2=sum(CO2,na.rm=T))%>%
-  left_join(data_energy,by=c("ISO","year")) %>%
-  mutate(energy_intensity = energy/GDP_pc) %>%
-  mutate(carbon_intensity = CO2/energy) %>%
-  na.omit() %>% 
-  pivot_longer(c(CO2,pop,GDP_pc,energy_intensity,carbon_intensity),names_to = "var",values_to = "value")
+  left_join(data_energy,by=c("ISO","year")) %>% 
+  mutate(dev_status_reg = case_when(deved ~ "developed",
+                                    TRUE ~ "developing")) 
+
+
 
 
 
@@ -149,28 +150,3 @@ data_hist_co2=data_cumulative_co2 %>%
 save(data_hist_co2,file="data-transf/data_hist_co2.RData")
 ```
 
-
-```{r - loading and prepping}
-
-# need to add filling values when joining
-dev_status=data_base %>% 
-    group_by(country, year,region_ar6_dev) %>% 
-    summarise()
-
-data_hist_co2=data_cumulative_co2 %>% 
-  left_join(dev_status, by= c("country","year")) %>% 
-  filter(year <= 2019) %>% 
-    mutate(
-      EU = country %in% eurostat::eu_countries[2]$name,
-      woc = country != "China",
-      deving_woc = woc & region_ar6_dev == "developing",
-      deved = region_ar6_dev == "developed",
-      adp_region_woc = woc & region_ar6_6 == "Asia and developing Pacific",
-      adp_region_deving_woc = adp_region_woc & deving_woc
-    ) %>% 
-  select(-woc)
-
-
-
-save(data_hist_co2,file="data-transf/data_hist_co2.RData")
-```

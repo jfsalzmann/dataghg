@@ -8,4 +8,6 @@ PDATA$data_rel %>%
   theme_ghg()+
   #scale_fill_brewer(palette="Set2") +
   theme(axis.title.x = element_blank()) +
+  geom_text(aes(label = round(GAS_s_perc)), position = position_stack(vjust = 0.5), size = 3) +
+  guides(fill =guide_legend("Sector"))+
   ggtitle("Relative Emissions " %.% COUNTRY %.% " vs. Developed/Developing Countries, by Sector, " %.% YEAR)
