@@ -1,44 +1,69 @@
 load("data-transf/data_base.RData")
 
 
+## CHINA
+
 data = data_base %>%
-  filter(country == "China") %>%
+  filter(country %in% c("China","United States") | EU) %>%
   rename(GAS := GAS) %>%
-  group_by(year,sector_title) %>%
+  mutate(country = ifelse(EU,"EU",country)) %>%
+  group_by(year,country,sector_title) %>%
   summarise(GAS_s=sum(GAS,na.rm=TRUE)) %>%
   na.omit() %>%
   filter(between(year,{{YEAR_L}},{{YEAR_U}})) %>%
-  group_by(sector_title) %>%
+  group_by(country,sector_title) %>%
   mutate(diff = GAS_s - lag(GAS_s, default = first(GAS_s), order_by = year), forecast = 0)
 
 
-## Model 1: Peak at 2030
+## Model 1: China's Peak
 
-oos_end = data.frame(year = FYEAR_L, sector_title = meta_sector_list, GAS_s = c(NA), diff = c(0), forecast=1)
+oos_end = data.frame(country = "China", year = FYEAR_L, sector_title = meta_sector_list, GAS_s = c(NA), diff = c(0), forecast=1)
 
 oos = map_dfr(meta_sector_list,~data.frame(
+    country = "China",
     year = (YEAR_U+1):(FYEAR_L[meta_sector_alc[.x]]-1),
     sector_title = .x,
     GAS_s = NA, diff = NA, forecast = 1
 )) %>% rbind(oos_end)
 
 data_ext = data %>% 
-  filter(diff != 0) %>%
+  filter(diff != 0 & country == "China" & year>={{YEAR_U}}-1) %>%
   rbind(oos) %>% 
-  group_by(sector_title) %>%
+  group_by(country,sector_title) %>%
   mutate(diff = na_interpolation(diff)) %>%
   filter(year>={{YEAR_U}}) %>%
   mutate(GAS_s = ifelse(is.na(GAS_s),max(GAS_s,na.rm = T) + accumulate(diff,sum),GAS_s)) %>%
   filter(year!={{YEAR_U}})
 
 
-## Model 2: S-Curve Decline to almost 0 before 2060
+## Model 2: 2030 Intermediary Levels EU / China
+
+oos_comp = expand.grid(country = c("United States","EU"), sector_title = meta_sector_list, year=(YEAR_U+1):2030) %>%
+  mutate(GAS_s = case_when(
+    year != 2030 ~ 0,
+    country=="US" ~ 3.251e8,
+    country=="EU" ~ 2.085e8
+  ), diff = NA, forecast=1) %>% mutate(GAS_s = ifelse(GAS_s == 0, NA, GAS_s))
+
+data_ext_comp = data %>% 
+  filter(country != "China") %>%
+  rbind(oos_comp) %>% 
+  group_by(country,sector_title) %>%
+  mutate(GAS_s = na_interpolation(GAS_s))
+
+
+## Model 3: S-Curve Decline to almost 0
+
+oos_fade_comp = expand.grid(country = c("United States","EU"), sector_title = meta_sector_list, year=2031:(max(FYEAR_U))) %>%
+  mutate(GAS_s = NA, diff = NA, forecast = 2)
 
 oos_fade = map_dfr(meta_sector_list,~data.frame(
   year = (FYEAR_L[meta_sector_alc[.x]]+1):(max(FYEAR_U)),
   sector_title = .x,
-  GAS_s = NA, diff = NA, forecast = 2
-))
+  GAS_s = NA, diff = NA, forecast = 2, country="China"
+)) %>% rbind(oos_fade_comp)
+
+
 
 
 s_curve = function(year,base_year=2020,spread=10,start=1){
@@ -50,15 +75,26 @@ s_curve = function(year,base_year=2020,spread=10,start=1){
 
 
 data_fade = data_ext %>%
-  filter(year == FYEAR_L[meta_sector_alc[sector_title]]) %>%
+  rbind(data_ext_comp) %>%
+  filter(country == "China" & year == FYEAR_L[meta_sector_alc[sector_title]] | year == 2030) %>%
+  group_by(country,sector_title) %>%
   rbind(oos_fade) %>% 
-  mutate(GAS_s = s_curve(
-    year,
-    FYEAR_L[meta_sector_alc[sector_title]],
-    FYEAR_U[meta_sector_alc[sector_title]]-FYEAR_L[meta_sector_alc[sector_title]],
-    first(GAS_s,order_by=year)
-  )) %>%
-  filter(year != FYEAR_L[meta_sector_alc[sector_title]])
+  mutate(GAS_s = case_when(
+      country == "China" ~ s_curve(
+        year,
+        FYEAR_L[meta_sector_alc[sector_title]],
+        FYEAR_U[meta_sector_alc[sector_title]]-FYEAR_L[meta_sector_alc[sector_title]],
+        first(GAS_s,order_by=year)
+      ),
+      TRUE ~ s_curve(
+        year,
+        2030,
+        ifelse(country=="EU",FYEAR_EU,FYEAR_US)-2030,
+        first(GAS_s,order_by=year)
+      )
+    )
+  ) %>%
+  filter(!(country == "China" & year == FYEAR_L[meta_sector_alc[sector_title]] | year == 2030))
 
 
 ## Prepare Graph Data & Merge
@@ -74,7 +110,9 @@ data_fade = data_ext %>%
 
 PDATA$data_comb = data %>%
   rbind(data_ext) %>%
+  rbind(data_ext_comp) %>%
   rbind(data_fade) %>%
+  group_by(country,sector_title) %>%
   mutate(
     diff = GAS_s - lag(GAS_s, default = first(GAS_s), order_by = year)
   ) %>%
