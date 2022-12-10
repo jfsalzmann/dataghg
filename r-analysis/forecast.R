@@ -46,11 +46,16 @@ factors = data %>%
   mutate(sector = row_number()) %>%
   spread(country, GAS_s_perc)
 
+assumption = data.frame(
+  US = c(3.251e9,NA,NA,NA,3.251e9),
+  EU = c(2.085e9,NA,NA,NA,2.085e9),
+  gas = meta_gas_list)
+
 oos_comp = expand.grid(country = c("United States","EU"), sector_title = meta_sector_list, year=(YEAR_U+1):2030) %>%
   mutate(GAS_s = case_when(
     year != 2030 ~ 0,
-    country=="United States" ~ 3.251e9 * factors$US[meta_sector_alc[sector_title]],
-    country=="EU" ~ 2.085e9 * factors$EU[meta_sector_alc[sector_title]]
+    country=="United States" ~ assumption$US[meta_gas_alc[{{GAS}}]] * factors$US[meta_sector_alc[sector_title]],
+    country=="EU" ~ assumption$EU[meta_gas_alc[{{GAS}}]] * factors$EU[meta_sector_alc[sector_title]]
   ), diff = NA, forecast=1) %>% mutate(GAS_s = ifelse(GAS_s == 0, NA, GAS_s))
 
 data_ext_comp = data %>% 

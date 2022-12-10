@@ -11,6 +11,8 @@ meta_gas_list = data_base %>%
   select(-contains("_")) %>%
   names() %>% setNames(.,.)
 
+meta_gas_alc = setNames(1:5,meta_gas_list)
+
 meta_gas_transf_list = data_base %>%
   select(where(is_numeric)) %>%
   select(matches("^[A-Z]",ignore.case=F)) %>%
