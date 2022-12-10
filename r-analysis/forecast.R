@@ -121,7 +121,7 @@ data_fade = data_ext %>%
 #   filter(year == 2031) %>% 
 #   mutate(forecast = 1,diff=NA)
 
-PDATA$data_comb = data %>%
+forecast = data %>%
   rbind(data_ext) %>%
   rbind(data_ext_comp) %>%
   rbind(data_fade) %>%
@@ -133,6 +133,9 @@ PDATA$data_comb = data %>%
   # rbind(data_double2) %>%
   mutate(forecast = as.factor(forecast))
 
+
+PDATA$data_comb = forecast
+save(forecast,file="data-transf/forecast_" %.% GAS %.%  "_" %.% max(FYEAR_L) %.% ".RData")
 
 
 # data_comb %>%
