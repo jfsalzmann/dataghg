@@ -16,7 +16,7 @@ data_co2_1750_US_CH<-data_hist_co2 %>%
 data_cco2_1750<-  rbind(data_co2_1750_US_CH,data_co2_1750_EU) %>% 
   filter(year <= 1970)
 
-view(data_cco2_1750)
+#view(data_cco2_1750)
 data_cco2_1750%<>%
   select(co2,year,country) %>%
   rename("GHG" =co2)
@@ -40,11 +40,10 @@ data_cghg_1750_2019<-data_base %>%
   mutate(cum_ghg = cumsum(coalesce(GHG, 0)) + GHG*0)
 
 
-
-view(data_cghg_1750_2019)
+save(data_cghg_1750_2019,file="data-transf/data_cghg_1750_2019.RData")
 
 # combine 1750 with 1970 data
 
-data_cghg_1750_to_2019 <- %>% 
+#data_cghg_1750_to_2019 <- %>% 
 
   
