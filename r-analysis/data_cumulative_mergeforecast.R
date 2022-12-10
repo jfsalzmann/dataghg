@@ -19,12 +19,18 @@ fdata_2030 = forecast %>%
   rename(GHG = GAS_ss) %>%
   mutate(cum_ghg = NA)
 
-PDATA$data_2040 = data %>% rbind(fdata_2040) %>%
+data_2040 = data %>% rbind(fdata_2040) %>%
   arrange(year) %>% 
   group_by(country) %>% 
   mutate(cum_ghg = cumsum(coalesce(GHG, 0)) + GHG*0)
 
-PDATA$data_2030 = data %>% rbind(fdata_2030) %>%
+data_2040 %>% write.xlsx("data-transf/data_cumulative_2040.xlsx", asTable = FALSE, overwrite = TRUE)
+PDATA$data_2040 = data_2040
+
+data_2030 = data %>% rbind(fdata_2030) %>%
   arrange(year) %>% 
   group_by(country) %>% 
   mutate(cum_ghg = cumsum(coalesce(GHG, 0)) + GHG*0)
+
+data_2030 %>% write.xlsx("data-transf/data_cumulative_2030.xlsx", asTable = FALSE, overwrite = TRUE)
+PDATA$data_2030 = data_2030

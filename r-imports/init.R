@@ -17,6 +17,7 @@ p_load(ggridges)
 p_load(eurostat)
 p_load(plotly)
 p_load(imputeTS)
+p_load(openxlsx)
 
 
 "%cin%" = function(x,y){str_detect(y,x)}
