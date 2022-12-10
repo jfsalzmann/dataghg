@@ -38,11 +38,19 @@ data_ext = data %>%
 
 ## Model 2: 2030 Intermediary Levels EU / China
 
+factors = data %>%
+  filter(year == YEAR_U, country %in% c("United States","EU")) %>%
+  mutate(country = ifelse(country == "United States","US",country)) %>%
+  group_by(country) %>%
+  summarise(GAS_s_perc = GAS_s/sum(GAS_s)) %>%
+  mutate(sector = row_number()) %>%
+  spread(country, GAS_s_perc)
+
 oos_comp = expand.grid(country = c("United States","EU"), sector_title = meta_sector_list, year=(YEAR_U+1):2030) %>%
   mutate(GAS_s = case_when(
     year != 2030 ~ 0,
-    country=="US" ~ 3.251e8,
-    country=="EU" ~ 2.085e8
+    country=="United States" ~ 3.251e9 * factors$US[meta_sector_alc[sector_title]],
+    country=="EU" ~ 2.085e9 * factors$EU[meta_sector_alc[sector_title]]
   ), diff = NA, forecast=1) %>% mutate(GAS_s = ifelse(GAS_s == 0, NA, GAS_s))
 
 data_ext_comp = data %>% 
