@@ -69,7 +69,7 @@ gdp_50_gdp_pc<-data_base_lp_gdp_pc%>%
   slice(which.min(abs((1-.$cum_gdp_perc)-0.5)))
 
 # combining countries of  intrest 
-data_base_lp_gdp_pc<-rbind(Top,Others,relevant,EU,pop_50_gdp_pc,ghg_50_gdp_pc,ghg_50_gdp_pc)  
+data_base_lp_gdp_pc<-rbind(Top,Others,relevant,EU,pop_50_gdp_pc,ghg_50_gdp_pc,gdp_50_gdp_pc)  
 
 
 data_base_lp_gdp_pc <- data.frame(
@@ -88,7 +88,8 @@ p_level_gdp_pc <- data_base_lp_gdp_pc %>%
 p_level_gdp_pc<-rev(c(p_level_gdp_pc[-which(p_level_gdp_pc=="Other")],"Other"))
 
 data_base_lp_gdp_pc%<>%
-  mutate(x = (fct_relevel(x,p_level_gdp_pc)))
+  mutate(x = (fct_relevel(x,p_level_gdp_pc)),
+         y=round(y/1000,2))
 
 
 p_an_gdp_pc <- data_base_lp_gdp_pc %>%
