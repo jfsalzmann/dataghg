@@ -169,7 +169,22 @@ source("r-plots/plot_single_polluters_stacked_rel.R", local = TRUE, print.eval =
 plot(OUT)
 ```
 
-```{r,fig.cap="Figure 2: Kaya Identity China - 2000 - 2019"}
+
+
+
+```{r,fig.cap="Figure 2: Total Emissions, China by Sector - 1970-2019"}
+YEAR_L = 1970
+YEAR_U = 2019
+GAS = "GHG"
+COUNTRY = "China"
+
+source("r-analysis/data_sectors_bycountry.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_sectors_bycountry_stacked_abs.R", local = TRUE, print.eval = TRUE)
+
+plot(OUT)
+```
+
+```{r,fig.cap="Figure 3: Kaya Identity China - 2000 - 2019"}
 YEAR_L = 2000
 YEAR_U = 2019
 GAS = "GHG"
@@ -178,21 +193,7 @@ source("r-analysis/data_kaya_analysis.R", local = TRUE, print.eval = TRUE)
 source("r-plots/plot_kaya_chn.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
-```
-
-
-```{r,fig.cap="Figure 3"}
-YEAR_L = 1850
-YEAR_U = 2060
-GAS = "GHG"
-
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
-
-plot(OUT)
-```
-
- 
+``` 
 
 # Data & Assumptions
 
