@@ -46,9 +46,18 @@ factors = data %>%
   mutate(sector = row_number()) %>%
   spread(country, GAS_s_perc)
 
+ratio_assumption = data_base %>%
+  filter(country %in% c("United States") | EU) %>%
+  mutate(country = ifelse(EU,"EU",country)) %>%
+  group_by(year,country) %>%
+  summarise(GHG_s=sum(GHG,na.rm=TRUE), CO2_s = sum(CO2,na.rm=TRUE)) %>%
+  na.omit() %>%
+  filter(between(year,2019,2019)) %>%
+  mutate(ratio=CO2_s/GHG_s) %$% ratio
+
 assumption = data.frame(
-  US = c(3.251e9,NA,NA,NA,3.251e9),
-  EU = c(2.085e9,NA,NA,NA,2.085e9),
+  US = c(3.251e9*ratio_assumption[2],NA,NA,NA,3.251e9),
+  EU = c(2.085e9*ratio_assumption[1],NA,NA,NA,2.085e9),
   gas = meta_gas_list)
 
 oos_comp = expand.grid(country = c("United States","EU"), sector_title = meta_sector_list, year=(YEAR_U+1):2030) %>%
