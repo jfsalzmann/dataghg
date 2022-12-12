@@ -46,14 +46,16 @@ fdata_2030 = fdata_2030_ghg %>%
 data_2040 = data %>% rbind(fdata_2040) %>%
   arrange(year) %>% 
   group_by(country) %>% 
-  mutate(cum_ghg = cumsum(coalesce(GHG, 0)) + GHG*0)
+  mutate(cum_ghg = cumsum(coalesce(GHG, 0)) + GHG*0,
+         cum_co2 = cumsum(coalesce(co2, 0)) + co2*0)
 
 data_2040 %>% write.xlsx("data-transf/data_cumulative_2040.xlsx", asTable = FALSE, overwrite = TRUE)
 
 data_2030 = data %>% rbind(fdata_2030) %>%
   arrange(year) %>% 
   group_by(country) %>% 
-  mutate(cum_ghg = cumsum(coalesce(GHG, 0)) + GHG*0)
+  mutate(cum_ghg = cumsum(coalesce(GHG, 0)) + GHG*0,
+         cum_co2 = cumsum(coalesce(co2, 0)) + co2*0)
 
 data_2030 %>% write.xlsx("data-transf/data_cumulative_2030.xlsx", asTable = FALSE, overwrite = TRUE)
 

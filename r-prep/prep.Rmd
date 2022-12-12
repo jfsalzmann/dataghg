@@ -141,7 +141,8 @@ data_hist_co2=data_cumulative_co2 %>%
       deving_woc = woc & region_ar6_dev == "developing",
       deved = region_ar6_dev == "developed",
       adp_region_woc = woc & region_ar6_6 == "Asia and developing Pacific",
-      adp_region_deving_woc = adp_region_woc & deving_woc
+      adp_region_deving_woc = adp_region_woc & deving_woc,
+      CO2_FFI = CO2_FFI*1e9
     ) %>% 
   select(-woc)
 
