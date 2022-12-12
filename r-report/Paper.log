@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.8)  12 DEC 2022 18:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.8)  12 DEC 2022 19:05
 entering extended mode
 **./Paper.tex
 (Paper.tex
@@ -720,16 +720,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 [2
 
-]
-
-Package natbib Warning: Citation `IEA2022' on page 3 undefined on input line 22
-0.
-
-
-Package natbib Warning: Citation `Green2022' on page 3 undefined on input line 
-225.
-
-[3
+] [3
 
 pdfTeX warning (ext4): destination with the same identifier (name{section*.3}) 
 has been already used, duplicate ignored
@@ -738,252 +729,143 @@ has been already used, duplicate ignored
 l.242 T
        he question arises, how China plans to curb its emissions. At the]
 
-Package natbib Warning: Citation `Jinping2020' on page 4 undefined on input lin
-e 245.
-
-
-Package natbib Warning: Citation `CAT2022' on page 4 undefined on input line 24
-6.
-
-
 Package natbib Warning: Citation `China2022' on page 4 undefined on input line 
 253.
 
-
-Package natbib Warning: Citation `DRCEP2021b' on page 4 undefined on input line
- 268.
-
-
-Package natbib Warning: Citation `Zhou2022' on page 4 undefined on input line 2
-73.
-
-
-Package natbib Warning: Citation `CAT2022' on page 4 undefined on input line 28
-5.
-
-
-Package natbib Warning: Citation `China2022' on page 4 undefined on input line 
-292.
-
 [4]
-
-Package natbib Warning: Citation `UNFCCC2015' on page 5 undefined on input line
- 307.
-
-<Paper_files/figure-latex/unnamed-chunk-1-1.pdf, id=60, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-1-1.pdf, id=89, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-1-1.pdf  used o
-n input line 339.
+n input line 338.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<Paper_files/figure-latex/unnamed-chunk-2-1.pdf, id=61, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-2-1.pdf, id=90, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-2-1.pdf  used o
-n input line 345.
+n input line 344.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<Paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=62, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=91, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-3-1.pdf  used o
-n input line 351.
+n input line 350.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
 [5] [6 <./Paper_files/figure-latex/unnamed-chunk-1-1.pdf> <./Paper_files/figure
 -latex/unnamed-chunk-2-1.pdf>] [7 <./Paper_files/figure-latex/unnamed-chunk-3-1
-.pdf>]
-
-Package natbib Warning: Citation `EC2022' on page 8 undefined on input line 374
-.
-
-
-Package natbib Warning: Citation `Giacomo2022' on page 8 undefined on input lin
-e 381.
-
-
-Package natbib Warning: Citation `Peters2011' on page 8 undefined on input line
- 385.
-
-
-Package natbib Warning: Citation `WorldBank2022d' on page 8 undefined on input 
-line 386.
-
-
-Package natbib Warning: Citation `WorldBank2018' on page 8 undefined on input l
-ine 390.
-
-[8
+.pdf>] [8
 
 pdfTeX warning (ext4): destination with the same identifier (name{section*.4}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.410 \section{Analysis}\label{analysis}}
-                                         ] [9]
-
-Package natbib Warning: Citation `Kinnunen2019' on page 10 undefined on input l
-ine 437.
-
-
-Package natbib Warning: Citation `Fantom2016' on page 10 undefined on input lin
-e 454.
-
-[10
+l.409 \section{Analysis}\label{analysis}}
+                                         ] [9] [10
 
 pdfTeX warning (ext4): destination with the same identifier (name{section*.5}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.470 
-      ]
-
-Package natbib Warning: Citation `WorldBank2022d' on page 11 undefined on input
- line 484.
-
-
-Package natbib Warning: Citation `Lamb2021' on page 11 undefined on input line 
-503.
-
-
-Package natbib Warning: Citation `Zheng2020' on page 11 undefined on input line
- 521.
-
-
-Package natbib Warning: Citation `Zheng2020' on page 11 undefined on input line
- 531.
-
-
-Package natbib Warning: Citation `Peters2017' on page 11 undefined on input lin
-e 531.
-
-[11]
-<Paper_files/figure-latex/unnamed-chunk-4-1.pdf, id=122, 433.62pt x 289.08pt>
+l.469 
+      ] [11]
+<Paper_files/figure-latex/unnamed-chunk-4-1.pdf, id=186, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-4-1.pdf  used o
-n input line 556.
+n input line 555.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.557 \caption{Figure 4}
+l.556 \caption{Figure 4}
                          [12]
-<Paper_files/figure-latex/unnamed-chunk-5-1.pdf, id=128, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-5-1.pdf, id=196, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-5-1.pdf  used o
-n input line 586.
+n input line 585.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.587 \caption{Figure 5}
+l.586 \caption{Figure 5}
                          [13 <./Paper_files/figure-latex/unnamed-chunk-4-1.pdf>
-]
-
-Package natbib Warning: Citation `EEA2022' on page 14 undefined on input line 6
-28.
-
-[14 <./Paper_files/figure-latex/unnamed-chunk-5-1.pdf>]
-<Paper_files/figure-latex/unnamed-chunk-6-1.pdf, id=149, 433.62pt x 289.08pt>
+] [14 <./Paper_files/figure-latex/unnamed-chunk-5-1.pdf>]
+<Paper_files/figure-latex/unnamed-chunk-6-1.pdf, id=219, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-6-1.pdf  used o
-n input line 651.
+n input line 650.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.652 \caption{Figure 6}
+l.651 \caption{Figure 6}
                          [15 <./Paper_files/figure-latex/unnamed-chunk-6-1.pdf>
 ]
-<Paper_files/figure-latex/unnamed-chunk-7-1.pdf, id=159, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-7-1.pdf, id=230, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-7-1.pdf  used o
-n input line 687.
+n input line 686.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
 [16 <./Paper_files/figure-latex/unnamed-chunk-7-1.pdf>]
-<Paper_files/figure-latex/unnamed-chunk-8-1.pdf, id=170, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-8-1.pdf, id=241, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-8-1.pdf  used o
-n input line 736.
+n input line 735.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-[17]
-
-Package natbib Warning: Citation `Knight2004' on page 18 undefined on input lin
-e 768.
-
-[18 <./Paper_files/figure-latex/unnamed-chunk-8-1.pdf>] [19]
-
-Package natbib Warning: Citation `PBL2022' on page 20 undefined on input line 8
-40.
-
-<Paper_files/figure-latex/unnamed-chunk-9-1.pdf, id=195, 433.62pt x 289.08pt>
+[17] [18 <./Paper_files/figure-latex/unnamed-chunk-8-1.pdf>] [19]
+<Paper_files/figure-latex/unnamed-chunk-9-1.pdf, id=271, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-9-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-9-1.pdf  used o
-n input line 873.
+n input line 872.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
 [20]
-<Paper_files/figure-latex/unnamed-chunk-10-1.pdf, id=202, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-10-1.pdf, id=278, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-10-1.pdf  used 
-on input line 913.
+on input line 912.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-
-Package natbib Warning: Citation `WorldBank2022c' on page 21 undefined on input
- line 919.
-
 [21 <./Paper_files/figure-latex/unnamed-chunk-9-1.pdf>]
-<Paper_files/figure-latex/unnamed-chunk-11-1.pdf, id=213, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-11-1.pdf, id=292, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-11-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-11-1.pdf  used 
-on input line 932.
+on input line 931.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<Paper_files/figure-latex/unnamed-chunk-12-1.pdf, id=214, 433.62pt x 289.08pt>
+[22 <./Paper_files/figure-latex/unnamed-chunk-10-1.pdf>]
+<Paper_files/figure-latex/unnamed-chunk-12-1.pdf, id=304, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-12-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-12-1.pdf  used 
-on input line 958.
+on input line 957.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-<Paper_files/figure-latex/unnamed-chunk-13-1.pdf, id=215, 433.62pt x 289.08pt>
+<Paper_files/figure-latex/unnamed-chunk-13-1.pdf, id=305, 433.62pt x 289.08pt>
 File: Paper_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type pdf)
 <use Paper_files/figure-latex/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: Paper_files/figure-latex/unnamed-chunk-13-1.pdf  used 
-on input line 964.
+on input line 963.
 (pdftex.def)             Requested size: 433.63878pt x 289.09251pt.
-[22 <./Paper_files/figure-latex/unnamed-chunk-10-1.pdf>] [23 <./Paper_files/fig
-ure-latex/unnamed-chunk-11-1.pdf> <./Paper_files/figure-latex/unnamed-chunk-12-
-1.pdf>] [24 <./Paper_files/figure-latex/unnamed-chunk-13-1.pdf>] [25]
-
-Package natbib Warning: Citation `CAT2022' on page 26 undefined on input line 1
-039.
-
-
-Package natbib Warning: Citation `CAT2022' on page 26 undefined on input line 1
-056.
-
-[26
+[23 <./Paper_files/figure-latex/unnamed-chunk-11-1.pdf>] [24 <./Paper_files/fig
+ure-latex/unnamed-chunk-12-1.pdf> <./Paper_files/figure-latex/unnamed-chunk-13-
+1.pdf>] [25] [26
 
 pdfTeX warning (ext4): destination with the same identifier (name{section*.13})
  has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.1058 A
-        nother equity metric is developed by the Climate Equity Monitor. The]
-
-Package natbib Warning: Citation `CEM2022' on page 27 undefined on input line 1
-072.
-
-[27]
+l.1057 A
+        nother equity metric is developed by the Climate Equity Monitor. The] [
+27]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-117.
+116.
 ("C:\Program Files\MiKTeX\tex/latex/lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [28
@@ -1002,36 +884,37 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 9.
-)
+(Font)              <5> on input line 6.
+[31
+
+])
 
 Package natbib Warning: There were undefined citations.
 
-[31
-
-] (Paper.aux) ) 
+[32] (Paper.aux) ) 
 Here is how much of TeX's memory you used:
- 16912 strings out of 479832
- 252070 string characters out of 2880876
- 613219 words of memory out of 3000000
- 33321 multiletter control sequences out of 15000+200000
- 603205 words of font info for 142 fonts, out of 3000000 for 9000
+ 17048 strings out of 479832
+ 254149 string characters out of 2880876
+ 632501 words of memory out of 3000000
+ 33399 multiletter control sequences out of 15000+200000
+ 615132 words of font info for 160 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,10n,72p,1196b,450s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Progra
-m Files/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Program Files/MiKTeX/fonts/enc
-/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}{
-C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKT
-eX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public
-/lm/lmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Pr
-ogram Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/fon
-ts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmr
-17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type
-1/public/lm/lmtt10.pfb>
-Output written on Paper.pdf (32 pages, 390574 bytes).
+ 66i,10n,72p,1196b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Pro
+gram Files/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Program Files/MiKTeX/fonts/
+enc/dvips/lm/lm-mathsy.enc}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
+c}{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/M
+iKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
+lic/lm/lmbx12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:
+/Program Files/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/lm/lmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/
+lmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Program Files/MiKTeX/fonts/t
+ype1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtt10
+.pfb>
+Output written on Paper.pdf (33 pages, 440693 bytes).
 PDF statistics:
- 425 PDF objects out of 1000 (max. 8388607)
- 91 named destinations out of 1000 (max. 500000)
- 14530 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 547 PDF objects out of 1000 (max. 8388607)
+ 116 named destinations out of 1000 (max. 500000)
+ 16578 words of extra memory for PDF output out of 17280 (max. 10000000)
 
