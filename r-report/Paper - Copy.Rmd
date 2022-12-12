@@ -33,8 +33,8 @@ output:
     df_print: kable
     latex_engine: pdflatex
 bibliography:
-#  - anna.bib
-#  - fabian.bib
+  - anna.bib
+  - fabian.bib
   - packages.bib
 urlcolor: MidnightBlue
 linkcolor: MidnightBlue
@@ -71,7 +71,7 @@ header-includes:
   - \let\Begin\begin
   - \let\End\end
   - \newcommand{\Newrow}{\\}
-  - \AtBeginDocument{\pdfbookmark[section]{Cover Page}{front}}
+  - \AtBeginDocument{\pdfbookmark[section]{Deckblatt}{front}}
 ---
 
 ```{r setup, include=FALSE}
@@ -88,7 +88,6 @@ source('r-analysis/meta.R')
 ```
 
 \renewcommand{\harvardand}{\&}
-\renewcommand{\harvardurl}{\textbf{URL:} \url}
 \setcitestyle{authoryear,round,aysep={},notesep={: }}
 \nocite{R-rmarkdown,R-tidyverse,R-eurostat,R-WDI,R-plotly,R-imputeTS,R-kableExtra}
 
@@ -237,11 +236,11 @@ Thus, going forward we will also use the World Bank’s Classification of Countr
     \centering
     \begin{tabular}{|l|l|}
     \hline
-        \textbf{Group  } & \textbf{Thresholds July 2019 in USD  } \\ \hline
-        Low income   & $< 1,026$ \\ \hline
-        Lower-middle income   & $1,026 - 3,955$ \\ \hline
-        Upper-middle income  & $3,966 - 12,375$ \\ \hline
-        High income  & $> 12,375$ \\ \hline
+        \textbf{Group  } & \textbf{Thresholds July 2019 in \$  } \\ \hline
+        Low income   & \$< 1,026\$ \\ \hline
+        Lower-middle income   & \$1,026 - 3,955\$ \\ \hline
+        Upper-middle income  & \$3,966 - 12,375\$ \\ \hline
+        High income  & \$> 12,375\$ \\ \hline
     \end{tabular}
 \end{table}
 
@@ -257,7 +256,7 @@ TO BE DONE FOrmula
 
 The term highlights the different components of the identity: G/P is GDP per capita, E/G is the energy intensity of GDP and F/E is the carbon intensity of energy [@Lamb2021]. By comparing Kaya identities of different regions, we can also discuss regional differences. Hence, we use the Kaya identity to discuss if the driving forces of emissions show similarities with developing or developed nations. 
 
-Figure 4 displays China’s and developing and developed countries’ Kaya identities according to the IPCC classification in the Sixth Assessment Report from 2000 to 2019. In those years, China’s GDP per capita was growing with a factor close to five, thereby being the strongest upward driver of emissions. GDP per capita increased almost in tandem with carbon emissions until 2010, in which a decoupling took place. Ever since, Chinese emission’s growth rates have been much slower than those of GDP per capita. This decoupling is likely due to the decreasing energy intensity of GDP and carbon intensity of energy at the same time. The energy intensity is the main counteracting factor on Chinese emissions and decreased constantly since 2005. The decreasing trend seemed to have already started in 2000 but had rebounded before 2005, which can be traced back to 2001, when China joined the WTO [@Zheng2020]. However, since 2010 the decrease has been significant, hence driving the reduction of overall emissions growth rate. Furthermore, one can see that carbon intensity of energy decreased since 2010 meaning that the amount of CO2 per unit of energy is decreasing. Nevertheless, the relationship remains a positive one. The decline of both the energy intensity and carbon intensity is likely due to economic efficiency improvements. Additionally, carbon intensity further declined because of increasing capacity additions of renewable energies (changes in the fossil share) and the reduced emission intensity of fossil fuels (changes in the fossil intensity, fuel switch) [@Zheng2020;@Peters2017]. Population changes only played a minor role but can be considered as a persistent upward driver of emissions. 
+Figure 4 displays China’s and developing and developed countries’ Kaya identities according to the IPCC classification in the Sixth Assessment Report from 2000 to 2019. In those years, China’s GDP per capita was growing with a factor close to five, thereby being the strongest upward driver of emissions. GDP per capita increased almost in tandem with carbon emissions until 2010, in which a decoupling took place. Ever since, Chinese emission’s growth rates have been much slower than those of GDP per capita. This decoupling is likely due to the decreasing energy intensity of GDP and carbon intensity of energy at the same time. The energy intensity is the main counteracting factor on Chinese emissions and decreased constantly since 2005. The decreasing trend seemed to have already started in 2000 but had rebounded before 2005, which can be traced back to 2001, when China joined the WTO [@Zheng2020]. However, since 2010 the decrease has been significant, hence driving the reduction of overall emissions growth rate. Furthermore, one can see that carbon intensity of energy decreased since 2010 meaning that the amount of CO2 per unit of energy is decreasing. Nevertheless, the relationship remains a positive one. The decline of both the energy intensity and carbon intensity is likely due to economic efficiency improvements. Additionally, carbon intensity further declined because of increasing capacity additions of renewable energies (changes in the fossil share) and the reduced emission intensity of fossil fuels (changes in the fossil intensity, fuel switch) [@Zheng2020] TBD  [@Peters2017]. Population changes only played a minor role but can be considered as a persistent upward driver of emissions. 
 
 Comparing China’s Kaya identity to the decomposition of the development of CO2 emissions of developing and developed countries does not provide a clear result on whether China can be considered a developing or developed nation. In general, economic growth is the main driver of CO2 emissions, both in developed and developing nations. However, GDP per capita growth is much larger and hence closer to China’s figures in developing nations as they show a greater growth potential. Overall carbon emissions are decreasing in developed nations while they are increasing in developing nations and China. This supports the notion of China being a developing country relying on emissions driven growth. On the other hand, China’s energy and carbon intensity are decreasing as it is the case for developed countries. The population’s development of China also more closely resembles the trend of developed countries than those of developing countries. To sum up, this classification does not clearly indicate whether China is a developing or developed country. As mentioned above, comparing China to a more granular classification of countries might be worthwhile, as the EDGAR dataset for example considers Saudi-Arabia, a country with one of the highest GDP per capita as a developing nation. 
 
@@ -466,13 +465,13 @@ Regarding out first research question, we find that China cannot be easily class
 
 Our analysis of different equity metrics for the second research question has shown that China not only has a huge responsibility to curb emissions, but also the financial capability to do so. The country is the world’s largest emitter in annual and cumulative terms (based on our data) and has the highest GDP of all countries. While it is important to acknowledge further room for development, one cannot disregard the fact that without significant emission reductions from China, any attempt to stay within the temperature limits of the Paris Agreement is sure to fail.  
 
-Hence, we believe that China’s fair share is much higher than what they currently plan to do. Together with the EU-27 and the U.S., China should bear the highest responsibility for climate change mitigation. Its self-classification as a developing country is clearly politically motivated, to not give in to the demands of having to do more. At the same time, the political leadership in Beijing can present itself as a top student in the international community by effortlessly surpassing its own goals, as it is expected by different observers [@CAT2022].  
+Hence, we believe that China’s fair share is much higher than what they currently plan to do. Together with the EU-27 and the U.S., China should bear the highest responsibility for climate change mitigation. Its self-classification as a developing country is clearly politically motivated, to not give in to the demands of having to do more. At the same time, the political leadership in Beijing can present itself as a top student in the international community by effortlessly surpassing its own goals, as it is expected by different observers (Climate Action Tracker, 2022).  
 
 In the following, our analysis will be contrasted with two other assessments of China’s fair share – the assessment by the Climate Action Tracker and by the Climate Equity Monitor.  
 
-The CAT evaluates the fair share of a country based on assessments in the literature. The results of the literature are categorized using seven equity indicators ranging around considerations of responsibility, capability, cost-effectiveness and equality, which are weighted equally in the analysis. All results of the evaluated studies are then depicted on a scale for each category and a 90% confidence interval is built. Based on this, the CAT develops a range of what would be a fair share and where to categorize the different countries. The CAT values China’s share in mitigation efforts as highly insufficient. In comparison, the U.S.’s, India’s and the EU’s planned policies and targets are only considered insufficient for achieving a fair share target under the Paris Agreement [@CAT2022]. 
+The CAT evaluates the fair share of a country based on assessments in the literature. The results of the literature are categorized using seven equity indicators ranging around considerations of responsibility, capability, cost-effectiveness and equality, which are weighted equally in the analysis. All results of the evaluated studies are then depicted on a scale for each category and a 90% confidence interval is built. Based on this, the CAT develops a range of what would be a fair share and where to categorize the different countries. The CAT values China’s share in mitigation efforts as highly insufficient. In comparison, the U.S.’s, India’s and the EU’s planned policies and targets are only considered insufficient for achieving a fair share target under the Paris Agreement (Climate Action Tracker, 2022). 
 
-Another equity metric is developed by the Climate Equity Monitor. The Climate Equity Monitor is the first initiative from the Global South that tracks equity in climate action for Annex 1 and Non-Annex 1 countries. The initiative calculates the fair share of the carbon budget by using the share of cumulative emissions based on the share in the global population for a contemporary base year (2019). The cumulative annual emissions of a country are calculated for the period from 1850 to 2019. Based on this, the Climate Equity Monitor calculates if a country has a carbon debt or carbon credit. This measure is calculated as the difference between cumulative emissions of a country and the country’s fair share of the global carbon budget already consumed. For China as a Non-Annex 1 country, they conclude that the country has a carbon credit of 122.4 Gt CO2eq. In comparison, India has a carbon credit of 337.6 Gt CO2eq while the US has a carbon debt of 445 Gt CO2eq, and Russia has a carbon debt of 125.44 Gt CO2eq [@CEM2022]. Accordingly, if China kept emitting at its current rate, it would have used up its remaining carbon credit until 2031. 
+Another equity metric is developed by the Climate Equity Monitor. The Climate Equity Monitor is the first initiative from the Global South that tracks equity in climate action for Annex 1 and Non-Annex 1 countries. The initiative calculates the fair share of the carbon budget by using the share of cumulative emissions based on the share in the global population for a contemporary base year (2019). The cumulative annual emissions of a country are calculated for the period from 1850 to 2019. Based on this, the Climate Equity Monitor calculates if a country has a carbon debt or carbon credit. This measure is calculated as the difference between cumulative emissions of a country and the country’s fair share of the global carbon budget already consumed. For China as a Non-Annex 1 country, they conclude that the country has a carbon credit of 122.4 Gt CO2eq. In comparison, India has a carbon credit of 337.6 Gt CO2eq while the US has a carbon debt of 445 Gt CO2eq, and Russia has a carbon debt of 125.44 Gt CO2eq (Climate Equity Monitor, 2022). Accordingly, if China kept emitting at its current rate, it would have used up its remaining carbon credit until 2031. 
 
 It is interesting that the Climate Action Tracker and the Climate Equity Monitor come to conclusions that can be interpreted differently. While the latter initiative only considers cumulative emissions allowances in relation to population size, the former’s assessment benchmarks climate targets and policies against a larger variety of equity metrics. The remaining carbon credit derived from the Climate Equity Monitor might be misleading to a certain degree, as it might suggest little urgency to act, especially when comparing the credit numbers to the debt numbers of other countries. The CAT’s assessment, while being methodically more sophisticated, better communicates the implications of current emission reduction targets and respective policies from an equity perspective.  
 
