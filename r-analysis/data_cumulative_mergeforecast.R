@@ -70,5 +70,8 @@ data_2030 %<>% select(-co2,-GHG) %>%
   gather(key = "gas", value="cumulative",-country,-year) %>%
   filter(gas == {{GAS}} & between(year,{{YEAR_L}},{{YEAR_U}}))
 
+PDATA$is_us = c(2038,NA,NA,NA,2032)
+PDATA$is_eu = c(2031,NA,NA,NA,2027)
+
 PDATA$data_cumulative_2040 = data_2040
 PDATA$data_cumulative_2030 = data_2030
