@@ -7,4 +7,6 @@ OUT = PDATA$data_rel %>%
   theme_ghg()+
   theme(axis.title.x=element_blank()) +
   ggtitle("Relative Emissions, " %.% COUNTRY %.% ", by Sector, " %.% YEAR_L %.% "-" %.% YEAR_U)
+
 if(DIRECT_PLOTTING) plot(OUT)
+o
