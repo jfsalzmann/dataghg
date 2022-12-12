@@ -8,7 +8,7 @@ PDATA$plot_level_kay<-c(COUNTRY,"Low income","Lower middle-income","Upper middle
 
 #plot
 
-PDATA$kaya_incomelevels %>%
+OUT<-PDATA$kaya_incomelevels %>%
   mutate(region = fct_relevel(dev_status_income,PDATA$plot_level_kay)) %>% 
   ggplot(.,aes(x=year,y=value,color=var)) +
   geom_line(size=1) +
@@ -24,3 +24,4 @@ PDATA$kaya_incomelevels %>%
                      guide = guide_legend(reverse = TRUE)) +
   theme(legend.title=element_blank(),
         axis.title.x = element_blank())
+if(DIRECT_PLOTTING) plot(OUT)
