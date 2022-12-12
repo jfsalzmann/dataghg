@@ -1,4 +1,4 @@
-PDATA$data_inc_rel %>%
+OUT = PDATA$data_inc_rel %>%
 #  filter(region==c(COUNTRY, "Developed","Developing")) %>% #line breaks
   ggplot( aes(x = dev_status_income,y=GAS_s_perc, fill=sector_title)) +
   geom_bar(position="stack", stat="identity") +
@@ -12,4 +12,4 @@ PDATA$data_inc_rel %>%
   geom_text(aes(label = round(GAS_s_perc)), position = position_stack(vjust = 0.5), size = 3) +
   guides(fill =guide_legend("Sector"))+
   ggtitle("Relative Emissions " %.% COUNTRY %.% " vs. Income Levels , by Sector, " %.% YEAR)
-
+if(DIRECT_PLOTTING) plot(OUT)

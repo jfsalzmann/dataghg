@@ -9,3 +9,4 @@ OUT = PDATA$data_comb %>%
   theme_ghg()+
   theme(axis.title.x = element_blank(),axis.text.y=element_blank(),legend.position = "none") +
   ggtitle("Total Emissions and Forecast, China vs. EU vs. US, by Sector, " %.% YEAR_L %.% "-" %.% FYEAR_U)
+if(DIRECT_PLOTTING) plot(OUT)

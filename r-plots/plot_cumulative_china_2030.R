@@ -11,3 +11,4 @@ OUT = PDATA$data_cumulative_2030 %>%
   geom_vline(aes(xintercept = PDATA$is_us[meta_gas_alc[GAS]],color="United States"), show.legend = NA, linetype = "dotted",size=.2) +
   geom_vline(aes(xintercept = PDATA$is_eu[meta_gas_alc[GAS]],color="EU-27"), show.legend = NA,linetype = "dotted",size=.2) +
   scale_x_continuous(breaks=c(seq(1750,2050,by=50),PDATA$is_eu[meta_gas_alc[GAS]],PDATA$is_us[meta_gas_alc[GAS]]))
+if(DIRECT_PLOTTING) plot(OUT)

@@ -250,7 +250,7 @@ emissions before 2030, decrease the carbon intensity of GDP by over 65\%
 (relative to 2005), have around 25\% of non-fossil fuels in primary
 energy consumption by 2030, increase the forest stock volume by six
 billion cubic meters until 2030 and have 1,200 GW of wind and solar
-power capacity installed by the same year \citep{China2022}. Although
+power capacity installed by the same year \citep{China2021}. Although
 some of these objectives are vague to some degree, and the emissions
 reduction target is only a relative goal, the ambitions China has set
 for itself are a marked improvement over the targets set out in the
@@ -314,7 +314,7 @@ a developing country, we set out in this paper to discuss equity
 considerations for China, focusing on two research questions. First, we
 will investigate whether China, from an emissions perspective, can still
 be characterized as a developing nation. For this we compare China's
-Kaya identity with other developing and developed nations. Furthermore,
+Kaya Identity with other developing and developed nations. Furthermore,
 we consider China's sectoral emissions trends and contrast them with
 those of (other) developing and developed nations, controlling for
 differences in population size and GDP. Secondly, we investigate China's
@@ -336,19 +336,19 @@ China's role and conclude.
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-1-1.pdf}
-\caption{Figure 1}
+\caption{Figure 1: Relative Emissions of the Top- 5 Polluters}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-2-1.pdf}
-\caption{Figure 2}
+\caption{Figure 2: Total Emissions, China by Sector - 1970-2019}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-3-1.pdf}
-\caption{Figure 3}
+\caption{Figure 3: Kaya Identity China - 2000 - 2019}
 \end{figure}
 
 \hypertarget{data-assumptions}{%
@@ -408,7 +408,13 @@ global warming potentials, as provided in our core database EDGAR.
 \hypertarget{analysis}{%
 \section{Analysis}\label{analysis}}
 
-TO BE DONE: Intro statement.
+The following sections will detail our analysis with regard to the two
+research questions. We first turn to China's self-categorization as
+developing country and contrast it with different comparisons of
+development metrics as well as emission trends. After an interim
+discussion we will look at China's responsibility with regard to
+(projected) cumulative emissions and construct rankings for different
+equity metrics.
 
 \hypertarget{chinas-self-characterization-as-a-developing-country}{%
 \subsection{China's Self-Characterization as a Developing
@@ -456,7 +462,11 @@ development. The World Bank, but also other international organizations
 and aid agencies, use this for analytical and operational purposes. The
 GNI is calculated in the following way:
 
-TO BE DONE FOrmula
+\[\text{GNI} = \text{GDP} + \left (\text{EX}_{FS} - \text{IM}_{FS} \right )\]
+
+whereas \(\text{GNI}\) be the gross national income, \(\text{GDP}\) be
+the gross domestic product, \(\text{EX}_{FS}\) be the money flowing
+from, and \(\text{IM}_{FS}\) the money flowing to foreign countries.
 
 Thus, going forward we will also use the World Bank's Classification of
 Countries by income, which assigns countries into four different groups:
@@ -472,11 +482,12 @@ year. The thresholds are as follows:
     \begin{tabular}{|l|l|}
     \hline
         \textbf{Group  } & \textbf{Thresholds July 2019 in USD  } \\ \hline
-        Low income   & $< 1,026$ \\ \hline
-        Lower-middle income   & $1,026 - 3,955$ \\ \hline
-        Upper-middle income  & $3,966 - 12,375$ \\ \hline
-        High income  & $> 12,375$ \\ \hline
+        Low income   & $< 1026$ \\ \hline
+        Lower-middle income   & $1026 - 3955$ \\ \hline
+        Upper-middle income  & $3966 - 12375$ \\ \hline
+        High income  & $> 12375$ \\ \hline
     \end{tabular}
+    \caption{Classification Thresholds\label{tbl:x}}
 \end{table}
 
 According to the World Bank's classification, China is classified as an
@@ -491,18 +502,19 @@ high-income countries to be more likely resembling developed nations.
 \subsubsection{Comparison of Kaya
 Identities}\label{comparison-of-kaya-identities}}
 
-With a Kaya identity, one can identify the main driving forces of CO2
-emissions in a certain period. The Kaya identity expresses CO2 emissions
-(F) as a function of GDP (G), population (P) and energy (E):
+With a Kaya Identity, one can identify the main driving forces of CO2
+emissions in a certain period. The Kaya Identity expresses CO2 emissions
+\(F\) as a function of GDP \(G\), population \(P\) and energy \(E\):
 
-TO BE DONE FOrmula
+\[F = P \: \frac{G}{P} \frac{E}{G} \frac{F}{E}\]
 
-The term highlights the different components of the identity: G/P is GDP
-per capita, E/G is the energy intensity of GDP and F/E is the carbon
-intensity of energy \citep{Lamb2021}. By comparing Kaya identities of
-different regions, we can also discuss regional differences. Hence, we
-use the Kaya identity to discuss if the driving forces of emissions show
-similarities with developing or developed nations.
+whereas \(\frac{G}{P}\) represents GDP per capita, \(\frac{E}{G}\)
+represents the energy intensity of GDP and \(\frac{F}{E}\) represents
+the carbon intensity of energy \citep{Lamb2021}. By comparing Kaya
+identities of different regions, we can also discuss regional
+differences. Hence, we use the Kaya Identity to discuss if the driving
+forces of emissions show similarities with developing or developed
+nations.
 
 Figure 4 displays China's and developing and developed countries' Kaya
 identities according to the IPCC classification in the Sixth Assessment
@@ -530,7 +542,7 @@ intensity of fossil fuels (changes in the fossil intensity, fuel switch)
 \citep{Zheng2020, Peters2017}. Population changes only played a minor
 role but can be considered as a persistent upward driver of emissions.
 
-Comparing China's Kaya identity to the decomposition of the development
+Comparing China's Kaya Identity to the decomposition of the development
 of CO2 emissions of developing and developed countries does not provide
 a clear result on whether China can be considered a developing or
 developed nation. In general, economic growth is the main driver of CO2
@@ -553,7 +565,8 @@ as a developing nation.
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-4-1.pdf}
-\caption{Figure 4}
+\caption{Figure 4: Kaya Identities - 2000 - 2019\textbar{} China
+vs.~Developed and Developing according to AR\_6 Classification}
 \end{figure}
 
 Thus, in the next steps, the World Bank's Income Classification Scheme
@@ -583,7 +596,8 @@ intensity only fluctuate around zero in the years from 2000 to 2019.
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-5-1.pdf}
-\caption{Figure 5}
+\caption{Figure 5:Kaya Identities - 2000 - 2019\textbar{} China
+vs.~Developed and Developing according to AR\_6 Classification}
 \end{figure}
 
 To conclude, China seems to be an exception considering the driving
@@ -736,8 +750,8 @@ panels in this sector.
 \caption{Figure 8}
 \end{figure}
 
-\hypertarget{discussion}{%
-\subsubsection{Discussion}\label{discussion}}
+\hypertarget{section-summary}{%
+\subsubsection{Section Summary}\label{section-summary}}
 
 The prior analysis has shown that clearly classifying China as either a
 developed or a developing from an emissions perspective remains
@@ -910,7 +924,9 @@ mitigate climate change from a current absolute emissions perspective.
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-10-1.pdf}
-\caption{Figure 10}
+\caption{Figure 10: Absolute GHG Emission - 2019 \textbar{} Top
+Emittters, China, US, EU-27 and reference for GDP, Emissions and
+Population}
 \end{figure}
 
 Next, we consider emissions per capita (Figure x). This is important as
@@ -929,7 +945,8 @@ countries/groups of countries.
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-11-1.pdf}
-\caption{Figure 11}
+\caption{Figure 11: Per Capita Emissions- 2019 \textbar{} Top Emittters,
+China, US, EU-27 and reference for GDP, Emissions and Population}
 \end{figure}
 
 Considering GDP and GDP per capita refers to the capacity of acting on
@@ -955,26 +972,32 @@ providing financial aid to mitigate emissions elsewhere.
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-12-1.pdf}
-\caption{Figure 12}
+\caption{Figure 12: Absolute GDP p - 2019 \textbar{} Highes GDP
+Countries, China, US, EU-27 and reference for GDP, Emissions and
+Population}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{Paper_files/figure-latex/unnamed-chunk-13-1.pdf}
-\caption{Figure 13}
+\caption{Figure 13: GDP per Capita - 2019 \textbar{} Highes GDP
+Countries, China, US, EU-27 and reference for GDP, Emissions and
+Population}
 \end{figure}
 
-\hypertarget{discussion-tbd}{%
-\subsubsection{Discussion TBD}\label{discussion-tbd}}
+\hypertarget{section-summary-1}{%
+\subsubsection{Section Summary}\label{section-summary-1}}
 
 To sum up, China has a very high responsibility to mitigate climate
 change, even the highest responsibility of all countries when
 considering some of the discussed equity metrics. Based on our
-calculations, China is likely surpass the EU well before 2030 and the US
-shortly after in 2032 in terms of cumulative emissions over all GHGs
+calculations, China is likely to surpass the EU well before 2030 and the
+US shortly after in 2032 in terms of cumulative emissions over all GHGs
 from 1850 to 2019 and a modeling of emissions thereafter. The difference
 in emissions from all GHGs to CO2 emissions highlights the importance to
-extend the frame of historic respon
+extend the frame of historic responsibility beyond CO2 emissions --
+especially in light of growing capabilities, issue salience and data
+availability that all put greater responsibility recent emissions.
 
 Therefore, China now has a major responsibility to reduce emissions
 which is reinforced when considering that the country's massive
@@ -982,27 +1005,26 @@ emissions growth only started after the adoption of the Kyoto Protocol
 in 1997, at a time when the consequences of climate change were already
 being heavily discussed.
 
-However, we also need to consider that China only ranks on 81st. and
-43rd place considering their GDP per capita and their emissions per
-capita, respectively. This diminishes China's responsibility to some
-extent, showing that the global community needs to grant space for
-economic development to be fair. However, this economic development
-should ideally be decoupled from a growth in emissions. If we look at
-the per capita emissions of the countries that rank first, we see that
-these are mostly very small and, from the perspective of absolute
-emissions, less important countries. Although these countries might have
-a high ability to pay from a per capita perspective, their overall
-economic power is not high. The opposite is true for China. China ranks
-first place in absolute emissions and GDP in 2019 with a great distance
-to the following places.
+However, we also need to consider that China only ranks on 81st and 43rd
+place considering their GDP per capita and their emissions per capita,
+respectively. This diminishes China's responsibility to some extent,
+showing that the global community needs to grant space for economic
+development to be fair. However, this economic development should
+ideally be decoupled from a growth in emissions. If we look at the per
+capita emissions of the countries that rank first, we see that these are
+mostly very small and, from the perspective of absolute emissions, less
+important countries. Although these countries might have a high ability
+to pay from a per capita perspective, their overall economic power is
+not high. The opposite is true for China. China ranks first place in
+absolute emissions and GDP in 2019 with a great distance to subsequent
+ranks.
 
 Thus, China has one of the greatest responsibilities to reduce emissions
 from a historic emissions, current emissions and economic capacity
 perspective.
 
-\hypertarget{discussion-and-conclusion-tbd}{%
-\section{Discussion and Conclusion
-TBD}\label{discussion-and-conclusion-tbd}}
+\hypertarget{discussion-and-conclusion}{%
+\section{Discussion and Conclusion}\label{discussion-and-conclusion}}
 
 In our analysis, we were striving to answer two research questions,
 namely if China can be considered a developing country and what China's
@@ -1021,24 +1043,24 @@ lower-income countries.
 Our analysis of different equity metrics for the second research
 question has shown that China not only has a huge responsibility to curb
 emissions, but also the financial capability to do so. The country is
-the world's largest emitter in annual and cumulative terms (based on our
-data) and has the highest GDP of all countries. While it is important to
-acknowledge further room for development, one cannot disregard the fact
-that without significant emission reductions from China, any attempt to
-stay within the temperature limits of the Paris Agreement is sure to
-fail.
+the world's largest emitter in annual terms , on a pathway to take the
+first position in cumulative terms within a decade and has the highest
+GDP of all countries. While it is important to acknowledge the need for
+further economic development, one cannot disregard the fact that without
+significant emission reductions from China, any attempt to stay within
+the temperature limits of the Paris Agreement is sure to fail.
 
 Hence, we believe that China's fair share is much higher than what they
 currently plan to do. Together with the EU-27 and the U.S., China should
 bear the highest responsibility for climate change mitigation. Its
 self-classification as a developing country is clearly politically
-motivated, to not give in to the demands of having to do more. At the
+motivated, to not give-in to the demands of raising its ambition. At the
 same time, the political leadership in Beijing can present itself as a
 top student in the international community by effortlessly surpassing
 its own goals, as it is expected by different observers \citep{CAT2022}.
 
 In the following, our analysis will be contrasted with two other
-assessments of China's fair share -- the assessment by the Climate
+assessments of China's responsibility -- the assessment by the Climate
 Action Tracker and by the Climate Equity Monitor.
 
 The CAT evaluates the fair share of a country based on assessments in
@@ -1061,16 +1083,16 @@ countries. The initiative calculates the fair share of the carbon budget
 by using the share of cumulative emissions based on the share in the
 global population for a contemporary base year (2019). The cumulative
 annual emissions of a country are calculated for the period from 1850 to
-2019. Based on this, the Climate Equity Monitor calculates if a country
-has a carbon debt or carbon credit. This measure is calculated as the
-difference between cumulative emissions of a country and the country's
-fair share of the global carbon budget already consumed. For China as a
-Non-Annex 1 country, they conclude that the country has a carbon credit
-of 122.4 Gt CO2eq. In comparison, India has a carbon credit of 337.6 Gt
-CO2eq while the US has a carbon debt of 445 Gt CO2eq, and Russia has a
-carbon debt of 125.44 Gt CO2eq \citep{CEM2022}. Accordingly, if China
-kept emitting at its current rate, it would have used up its remaining
-carbon credit until 2031.
+2019. Based on this, the Climate Equity Monitor calculates whether a
+country has a carbon debt or carbon credit. This measure is calculated
+as the difference between cumulative emissions of a country and the
+country's fair share of the global carbon budget already consumed. For
+China as a Non-Annex 1 country, they conclude that the country has a
+carbon credit of 122.4 Gt CO2eq. In comparison, India has a carbon
+credit of 337.6 Gt CO2eq while the US has a carbon debt of 445 Gt CO2eq,
+and Russia has a carbon debt of 125.44 Gt CO2eq \citep{CEM2022}.
+Accordingly, if China kept emitting at its current rate, it would have
+used up its remaining carbon credit until 2031.
 
 It is interesting that the Climate Action Tracker and the Climate Equity
 Monitor come to conclusions that can be interpreted differently. While
@@ -1084,19 +1106,36 @@ other countries. The CAT's assessment, while being methodically more
 sophisticated, better communicates the implications of current emission
 reduction targets and respective policies from an equity perspective.
 
-Our analysis has the following limitations: We only consider cumulative
-emissions from 1850-2019, but the consideration of other time periods
-could also be conceivable. The problem of climate change caused by
-anthropogenic greenhouse gas emissions has only been known since the
-1970s, and since the 1990s there has been a dedicated international
-process to address the problem. Against this background, an additional
-consideration of cumulative emissions in these time periods might be
-worthwhile. For a comprehensive assessment of China's fair share, it
-would have also been interesting to discuss further equity metrics such
-as a ranking of consumption-based emissions. However, this was not
-possible for us, as our data only included consumption-based data for
-approx. 100 countries and crucially missing the US, making a comparison
-less meaningful.
+While aiming to be as comprehensive as possible our analysis has some
+limitations. First, we only consider cumulative emissions from
+1850-2019, but the consideration of other time periods could also be
+conceivable. The problem of climate change caused by anthropogenic
+greenhouse gas emissions has only been known since the 1970s, and since
+the 1990s there has been a dedicated international process to address
+the problem. Against this background, an additional consideration of
+cumulative emissions in these time periods might be worthwhile. Second,
+the projection of future emissions rests on major simplification
+assumptions, it is likely that a more sophisticated approach such as an
+ARIMA-modelling would result in more robust estimates. Third, a
+comprehensive assessment of China's responsibility could discuss further
+equity metrics such as a ranking of consumption-based emissions.
+However, this was not possible for us, as our data only included
+consumption-based data for approx. 100 countries and crucially missing
+the US, making a comparison less meaningful. Lastly, reducing capacity
+to mere GDP and GDP per capita considerations is very much simplifying
+the issue, as land area, access to renewable resources and intellectual
+property and many other factors determine a countries mitigation
+potential, which is very likely to differ by sector.
+
+With these limitations in mind, we believe none the less that our
+analysis has shed light on the special case of China and has shown that
+the under complex self-assessment does not withstand a thorough
+analysis. Keeping these assessments in mind will be worthwhile when
+assessing the responsibilities of upcoming developing nations. The case
+of China has shown that it is crucial to come to a mutual understanding
+of what constitutes responsibilities and how they can assessed on an
+objective basis. Especially our analysis of future cumulative emissions
+indicates that it will be key to frame the issue beyond CO2.
 
 \appendix
 \section*{Appendix}
@@ -1139,10 +1178,10 @@ less meaningful.
     modelr~0.1.9, munsell~0.5.0, nlme~3.1-157, nnet~7.3-17,
     parallel~4.2.1, pillar~1.8.1, pkgconfig~2.0.3, plyr~1.8.7,
     proxy~0.4-27, quadprog~1.5-8, quantmod~0.4.20, R6~2.5.1,
-    Rcpp~1.0.9, RefManageR~1.4.0, regions~0.1.8, reprex~2.0.2,
-    rlang~1.0.5, rmarkdown~2.16, rprojroot~2.0.3, rstudioapi~0.14,
-    rvest~1.0.3, scales~1.2.1, stinepack~1.4, stringi~1.7.8,
-    svglite~2.1.0, systemfonts~1.0.4, tidyselect~1.1.2,
+    RColorBrewer~1.1-3, Rcpp~1.0.9, RefManageR~1.4.0, regions~0.1.8,
+    reprex~2.0.2, rlang~1.0.5, rmarkdown~2.16, rprojroot~2.0.3,
+    rstudioapi~0.14, rvest~1.0.3, scales~1.2.1, stinepack~1.4,
+    stringi~1.7.8, svglite~2.1.0, systemfonts~1.0.4, tidyselect~1.1.2,
     timeDate~4021.104, tools~4.2.1, tseries~0.10-52, TTR~0.24.3,
     tzdb~0.3.0, urca~1.3-3, utf8~1.2.2, vctrs~0.4.1, viridisLite~0.4.1,
     webshot~0.5.3, withr~2.5.0, xfun~0.33, xml2~1.3.3, xts~0.12.2,

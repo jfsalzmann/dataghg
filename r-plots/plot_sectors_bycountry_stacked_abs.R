@@ -1,4 +1,4 @@
-PDATA$data_abs %>% 
+OUT = PDATA$data_abs %>% 
   ggplot(aes(x=year,y=GAS_s,fill=sector_title)) +
   geom_area(color="#636363") +
   theme_bw() +
@@ -8,3 +8,4 @@ PDATA$data_abs %>%
   theme(axis.title.x=element_blank()) +
   guides(fill=guide_legend(title="Sectors"))+
   ggtitle("Total Emissions, " %.% COUNTRY %.% ", by Sector, " %.% YEAR_L %.% "-" %.% YEAR_U)
+if(DIRECT_PLOTTING) plot(OUT)

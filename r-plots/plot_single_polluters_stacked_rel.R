@@ -10,5 +10,3 @@ OUT = PDATA$data_rel %>%
   guides(fill = guide_legend("Region") )+
   ggtitle("Relative Emissions of the Top- 5 Polluters " %.% YEAR_L %.% "-" %.% YEAR_U)
 if(DIRECT_PLOTTING) plot(OUT)
-  
-

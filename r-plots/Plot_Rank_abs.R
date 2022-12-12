@@ -32,7 +32,7 @@ PDATA$p_abs <- PDATA$data_base_lp_abs %>%
   ylab("GHG Emissions, (Mt. CO2 eq)") +
   ggtitle("Responsibility 1: Absolute Emissions Ranking 2019", subtitle = "Top Emitters, China, US, EU-27 & Reference for GDP, Population and Emissions")
 
-PDATA$p_abs + annotate("text", x=(which(fct_inorder(PDATA$p_an_abs)==PDATA$ghg_50_abs$country)), y=PDATA$data_base_lp_abs$y[2]*0.8, 
+OUT = PDATA$p_abs + annotate("text", x=(which(fct_inorder(PDATA$p_an_abs)==PDATA$ghg_50_abs$country)), y=PDATA$data_base_lp_abs$y[2]*0.8, 
                       label=" ~50 % of global emissions", 
                       color="black", size=2.5 , angle=0, fontface="italic", vjust =0.4, hjust=-0) +
   annotate("text", x=(which(fct_inorder(PDATA$p_an_abs)==PDATA$gdp_50_abs$country)), y=PDATA$data_base_lp_abs$y[2]*0.8, 
@@ -42,7 +42,4 @@ PDATA$p_abs + annotate("text", x=(which(fct_inorder(PDATA$p_an_abs)==PDATA$ghg_5
   annotate("text", x=(which(fct_inorder(PDATA$p_an_abs)==PDATA$pop_50_abs$country)), y=PDATA$data_base_lp_abs$y[2]*0.8, 
            label=" ~50 % of global Population", 
            color="black", size=2.5 , angle=0, fontface="italic", vjust =0.4, hjust=0,) 
-
-PDATA$p_an_abs          
-PDATA$p_abs 
-fct_inorder(PDATA$p_an_abs)
+if(DIRECT_PLOTTING) plot(OUT)

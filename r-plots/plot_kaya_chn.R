@@ -21,5 +21,3 @@ OUT<-PDATA$kaya_incomelevels %>%
         axis.title.x = element_blank(),
         axis.title.y = element_blank())
 if(DIRECT_PLOTTING) plot(OUT)
-
-OUT

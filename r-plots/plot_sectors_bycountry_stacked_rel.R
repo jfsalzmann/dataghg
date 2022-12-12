@@ -1,4 +1,4 @@
-PDATA$data_rel %>% 
+OUT = PDATA$data_rel %>% 
   ggplot(aes(x=year,y=GAS_s_perc,fill=sector_title)) +
   geom_area(color="#636363") +
   theme_bw() +
@@ -7,3 +7,4 @@ PDATA$data_rel %>%
   theme_ghg()+
   theme(axis.title.x=element_blank()) +
   ggtitle("Relative Emissions, " %.% COUNTRY %.% ", by Sector, " %.% YEAR_L %.% "-" %.% YEAR_U)
+if(DIRECT_PLOTTING) plot(OUT)

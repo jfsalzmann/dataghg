@@ -32,7 +32,7 @@ PDATA$p_pc <- PDATA$data_base_lp_pc %>%
   ylab("Per Capita GHG Emissions, (Mt. CO2 eq)") +
   ggtitle("Responsibility 3: Per Capita Emissions Ranking", subtitle = "Top Emitters, China, US, EU-27 & Reference for GDP, Population and Emissions")
 
-PDATA$p_pc + annotate("text", x=(which(fct_inorder(PDATA$p_an_pc)==PDATA$ghg_50_pc$country)), y=PDATA$data_base_lp_pc$y[9]*0.8, 
+OUT = PDATA$p_pc + annotate("text", x=(which(fct_inorder(PDATA$p_an_pc)==PDATA$ghg_50_pc$country)), y=PDATA$data_base_lp_pc$y[9]*0.8, 
                        label=" ~50 % of global emissions", 
                        color="black", size=2.5 , angle=0, fontface="italic", vjust =0.4, hjust=-0) +
   annotate("text", x=(which(fct_inorder(PDATA$p_an_pc)==PDATA$gdp_50_pc$country)), y=PDATA$data_base_lp_pc$y[3]*0.8, 
@@ -42,9 +42,4 @@ PDATA$p_pc + annotate("text", x=(which(fct_inorder(PDATA$p_an_pc)==PDATA$ghg_50_
   annotate("text", x=(which(fct_inorder(PDATA$p_an_pc)==PDATA$pop_50_pc$country)), y=PDATA$data_base_lp_pc$y[9]*0.8, 
            label=" ~50 % of global Population", 
            color="black", size=2.5 , angle=0, fontface="italic", vjust =0.4, hjust=0,) 
-
-PDATA$p_an_pc          
-PDATA$p_pc 
-fct_inorder(PDATA$p_an_pc)
-
-
+if(DIRECT_PLOTTING) plot(OUT)
