@@ -78,21 +78,11 @@ header-includes:
 knitr::opts_chunk$set(echo = FALSE, results='hide', message=FALSE, warning=FALSE)
 knitr::opts_chunk$set(fig.height = 4, fig.width = 6)
 options(knitr.kable.NA = '',knitr.table.format = "latex")
-#knitr::read_chunk('r-report/Paper.R')
+knitr::read_chunk('r-report/Paper.R')
 library(kableExtra)
 ```
 
-```{r setup-ex}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-theme_ghg = function(){ 
-  theme_minimal() %+replace%
-     theme(
-       plot.title =element_blank(),
-       plot.subtitle = element_blank()
-    )
-}
-DIRECT_PLOTTING = F
+```{r init}
 ```
 
 \renewcommand{\harvardand}{\&}
@@ -166,10 +156,9 @@ With these developments in mind and following up on China’s claim to be a deve
 
 The remainder of this paper is structured as follows: In section 2 we provide an overview of our data and main assumptions, before analyzing China’s self-characterization as a developing country in section 3. Section 4 compares different equity metrics for China and other big emitters and discusses China’s role in addressing climate change against different scenarios of future Chinese cumulative emissions. In section 5 we discuss our findings in light of other available assessments of China’s role and conclude. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 1: Relative Emissions of the Top- 5 Polluters"}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-
 YEAR_L = 1970
 YEAR_U = 2020
 GAS = "GHG"
@@ -183,11 +172,9 @@ plot(OUT)
 
 
 
-
+```{r init}
+```
 ```{r,fig.cap="Figure 2: Total Emissions, China by Sector - 1970-2019"}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-
 YEAR_L = 1970
 YEAR_U = 2019
 GAS = "GHG"
@@ -199,11 +186,9 @@ source("r-plots/plot_sectors_bycountry_stacked_abs.R", local = TRUE, print.eval 
 plot(OUT)
 ```
 
-
+```{r init}
+```
 ```{r,fig.cap="Figure 3: Kaya Identity China - 2000 - 2019"}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-
 YEAR_L = 2000
 YEAR_U = 2019
 GAS = "GHG"
@@ -284,10 +269,9 @@ Figure 4 displays China’s and developing and developed countries’ Kaya ident
 
 Comparing China’s Kaya Identity to the decomposition of the development of CO2 emissions of developing and developed countries does not provide a clear result on whether China can be considered a developing or developed nation. In general, economic growth is the main driver of CO2 emissions, both in developed and developing nations. However, GDP per capita growth is much larger and hence closer to China’s figures in developing nations as they show a greater growth potential. Overall carbon emissions are decreasing in developed nations while they are increasing in developing nations and China. This supports the notion of China being a developing country relying on emissions driven growth. On the other hand, China’s energy and carbon intensity are decreasing as it is the case for developed countries. The population’s development of China also more closely resembles the trend of developed countries than those of developing countries. To sum up, this classification does not clearly indicate whether China is a developing or developed country. As mentioned above, comparing China to a more granular classification of countries might be worthwhile, as the EDGAR dataset for example considers Saudi-Arabia, a country with one of the highest GDP per capita as a developing nation. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 4: Kaya Identities - 2000 - 2019| China vs. Developed and Developing according to AR_6 Classification"}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-
 YEAR_L = 2000
 YEAR_U = 201
 COUNTRY = "China"
@@ -302,10 +286,9 @@ plot(OUT)
 
 Thus, in the next steps, the World Bank’s Income Classification Scheme will be used for comparison (Figure 5). In high-income countries, GDP per capita and population are increasing only at low levels (by roughly the factor 0.5 and 0.2 respectively). Carbon intensity and energy intensity are decreasing, keeping carbon emissions down. The carbon intensity is decreasing because of two factors: the fossil intensity and the fossil share. In contrast, in low-income countries, the growth of CO2 emissions is exceeding the growth of GDP per capita, both rising by a factor of 2.8 and 5 respectively over the observed time span. This is driven by a high and increasing carbon intensity. Furthermore, population growth plays an important role in this group, and can be considered a further driving factor of CO2 emissions. The only contrasting factor is the decreasing energy intensity. Comparing both groups of countries to China, one can resume that China’s development does not fit in either of the groups perfectly. Like before China’s Kaya decomposition shares similar characteristics as both groups: The small population growth resembles the trend of high-income countries, the dramatically decreasing energy resembles the trend of low-income countries. Considering lower-middle income countries, they seem to show upwards trends in any of the indicators except for energy intensity. In comparison, in upper-middle income countries carbon emissions and GDP per capita develop in tandem, while carbon intensity and energy intensity only fluctuate around zero in the years from 2000 to 2019.  
 
+```{r init}
+```
 ```{r,fig.cap="Figure 5:Kaya Identities - 2000 - 2019| China vs. Developed and Developing according to AR_6 Classification"}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-
 YEAR_L = 2000
 YEAR_U = 2019
 GAS = "GHG"
@@ -327,11 +310,10 @@ In contrast, in developing nations, the share of AFOLU emissions is much larger 
 
 Again, China’s split of emissions does not fit in either of the two categories. On the one hand, China’s share of emissions coming from the AFOLU sector is relatively small resembling developed country characteristics. On the other hand, their emissions from transport sector are small as well. This is due to the immense share of emissions stemming from industry and energy, which reduces the share of emissions in the other sectors.  
 
+```{r init}
+```
 ```{r,fig.cap="Figure 6"}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-
-YEAR = 1950
+YEAR = 2019
 GAS = "GHG"
 COUNTRY = "China"
 
@@ -349,11 +331,10 @@ The emissions by sector for lower-middle and upper-middle income countries are m
 
 Again, China does not really fit into either of the categories due to its very high share of emissions stemming from the energy and industry sector. China's relative emissions from these two sectors are much larger than in any of the other groups studied. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 7"}
-source('r-imports/init.R')
-source('r-analysis/meta.R')
-
-YEAR = 1950
+YEAR = 2019
 GAS = "GHG"
 COUNTRY = "China"
 
@@ -372,13 +353,16 @@ China’s AFOLU emissions per capita are relatively low and decreasing over time
 
 Considering the three sectors mentioned above, China seems to resemble more the emissions per capita characteristics of lower-middle or upper-middle income countries, however this is different for the energy and industry sectors. In the energy sector, China’s emissions per capita increased up to roughly 4 tCO2eq in 2019. This is much higher than for upper-middle income countries, in which per capita emissions stayed relatively constant at 3 tCO2eq in 2019. In high-income countries, the per capita emissions from energy are still higher (5 tCO2eq) in 2019 than in China, however, one can see a downward trend there. Thus, one could argue that China can soon be compared to a high-income country regarding its per capita energy system emissions. The same holds for the industry sector, where this development is even more pronounced. Emissions per capita in the industry sector in China increased massively in the 2000s and are now at a plateau of 4 tCO2eq annually. The per capita emissions of high-income countries in the industry sector in contrast have decreased since the 1970s and are now at 3 tCO2eq. In the industry China has thus already surpassed per capita emissions levels of high-income countries and has the highest value among the five studied panels in this sector. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 8"}
-YEAR_L = 1850
-YEAR_U = 2060
+YEAR_L = 1970
+YEAR_U = 2019
 GAS = "GHG"
+COUNTRY = "China"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_sector_incomelevel.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_facet_incomelevels_sectors_emissions.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
@@ -417,13 +401,45 @@ These projections hold even when modelling each sector according to the Chinese 
 
 This analysis shows that maintaining targets that are ambitious in absolute terms but relatively easy to achieve compared to China's size and economic power, have already put China at the forefront of global responsibility for climate change. From a cumulative emissions perspective, China definitely has the same if not larger GHG reduction obligations as many developed countries, especially when considering that a majority of China’s emissions were emitted after the problem of climate change has made it on top of the global policy agenda. Moreover, the statement of the Chinese NDC that climate change is mainly caused by others is not tenable. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 9"}
+YEAR_L = 1970
+YEAR_U = 2019
+FYEAR_L = c(2025,2030,2030,2035,2040)
+FYEAR_U = c(2060,2060,2055,2065,2065)
+FYEAR_US = 2050
+FYEAR_EU = 2050
+GAS = "GHG"
+
+source("r-analysis/forecast.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_forecast.R", local = TRUE, print.eval = TRUE)
+
+plot(OUT)
+```
+
+```{r,fig.cap="Figure 10"}
+source("r-plots/plot_forecast_delta.R", local = TRUE, print.eval = TRUE)
+
+plot(OUT)
+```
+
+
+```{r init}
+```
+```{r,fig.cap="Figure 11"}
 YEAR_L = 1850
 YEAR_U = 2060
 GAS = "GHG"
 
 source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
 source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+
+plot(OUT)
+```
+
+```{r,fig.cap="Figure 12"}
+source("r-plots/plot_cumulative_china_2040.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
@@ -436,6 +452,8 @@ This chapter presents different rankings which can shed light on the question of
 
 First, we consider China’s responsibility based on absolute emissions in the year 2019 (Figure X). In the ranking, China ranks on first place with absolute emissions of 14,219.37 Mt CO2 eq. This is more than double of the U.S. emissions (6,266.8 Mt CO2 eq) and also close to the emissions of all other countries that do not belong to the group of the top 10 emitters combined (14,075.12 Mt CO2 eq). Together with the U.S., India and Russia, China makes up for 50% of global emissions, but these four countries do not produce half of the global GDP, nor do they represent half of the world’s population. This highlights that the responsibility of these four countries to drastically reduce emissions is high. Considering that China is producing more than double the emissions of the U.S., China has by far the highest responsibility to mitigate climate change from a current absolute emissions perspective. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 10: Absolute GHG Emission - 2019 | Top Emittters, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060
@@ -449,6 +467,8 @@ plot(OUT)
 
 Next, we consider emissions per capita (Figure x). This is important as China is the country with the biggest population worldwide of approx. 1.4 billion people [@WorldBank2022c]. Looking at this ranking, it is important to consider that the top emitters according to per capita emissions are relatively small countries with low absolute emissions but also small populations. Thus, when it comes to reducing absolute emissions and fighting climate change, they can only play a minor role. China interestingly ranks on place 43 with roughly 10t CO2 eq / capita, before EU-27 but behind the U.S. (Ranking: 17). According to this equity metric, China’s fair share to mitigate climate change from this perspective should be located between the share of these two countries/groups of countries. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 11: Per Capita Emissions- 2019 | Top Emittters, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060
@@ -462,6 +482,8 @@ plot(OUT)
 
 Considering GDP and GDP per capita refers to the capacity of acting on climate change, following the assumption that richer countries have more resources available to fight climate change. As Figure XX shows, China had the highest GDP of all countries in 2019, with USD 22.49 trillion. Based on this, China would theoretically have to make the greatest conribution to reduce emissions. Absolute GDP, however, is limited in telling us about a country's actual capacity because it ignores population size. Therefore, considering GDP per capita might be more worthwhile. Here China only ranks 81st place in the world. Therefore, China’s responsibility is relatively low from the GDP per capita perspective. In comparison, the U.S. rank on place 11. Countries that are in the top 10 emitters are often relatively small countries deriving their wealth from natural resources. Hence, they have a high responsibility to mitigate climate change as they have the ability to pay for climate change mitigation measures. However, their absolute emissions are relatively small and thus an ambitious reduction might not make a huge difference for achieving climate targets. Thus, one should consider that these countries should specifically contribute by providing financial aid to mitigate emissions elsewhere. 
 
+```{r init}
+```
 ```{r,fig.cap="Figure 12: Absolute GDP p - 2019 | Highes GDP Countries, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060
@@ -473,6 +495,8 @@ source("r-plots/plot_rank_gdp.R", local = TRUE, print.eval = TRUE)
 plot(OUT)
 ```
 
+```{r init}
+```
 ```{r,fig.cap="Figure 13: GDP per Capita - 2019 | Highes GDP Countries, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060

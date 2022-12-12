@@ -1,0 +1,85 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Paper.aux
+Reallocating 'name_of_file' (item size: 1) to 5 items.
+The style file: agsm.bst
+Reallocating 'name_of_file' (item size: 1) to 5 items.
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+Database file #1: anna.bib
+Warning--entry type for "WorldBank2022c" isn't style-file defined
+--line 1 of file anna.bib
+Warning--entry type for "PBL2022" isn't style-file defined
+--line 7 of file anna.bib
+Warning--entry type for "CEM2022" isn't style-file defined
+--line 13 of file anna.bib
+Warning--entry type for "EEA2022" isn't style-file defined
+--line 27 of file anna.bib
+Warning--entry type for "WorldBank2022d" isn't style-file defined
+--line 65 of file anna.bib
+Warning--entry type for "Fantom2016" isn't style-file defined
+--line 71 of file anna.bib
+Warning--entry type for "UNFCCC2015" isn't style-file defined
+--line 87 of file anna.bib
+Warning--entry type for "Zhou2022" isn't style-file defined
+--line 92 of file anna.bib
+Warning--entry type for "DRCEP2021a" isn't style-file defined
+--line 99 of file anna.bib
+Warning--entry type for "DRCEP2021b" isn't style-file defined
+--line 105 of file anna.bib
+Warning--entry type for "China2021" isn't style-file defined
+--line 111 of file anna.bib
+Warning--entry type for "CAT2022" isn't style-file defined
+--line 118 of file anna.bib
+Warning--entry type for "Jinping2020" isn't style-file defined
+--line 125 of file anna.bib
+Warning--entry type for "Green2022" isn't style-file defined
+--line 132 of file anna.bib
+Warning--entry type for "IEA2022" isn't style-file defined
+--line 139 of file anna.bib
+Database file #2: fabian.bib
+Database file #3: packages.bib
+Warning--empty author in Zheng2020
+Warning--empty author in Peters2017
+You've used 31 entries,
+            2909 wiz_defined-function locations,
+            832 strings with 10896 characters,
+and the built_in function-call counts, 153490 in all, are:
+= -- 25306
+> -- 2042
+< -- 0
++ -- 12387
+- -- 637
+* -- 13462
+:= -- 30394
+add.period$ -- 38
+call.type$ -- 31
+change.case$ -- 414
+chr.to.int$ -- 27
+cite$ -- 33
+duplicate$ -- 400
+empty$ -- 834
+format.name$ -- 720
+if$ -- 27519
+int.to.chr$ -- 9
+int.to.str$ -- 0
+missing$ -- 8
+newline$ -- 129
+num.names$ -- 299
+pop$ -- 202
+preamble$ -- 1
+purify$ -- 455
+quote$ -- 0
+skip$ -- 335
+stack$ -- 0
+substring$ -- 36172
+swap$ -- 67
+text.length$ -- 414
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 122
+warning$ -- 2
+while$ -- 625
+width$ -- 0
+write$ -- 406
+(There were 17 warnings)
