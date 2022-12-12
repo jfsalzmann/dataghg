@@ -23,5 +23,7 @@ OUT<-PDATA$kaya_regions %>%
                      guide = guide_legend(reverse = TRUE)) +
   scale_y_log10()+
   theme(legend.title=element_blank(),
-        axis.title.x = element_blank())
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))
 if(DIRECT_PLOTTING) plot(OUT)

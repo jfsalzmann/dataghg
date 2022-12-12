@@ -216,7 +216,7 @@ To make information accessible and to allow for comparisons across gases we choo
 
 # Analysis
 
-TO BE DONE: Intro statement. 
+The following sections will detail our analysis with regard to the two research questions. We first turn to China's self-categorization as developing country and contrast it with different comparisons of development metrics as well as emission trends. After an interim discussion we will look at China's responsibility with regard to (projected) cumulative emissions and construct rankings for different equity metrics. 
 
 ## China’s Self-Characterization as a Developing Country
 
@@ -262,13 +262,14 @@ Figure 4 displays China’s and developing and developed countries’ Kaya ident
 
 Comparing China’s Kaya identity to the decomposition of the development of CO2 emissions of developing and developed countries does not provide a clear result on whether China can be considered a developing or developed nation. In general, economic growth is the main driver of CO2 emissions, both in developed and developing nations. However, GDP per capita growth is much larger and hence closer to China’s figures in developing nations as they show a greater growth potential. Overall carbon emissions are decreasing in developed nations while they are increasing in developing nations and China. This supports the notion of China being a developing country relying on emissions driven growth. On the other hand, China’s energy and carbon intensity are decreasing as it is the case for developed countries. The population’s development of China also more closely resembles the trend of developed countries than those of developing countries. To sum up, this classification does not clearly indicate whether China is a developing or developed country. As mentioned above, comparing China to a more granular classification of countries might be worthwhile, as the EDGAR dataset for example considers Saudi-Arabia, a country with one of the highest GDP per capita as a developing nation. 
 
-```{r,fig.cap="Figure 4"}
-YEAR_L = 1850
-YEAR_U = 2060
+```{r,fig.cap="Figure 4: Kaya Identities - 2000 - 2019| China vs. Developed and Developing according to AR_6 Classification"}
+YEAR_L = 2000
+YEAR_U = 201
+COUNTRY = "China"
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_kaya_analysis.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_kaya_country_vs.developed-vs_developing.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
@@ -276,13 +277,13 @@ plot(OUT)
 
 Thus, in the next steps, the World Bank’s Income Classification Scheme will be used for comparison (Figure 5). In high-income countries, GDP per capita and population are increasing only at low levels (by roughly the factor 0.5 and 0.2 respectively). Carbon intensity and energy intensity are decreasing, keeping carbon emissions down. The carbon intensity is decreasing because of two factors: the fossil intensity and the fossil share. In contrast, in low-income countries, the growth of CO2 emissions is exceeding the growth of GDP per capita, both rising by a factor of 2.8 and 5 respectively over the observed time span. This is driven by a high and increasing carbon intensity. Furthermore, population growth plays an important role in this group, and can be considered a further driving factor of CO2 emissions. The only contrasting factor is the decreasing energy intensity. Comparing both groups of countries to China, one can resume that China’s development does not fit in either of the groups perfectly. Like before China’s Kaya decomposition shares similar characteristics as both groups: The small population growth resembles the trend of high-income countries, the dramatically decreasing energy resembles the trend of low-income countries. Considering lower-middle income countries, they seem to show upwards trends in any of the indicators except for energy intensity. In comparison, in upper-middle income countries carbon emissions and GDP per capita develop in tandem, while carbon intensity and energy intensity only fluctuate around zero in the years from 2000 to 2019.  
 
-```{r,fig.cap="Figure 5"}
-YEAR_L = 1850
-YEAR_U = 2060
+```{r,fig.cap="Figure 5:Kaya Identities - 2000 - 2019| China vs. Developed and Developing according to AR_6 Classification"}
+YEAR_L = 2000
+YEAR_U = 2019
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_kaya_analysis.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_kaya_incomelevels.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
@@ -348,7 +349,7 @@ source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
 plot(OUT)
 ```
 
-### Discussion
+### Section Summary
 
 The prior analysis has shown that clearly classifying China as either a developed or a developing from an emissions perspective remains difficult. 
 
@@ -401,83 +402,82 @@ This chapter presents different rankings which can shed light on the question of
 
 First, we consider China’s responsibility based on absolute emissions in the year 2019 (Figure X). In the ranking, China ranks on first place with absolute emissions of 14,219.37 Mt CO2 eq. This is more than double of the U.S. emissions (6,266.8 Mt CO2 eq) and also close to the emissions of all other countries that do not belong to the group of the top 10 emitters combined (14,075.12 Mt CO2 eq). Together with the U.S., India and Russia, China makes up for 50% of global emissions, but these four countries do not produce half of the global GDP, nor do they represent half of the world’s population. This highlights that the responsibility of these four countries to drastically reduce emissions is high. Considering that China is producing more than double the emissions of the U.S., China has by far the highest responsibility to mitigate climate change from a current absolute emissions perspective. 
 
-```{r,fig.cap="Figure 10"}
+```{r,fig.cap="Figure 10: Absolute GHG Emission - 2019 | Top Emittters, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_ranking_abs.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_rank_abs.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
 
 Next, we consider emissions per capita (Figure x). This is important as China is the country with the biggest population worldwide of approx. 1.4 billion people [@WorldBank2022c]. Looking at this ranking, it is important to consider that the top emitters according to per capita emissions are relatively small countries with low absolute emissions but also small populations. Thus, when it comes to reducing absolute emissions and fighting climate change, they can only play a minor role. China interestingly ranks on place 43 with roughly 10t CO2 eq / capita, before EU-27 but behind the U.S. (Ranking: 17). According to this equity metric, China’s fair share to mitigate climate change from this perspective should be located between the share of these two countries/groups of countries. 
 
-```{r,fig.cap="Figure 11"}
+```{r,fig.cap="Figure 11: Per Capita Emissions- 2019 | Top Emittters, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_ranking_per_cap.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_rank_pc.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
 
 Considering GDP and GDP per capita refers to the capacity of acting on climate change, following the assumption that richer countries have more resources available to fight climate change. As Figure XX shows, China had the highest GDP of all countries in 2019, with USD 22.49 trillion. Based on this, China would theoretically have to make the greatest conribution to reduce emissions. Absolute GDP, however, is limited in telling us about a country's actual capacity because it ignores population size. Therefore, considering GDP per capita might be more worthwhile. Here China only ranks 81st place in the world. Therefore, China’s responsibility is relatively low from the GDP per capita perspective. In comparison, the U.S. rank on place 11. Countries that are in the top 10 emitters are often relatively small countries deriving their wealth from natural resources. Hence, they have a high responsibility to mitigate climate change as they have the ability to pay for climate change mitigation measures. However, their absolute emissions are relatively small and thus an ambitious reduction might not make a huge difference for achieving climate targets. Thus, one should consider that these countries should specifically contribute by providing financial aid to mitigate emissions elsewhere. 
 
-```{r,fig.cap="Figure 12"}
+```{r,fig.cap="Figure 12: Absolute GDP p - 2019 | Highes GDP Countries, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_rank_gdp.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_rank_gdp.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
 
-```{r,fig.cap="Figure 13"}
+```{r,fig.cap="Figure 13: GDP per Capita - 2019 | Highes GDP Countries, China, US, EU-27 and reference for GDP, Emissions and Population"}
 YEAR_L = 1850
 YEAR_U = 2060
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_rank_gdp_pc.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_rank_gdp_pc.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
 
-### Discussion TBD
+### Section Summary 
 
-To sum up, China has a very high responsibility to mitigate climate change, even the highest responsibility of all countries when considering some of the discussed equity metrics. Based on our calculations, China is likely surpass the EU well before 2030 and the US shortly after in 2032  in terms of cumulative emissions over all GHGs from 1850 to 2019 and a modeling of emissions thereafter. The difference in emissions from all GHGs to CO2 emissions highlights the importance to extend the frame of historic respon 
+To sum up, China has a very high responsibility to mitigate climate change, even the highest responsibility of all countries when considering some of the discussed equity metrics. Based on our calculations, China is likely to surpass the EU well before 2030 and the US shortly after in 2032 in terms of cumulative emissions over all GHGs from 1850 to 2019 and a modeling of emissions thereafter. The difference in emissions from all GHGs to CO2 emissions highlights the importance to extend the frame of historic responsibility beyond CO2 emissions –  especially in light of growing capabilities, issue salience and data availability that all put greater responsibility recent emissions. 
+Therefore, China now has a major responsibility to reduce emissions which is reinforced when considering that the country’s massive emissions growth only started after the adoption of the Kyoto Protocol in 1997, at a time when the consequences of climate change were already being heavily discussed. 
+However, we also need to consider that China only ranks on 81st and 43rd place considering their GDP per capita and their emissions per capita, respectively. This diminishes China’s responsibility to some extent, showing that the global community needs to grant space for economic development to be fair. However, this economic development should ideally be decoupled from a growth in emissions. If we look at the per capita emissions of the countries that rank first, we see that these are mostly very small and, from the perspective of absolute emissions, less important countries. Although these countries might have a high ability to pay from a per capita perspective, their overall economic power is not high. The opposite is true for China. China ranks first place in absolute emissions and GDP in 2019 with a great distance to subsequent ranks. 
+Thus, China has one of the greatest responsibilities to reduce emissions from a historic emissions, current emissions and economic capacity perspective.
 
-Therefore, China now has a major responsibility to reduce emissions which is reinforced when considering that the country’s massive emissions growth only started after the adoption of the Kyoto Protocol in 1997, at a time when the consequences of climate change were already being heavily discussed.  
-
-However, we also need to consider that China only ranks on 81st. and 43rd place considering their GDP per capita and their emissions per capita, respectively. This diminishes China’s responsibility to some extent, showing that the global community needs to grant space for economic development to be fair. However, this economic development should ideally be decoupled from a growth in emissions. If we look at the per capita emissions of the countries that rank first, we see that these are mostly very small and, from the perspective of absolute emissions, less important countries. Although these countries might have a high ability to pay from a per capita perspective, their overall economic power is not high. The opposite is true for China. China ranks first place in absolute emissions and GDP in 2019 with a great distance to the following places.  
-
-Thus, China has one of the greatest responsibilities to reduce emissions from a historic emissions, current emissions and economic capacity perspective. 
 
 # Discussion and Conclusion TBD
 
-In our analysis, we were striving to answer two research questions, namely if China can be considered a developing country and what China’s fair share in climate change mitigation should be. 
+In our analysis, we were striving to answer two research questions, namely if China can be considered a developing country and what China’s fair share in climate change mitigation should be.
 
-Regarding out first research question, we find that China cannot be easily classified as a developed or developing country. This is due to the unique economic growth (China’s GDP per capita quintupled in the last 20 years), which went hand in hand with very high energy and industrial sectors’ emissions. Comparing these to other developed countries, one can see that China clearly exhibits these countries’ characteristics in term of sectoral emissions. However, China’s agricultural per capita emissions trends are more comparable to lower-income countries.  
+Regarding out first research question, we find that China cannot be easily classified as a developed or developing country. This is due to the unique economic growth (China’s GDP per capita quintupled in the last 20 years), which went hand in hand with very high energy and industrial sectors’ emissions. Comparing these to other developed countries, one can see that China clearly exhibits these countries’ characteristics in term of sectoral emissions. However, China’s agricultural per capita emissions trends are more comparable to lower-income countries. 
 
-Our analysis of different equity metrics for the second research question has shown that China not only has a huge responsibility to curb emissions, but also the financial capability to do so. The country is the world’s largest emitter in annual and cumulative terms (based on our data) and has the highest GDP of all countries. While it is important to acknowledge further room for development, one cannot disregard the fact that without significant emission reductions from China, any attempt to stay within the temperature limits of the Paris Agreement is sure to fail.  
+Our analysis of different equity metrics for the second research question has shown that China not only has a huge responsibility to curb emissions, but also the financial capability to do so. The country is the world’s largest emitter in annual terms , on a pathway to take the first  position in  cumulative terms within a decade and has the highest GDP of all countries. While it is important to acknowledge the need for further economic development, one cannot disregard the fact that without significant emission reductions from China, any attempt to stay within the temperature limits of the Paris Agreement is sure to fail. 
 
 Hence, we believe that China’s fair share is much higher than what they currently plan to do. Together with the EU-27 and the U.S., China should bear the highest responsibility for climate change mitigation. Its self-classification as a developing country is clearly politically motivated, to not give in to the demands of having to do more. At the same time, the political leadership in Beijing can present itself as a top student in the international community by effortlessly surpassing its own goals, as it is expected by different observers [@CAT2022].  
 
-In the following, our analysis will be contrasted with two other assessments of China’s fair share – the assessment by the Climate Action Tracker and by the Climate Equity Monitor.  
+In the following, our analysis will be contrasted with two other assessments of China’s responsibility – the assessment by the Climate Action Tracker and by the Climate Equity Monitor. 
 
-The CAT evaluates the fair share of a country based on assessments in the literature. The results of the literature are categorized using seven equity indicators ranging around considerations of responsibility, capability, cost-effectiveness and equality, which are weighted equally in the analysis. All results of the evaluated studies are then depicted on a scale for each category and a 90% confidence interval is built. Based on this, the CAT develops a range of what would be a fair share and where to categorize the different countries. The CAT values China’s share in mitigation efforts as highly insufficient. In comparison, the U.S.’s, India’s and the EU’s planned policies and targets are only considered insufficient for achieving a fair share target under the Paris Agreement [@CAT2022]. 
+The CAT evaluates the fair share of a country based on assessments in the literature. The results of the literature are categorized using seven equity indicators ranging around considerations of responsibility, capability, cost-effectiveness and equality, which are weighted equally in the analysis. All results of the evaluated studies are then depicted on a scale for each category and a 90% confidence interval is built. Based on this, the CAT develops a range of what would be a fair share and where to categorize the different countries. The CAT values China’s share in mitigation efforts as highly insufficient. In comparison, the U.S.’s, India’s and the EU’s planned policies and targets are only considered insufficient for achieving a fair share target under the Paris Agreement  [@CAT2022]. 
 
-Another equity metric is developed by the Climate Equity Monitor. The Climate Equity Monitor is the first initiative from the Global South that tracks equity in climate action for Annex 1 and Non-Annex 1 countries. The initiative calculates the fair share of the carbon budget by using the share of cumulative emissions based on the share in the global population for a contemporary base year (2019). The cumulative annual emissions of a country are calculated for the period from 1850 to 2019. Based on this, the Climate Equity Monitor calculates if a country has a carbon debt or carbon credit. This measure is calculated as the difference between cumulative emissions of a country and the country’s fair share of the global carbon budget already consumed. For China as a Non-Annex 1 country, they conclude that the country has a carbon credit of 122.4 Gt CO2eq. In comparison, India has a carbon credit of 337.6 Gt CO2eq while the US has a carbon debt of 445 Gt CO2eq, and Russia has a carbon debt of 125.44 Gt CO2eq [@CEM2022]. Accordingly, if China kept emitting at its current rate, it would have used up its remaining carbon credit until 2031. 
+Another equity metric is developed by the Climate Equity Monitor. The Climate Equity Monitor is the first initiative from the Global South that tracks equity in climate action for Annex 1 and Non-Annex 1 countries. The initiative calculates the fair share of the carbon budget by using the share of cumulative emissions based on the share in the global population for a contemporary base year (2019). The cumulative annual emissions of a country are calculated for the period from 1850 to 2019. Based on this, the Climate Equity Monitor calculates whether a country has a carbon debt or carbon credit. This measure is calculated as the difference between cumulative emissions of a country and the country’s fair share of the global carbon budget already consumed. For China as a Non-Annex 1 country, they conclude that the country has a carbon credit of 122.4 Gt CO2eq. In comparison, India has a carbon credit of 337.6 Gt CO2eq while the US has a carbon debt of 445 Gt CO2eq, and Russia has a carbon debt of 125.44 Gt CO2eq  [@CEM2022]. Accordingly, if China kept emitting at its current rate, it would have used up its remaining carbon credit until 2031. 
 
-It is interesting that the Climate Action Tracker and the Climate Equity Monitor come to conclusions that can be interpreted differently. While the latter initiative only considers cumulative emissions allowances in relation to population size, the former’s assessment benchmarks climate targets and policies against a larger variety of equity metrics. The remaining carbon credit derived from the Climate Equity Monitor might be misleading to a certain degree, as it might suggest little urgency to act, especially when comparing the credit numbers to the debt numbers of other countries. The CAT’s assessment, while being methodically more sophisticated, better communicates the implications of current emission reduction targets and respective policies from an equity perspective.  
+It is interesting that the Climate Action Tracker and the Climate Equity Monitor come to conclusions that can be interpreted differently. While the latter initiative only considers cumulative emissions allowances in relation to population size, the former’s assessment benchmarks climate targets and policies against a larger variety of equity metrics. The remaining carbon credit derived from the Climate Equity Monitor might be misleading to a certain degree, as it might suggest little urgency to act, especially when comparing the credit numbers to the debt numbers of other countries. The CAT’s assessment, while being methodically more sophisticated, better communicates the implications of current emission reduction targets and respective policies from an equity perspective. 
 
-Our analysis has the following limitations: We only consider cumulative emissions from 1850-2019, but the consideration of other time periods could also be conceivable. The problem of climate change caused by anthropogenic greenhouse gas emissions has only been known since the 1970s, and since the 1990s there has been a dedicated international process to address the problem. Against this background, an additional consideration of cumulative emissions in these time periods might be worthwhile. For a comprehensive assessment of China’s fair share, it would have also been interesting to discuss further equity metrics such as a ranking of consumption-based emissions. However, this was not possible for us, as our data only included consumption-based data for approx. 100 countries and crucially missing the US, making a comparison less meaningful. 
+While aiming to be as comprehensive as possible our analysis has some limitations. First, we only consider cumulative emissions from 1850-2019, but the consideration of other time periods could also be conceivable. The problem of climate change caused by anthropogenic greenhouse gas emissions has only been known since the 1970s, and since the 1990s there has been a dedicated international process to address the problem. Against this background, an additional consideration of cumulative emissions in these time periods might be worthwhile. Second, the projection of future emissions rests on major simplification assumptions, it is likely that a more sophisticated approach such as an ARIMA-modelling would result in more robust estimates. Third, a comprehensive assessment of China’s responsibility could discuss further equity metrics such as a ranking of consumption-based emissions. However, this was not possible for us, as our data only included consumption-based data for approx. 100 countries and crucially missing the US, making a comparison less meaningful. Lastly, reducing capacity to mere GDP and GDP per capita considerations is very much simplifying the issue, as land area, access to renewable resources and intellectual property and many other factors determine a countries mitigation potential, which is very likely to differ by sector. 
+With these limitations in mind, we believe none the less that our analysis has shed light on the special case of China and has shown that the under complex self-assessment does not withstand a thorough analysis. Keeping these assessments in mind will be worthwhile when assessing the responsibilities of upcoming developing nations. The case of China has shown that it is crucial to come to a mutual understanding of what constitutes responsibilities and how they can assessed on an objective basis. Especially our analysis of future cumulative emissions indicates that it will be key to frame the issue beyond CO2. 
 
 
 \appendix

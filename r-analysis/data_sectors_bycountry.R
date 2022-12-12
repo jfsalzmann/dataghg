@@ -14,6 +14,7 @@ PDATA$data_abs = data_base %>%
 PDATA$data_rel = data_base %>%
   filter(country == {{COUNTRY}}) %>%
   rename(GAS := {{GAS}}) %>%
+  mutate(GAS = GAS*1e6)
   group_by(year,sector_title) %>%
   summarise(GAS_s=sum(GAS,na.rm=TRUE)) %>%
   na.omit() %>%

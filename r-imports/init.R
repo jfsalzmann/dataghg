@@ -48,8 +48,9 @@ theme_ghg = function(){
   
   theme_minimal() %+replace%    #replace elements we want to change
     
-    #theme(plot.title =element_blank()
-      
+    # theme(plot.title =element_blank(),
+    #     plot.subtitle = element_blank()
+    #   
       # #grid elements
       # panel.grid.major = element_blank(),    #strip major gridlines
       # panel.grid.minor = element_blank(),    #strip minor gridlines

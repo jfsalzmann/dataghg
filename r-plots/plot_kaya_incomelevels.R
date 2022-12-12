@@ -23,5 +23,8 @@ OUT<-PDATA$kaya_incomelevels %>%
                                              "Population"),
                      guide = guide_legend(reverse = TRUE)) +
   theme(legend.title=element_blank(),
-        axis.title.x = element_blank())
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        text= element_text(size =9 ),
+        axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))
 if(DIRECT_PLOTTING) plot(OUT)
