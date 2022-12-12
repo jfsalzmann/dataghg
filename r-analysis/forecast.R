@@ -38,11 +38,33 @@ data_ext = data %>%
 
 ## Model 2: 2030 Intermediary Levels EU / China
 
+factors = data %>%
+  filter(year == YEAR_U, country %in% c("United States","EU")) %>%
+  mutate(country = ifelse(country == "United States","US",country)) %>%
+  group_by(country) %>%
+  summarise(GAS_s_perc = GAS_s/sum(GAS_s)) %>%
+  mutate(sector = row_number()) %>%
+  spread(country, GAS_s_perc)
+
+ratio_assumption = data_base %>%
+  filter(country %in% c("United States") | EU) %>%
+  mutate(country = ifelse(EU,"EU",country)) %>%
+  group_by(year,country) %>%
+  summarise(GHG_s=sum(GHG,na.rm=TRUE), CO2_s = sum(CO2,na.rm=TRUE)) %>%
+  na.omit() %>%
+  filter(between(year,2019,2019)) %>%
+  mutate(ratio=CO2_s/GHG_s) %$% ratio
+
+assumption = data.frame(
+  US = c(3.251e9*ratio_assumption[2],NA,NA,NA,3.251e9),
+  EU = c(2.085e9*ratio_assumption[1],NA,NA,NA,2.085e9),
+  gas = meta_gas_list)
+
 oos_comp = expand.grid(country = c("United States","EU"), sector_title = meta_sector_list, year=(YEAR_U+1):2030) %>%
   mutate(GAS_s = case_when(
     year != 2030 ~ 0,
-    country=="US" ~ 3.251e8,
-    country=="EU" ~ 2.085e8
+    country=="United States" ~ assumption$US[meta_gas_alc[{{GAS}}]] * factors$US[meta_sector_alc[sector_title]],
+    country=="EU" ~ assumption$EU[meta_gas_alc[{{GAS}}]] * factors$EU[meta_sector_alc[sector_title]]
   ), diff = NA, forecast=1) %>% mutate(GAS_s = ifelse(GAS_s == 0, NA, GAS_s))
 
 data_ext_comp = data %>% 
@@ -108,7 +130,7 @@ data_fade = data_ext %>%
 #   filter(year == 2031) %>% 
 #   mutate(forecast = 1,diff=NA)
 
-PDATA$data_comb = data %>%
+forecast = data %>%
   rbind(data_ext) %>%
   rbind(data_ext_comp) %>%
   rbind(data_fade) %>%
@@ -120,6 +142,9 @@ PDATA$data_comb = data %>%
   # rbind(data_double2) %>%
   mutate(forecast = as.factor(forecast))
 
+
+PDATA$data_comb = forecast
+save(forecast,file="data-transf/forecast_" %.% GAS %.%  "_" %.% max(FYEAR_L) %.% ".RData")
 
 
 # data_comb %>%
