@@ -8,7 +8,7 @@ p_load(shiny)
 
 ui = fluidPage(
   
-  titlePanel("Emissions Forecast for China"),
+  titlePanel("Emissions Forecast, China vs. EU vs. US"),
 
   sidebarLayout(
       sidebarPanel(
