@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section*.3}%
+\contentsline {section}{\numberline {2}Data \& Assumptions}{8}{section*.4}%
+\contentsline {subsection}{\numberline {2.1}Used Data}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}General Assumptions}{8}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Analysis}{10}{section*.5}%
+\contentsline {subsection}{\numberline {3.1}China's Self-Characterization as a Developing Country}{10}{subsection.3.1}%
+\contentsline {subsubsection}{Categorization of Developed and Developing Countries}{10}{subsubsection*.6}%
+\contentsline {subsubsection}{Comparison of Kaya Identities}{11}{subsubsection*.7}%
+\contentsline {subsubsection}{Comparison of China's Sector Trends}{15}{subsubsection*.8}%
+\contentsline {subsubsection}{Section Summary}{18}{subsubsection*.9}%
+\contentsline {subsection}{\numberline {3.2}China's Equitable Share in Climate Change Mitigation}{19}{subsection.3.2}%
+\contentsline {subsubsection}{Future Development of China's Emissions}{19}{subsubsection*.10}%
+\contentsline {subsubsection}{Equity Metrics}{21}{subsubsection*.11}%
+\contentsline {subsubsection}{Section Summary}{26}{subsubsection*.12}%
+\contentsline {section}{\numberline {4}Discussion and Conclusion}{28}{section*.13}%
+\contentsline {section}{Appendix}{31}{section*.14}%
+\contentsline {subsection}{\numberline {A}Session Info (RStudio)}{31}{subsection.Alph0.1}%
+\contentsline {section}{List of Figures}{32}{section*.15}%
+\contentsline {section}{List of Tables}{33}{section*.16}%
+\contentsline {section}{References}{34}{section*.17}%

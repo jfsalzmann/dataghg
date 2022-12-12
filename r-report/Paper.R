@@ -5,13 +5,15 @@
 
 
 ##################################################################################
-## ---- setup-ex ----
+## ---- init ----
 
 source('r-imports/init.R')
 source('r-analysis/meta.R')
-
-
-
-##################################################################################
-## DATA PREPARATION
-## ---- data-prep ----
+theme_ghg = function(){ 
+  theme_minimal() %+replace%
+    theme(
+      plot.title =element_blank(),
+      plot.subtitle = element_blank()
+    )
+}
+DIRECT_PLOTTING = F
