@@ -8,7 +8,7 @@ PDATA$plot_level_kay<-c(COUNTRY,"Developed Countries","Developing Countries")
 
 #plot
 
-PDATA$kaya_regions %>%
+OUT<-PDATA$kaya_regions %>%
   mutate(dev_status_reg = fct_relevel(dev_status_reg,PDATA$plot_level_kay)) %>% 
   ggplot(.,aes(x=year,y=value,color=var)) +
   geom_line(size=1) +
@@ -24,3 +24,4 @@ PDATA$kaya_regions %>%
   scale_y_log10()+
   theme(legend.title=element_blank(),
         axis.title.x = element_blank())
+if(DIRECT_PLOTTING) plot(OUT)

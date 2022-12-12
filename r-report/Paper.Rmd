@@ -158,24 +158,24 @@ With these developments in mind and following up on China’s claim to be a deve
 
 The remainder of this paper is structured as follows: In section 2 we provide an overview of our data and main assumptions, before analyzing China’s self-characterization as a developing country in section 3. Section 4 compares different equity metrics for China and other big emitters and discusses China’s role in addressing climate change against different scenarios of future Chinese cumulative emissions. In section 5 we discuss our findings in light of other available assessments of China’s role and conclude. 
 
-```{r,fig.cap="Figure 1"}
-YEAR_L = 1850
-YEAR_U = 2060
+```{r,fig.cap="Figure 1: Relative Emissions of the Top- 5 Polluters"}
+YEAR_L = 1970
+YEAR_U = 2020
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_single_polluters.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_single_polluters_stacked_rel.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```
 
-```{r,fig.cap="Figure 2"}
-YEAR_L = 1850
-YEAR_U = 2060
+```{r,fig.cap="Figure 2: Kaya Identity China - 2000 - 2019"}
+YEAR_L = 2000
+YEAR_U = 2019
 GAS = "GHG"
 
-source("r-analysis/data_cumulative_mergeforecast.R", local = TRUE, print.eval = TRUE)
-source("r-plots/plot_cumulative_china_2030.R", local = TRUE, print.eval = TRUE)
+source("r-analysis/data_kaya_analysis.R", local = TRUE, print.eval = TRUE)
+source("r-plots/plot_kaya_chn.R", local = TRUE, print.eval = TRUE)
 
 plot(OUT)
 ```

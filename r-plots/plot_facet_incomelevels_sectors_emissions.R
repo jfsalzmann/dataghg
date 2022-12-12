@@ -8,7 +8,7 @@ PDATA$data_inc %>%
   ylab("Per Capita Emissions (tCO2eq)") +
   theme_ghg()+
   theme(axis.title.x = element_blank(),
-        text = element_text(size = 14),
+        text = element_text(size = 7.5),
         axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5)) +
   guides(colour =guide_legend("Income Level /" %.% COUNTRY%.% " " ))+
   ggtitle("Per Capita Emissions " %.% COUNTRY %.% " vs. Income Levels by Sector, 1970-" %.% YEAR_U)
