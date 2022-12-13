@@ -1,20 +1,5 @@
 \begin{thebibliography}{xx}
 
-\harvarditem{Agency}{2022{\em a}}{EEA2022}
-Agency, E.~E.  \harvardyearleft 2022{\em a}\harvardyearright , `Greenhouse gas
-  emissions from transport in europe'.
-\newline\harvardurl{https://www.eea.europa.eu/ims/greenhouse-gas-emissions-from-transport}
-
-\harvarditem{Agency}{2022{\em b}}{IEA2022}
-Agency, I.~E.  \harvardyearleft 2022{\em b}\harvardyearright , `China. key
-  energy statistics 2020.'.
-\newline\harvardurl{https://www.iea.org/countries/china}
-
-\harvarditem{Agency}{2022{\em c}}{PBL2022}
-Agency, P. N.~E.  \harvardyearleft 2022{\em c}\harvardyearright , `Projected
-  global greenhouse gas emission levels by 2030'.
-\newline\harvardurl{https://themasites.pbl.nl/o/climate-ndc-policies-tool/downloads/Table%20Projected%20emissions%20January%202022.pdf}
-
 \harvarditem[Allaire et~al.]{Allaire, Xie, McPherson, Luraschi, Ushey, Atkins,
   Wickham, Cheng, Chang \harvardand\ Iannone}{2022}{R-rmarkdown}
 Allaire, J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A.,
@@ -29,27 +14,41 @@ Arel-Bundock, V.  \harvardyearleft 2022\harvardyearright , {\em WDI: World
 \newblock R package version 2.7.8.
 \newline\harvardurl{https://vincentarelbundock.github.io/WDI/}
 
-\harvarditem{Bank}{2022{\em a}}{WorldBank2022c}
-Bank, W.  \harvardyearleft 2022{\em a}\harvardyearright , `Population, total:
-  China'.
-\newline\harvardurl{https://data.worldbank.org/indicator/SP.POP.TOTL?locations=CN}
-
-\harvarditem{Bank}{2022{\em b}}{WorldBank2022d}
-Bank, W.  \harvardyearleft 2022{\em b}\harvardyearright , `World bank gni per
-  capita operational guidelines and analytical classifications'.
-\newline\harvardurl{http://databank.worldbank.org/data/download/site-content/OGHIST.xlsx}
-
 \harvarditem{Centre.}{2022}{EC2022}
 Centre., E. C. J.~R.  \harvardyearleft 2022\harvardyearright , {\em CO2
   emissions of all world countries: IRC/IEA/PBL 2022 Report}, Publications
   Office.
 \newline\harvardurl{https://data.europa.eu/doi/10.2760/730164}
 
-\harvarditem{{\em Drivers of change in China's energy-related CO 2
-  emissions}}{2020}{Zheng2020}
-{\em Drivers of change in China's energy-related CO 2 emissions}
-  \harvardyearleft 2020\harvardyearright , {\em PNAS} {\bf 117},~29--36.
-\newline\harvardurl{https://www.pnas.org/lookup/suppl/doi:10.1073/pnas.1908513117/-/DCSupplemental.}
+\harvarditem{{Climate Action Tracker}}{2022}{CAT2022}
+{Climate Action Tracker}  \harvardyearleft 2022\harvardyearright , `China.
+  country summary'.
+\newline\harvardurl{https://climateactiontracker.org/countries/china/}
+
+\harvarditem{{Climate Equity Monitor}}{2022}{CEM2022}
+{Climate Equity Monitor}  \harvardyearleft 2022\harvardyearright , `The truth
+  about climate equity'.
+\newline\harvardurl{https://climateequitymonitor.in/#carbonDebt-nonannex1}
+
+\harvarditem{{Department of Resource Conservation and Environmental
+  Protection}}{2021{\em a}}{DRCEP2021a}
+{Department of Resource Conservation and Environmental Protection}
+  \harvardyearleft 2021{\em a}\harvardyearright , `Action plan for carbon
+  dioxide peaking before 2030'.
+\newline\harvardurl{https://en.ndrc.gov.cn/policies/202110/t20211027_1301020.html}
+
+\harvarditem{{Department of Resource Conservation and Environmental
+  Protection}}{2021{\em b}}{DRCEP2021b}
+{Department of Resource Conservation and Environmental Protection}
+  \harvardyearleft 2021{\em b}\harvardyearright , `Working guidance for carbon
+  dioxide peaking and carbon neutrality in full and faithful implementation of
+  the new development philosophy'.
+\newline\harvardurl{https://en.ndrc.gov.cn/policies/202110/t20211024_1300725.html}
+
+\harvarditem{{European Environment Agency}}{2022}{EEA2022}
+{European Environment Agency}  \harvardyearleft 2022\harvardyearright ,
+  `Greenhouse gas emissions from transport in europe'.
+\newline\harvardurl{https://www.eea.europa.eu/ims/greenhouse-gas-emissions-from-transport}
 
 \harvarditem{Fantom \harvardand\ Serajuddin}{2016}{Fantom2016}
 Fantom, N. \harvardand\ Serajuddin, U.  \harvardyearleft 2016\harvardyearright
@@ -67,17 +66,16 @@ Green, M.  \harvardyearleft 2022\harvardyearright , `Chinese coal-based power
   plants'.
 \newline\harvardurl{https://www.wilsoncenter.org/blog-post/chinese-coal-based-power-plants}
 
+\harvarditem{{International Energy Agency}}{2022}{IEA2022}
+{International Energy Agency}  \harvardyearleft 2022\harvardyearright , `China.
+  key energy statistics 2020.'.
+\newline\harvardurl{https://www.iea.org/countries/china}
+
 \harvarditem{Jinping}{2020}{Jinping2020}
 Jinping, X.  \harvardyearleft 2020\harvardyearright , `Full text: Xi jinping's
   speech at the general debate of the 75th session of the united nations
   general assembly'.
 \newline\harvardurl{https://news.cgtn.com/news/2020-09-23/Full-text-Xi-Jinping-s-speech-at-General-Debate-of-UNGA-U07X2dn8Ag/index.html}
-
-\harvarditem{{\em Key indicators to track current progress and future ambition
-  of the Paris Agreement}}{2017}{Peters2017}
-{\em Key indicators to track current progress and future ambition of the Paris
-  Agreement}  \harvardyearleft 2017\harvardyearright , {\em Nature Climate
-  Change} {\bf 7},~118--122.
 
 \harvarditem[Kinnunen et~al.]{Kinnunen, Androniceanu \harvardand\
   Georgescu}{2019}{Kinnunen2019}
@@ -113,37 +111,31 @@ Lamb, W.~F., Wiedmann, T., Pongratz, J., Andrew, R., Crippa, M., Olivier, J.
   Research Letters} {\bf 16}(7),~073005.
 \newline\harvardurl{https://doi.org/10.1088/1748-9326/abee4e}
 
-\harvarditem{Monitor}{2022}{CEM2022}
-Monitor, C.~E.  \harvardyearleft 2022\harvardyearright , `The truth about
-  climate equity'.
-\newline\harvardurl{https://climateequitymonitor.in/#carbonDebt-nonannex1}
-
 \harvarditem{Moritz \harvardand\ Gatscha}{2022}{R-imputeTS}
 Moritz, S. \harvardand\ Gatscha, S.  \harvardyearleft 2022\harvardyearright ,
   {\em imputeTS: Time Series Missing Value Imputation}.
 \newblock R package version 3.3.
 \newline\harvardurl{https://CRAN.R-project.org/package=imputeTS}
 
-\harvarditem{of~China}{2021}{China2021}
-of~China, P.~R.  \harvardyearleft 2021\harvardyearright , `China's
+\harvarditem{{PBL Netherlands Environmental Agency}}{2022}{PBL2022}
+{PBL Netherlands Environmental Agency}  \harvardyearleft 2022\harvardyearright
+  , `Projected global greenhouse gas emission levels by 2030'.
+\newline\harvardurl{https://themasites.pbl.nl/o/climate-ndc-policies-tool/downloads/Table%20Projected%20emissions%20January%202022.pdf}
+
+\harvarditem{{People's Republic of China}}{2021}{China2021}
+{People's Republic of China}  \harvardyearleft 2021\harvardyearright , `China's
   achievements, new goals and new measures for nationally determined
   contributions'.
 \newline\harvardurl{https://unfccc.int/sites/default/files/NDC/2022-06/China’s%20Achievements%2C%20New%20Goals%20and%20New%20Measures%20for%20Nationally%20Determined%20Contributions.pdf}
 
-\harvarditem{of~Resource~Conservation \harvardand\ Protection}{2021{\em
-  a}}{DRCEP2021a}
-of~Resource~Conservation, D. \harvardand\ Protection, E.  \harvardyearleft
-  2021{\em a}\harvardyearright , `Action plan for carbon dioxide peaking before
-  2030'.
-\newline\harvardurl{https://en.ndrc.gov.cn/policies/202110/t20211027_1301020.html}
-
-\harvarditem{of~Resource~Conservation \harvardand\ Protection}{2021{\em
-  b}}{DRCEP2021b}
-of~Resource~Conservation, D. \harvardand\ Protection, E.  \harvardyearleft
-  2021{\em b}\harvardyearright , `Working guidance for carbon dioxide peaking
-  and carbon neutrality in full and faithful implementation of the new
-  development philosophy'.
-\newline\harvardurl{https://en.ndrc.gov.cn/policies/202110/t20211024_1300725.html}
+\harvarditem[Peters et~al.]{Peters, Andrew, Canadell, Fuss, Jackson,
+  Korsbakken, Qu{\'{e}}r{\'{e}} \harvardand\ Nakicenovic}{2017}{Peters2017}
+Peters, G.~P., Andrew, R.~M., Canadell, J.~G., Fuss, S., Jackson, R.~B.,
+  Korsbakken, J.~I., Qu{\'{e}}r{\'{e}}, C.~L. \harvardand\ Nakicenovic, N.
+  \harvardyearleft 2017\harvardyearright , `Key indicators to track current
+  progress and future ambition of the paris agreement', {\em Nature Climate
+  Change} {\bf 7}(2),~118--122.
+\newline\harvardurl{https://doi.org/10.1038/nclimate3202}
 
 \harvarditem[Peters et~al.]{Peters, Minx, Weber \harvardand\
   Edenhofer}{2011}{Peters2011}
@@ -161,13 +153,8 @@ Sievert, C., Parmer, C., Hocking, T., Chamberlain, S., Ram, K., Corvellec, M.
 \newblock R package version 4.10.1.
 \newline\harvardurl{https://CRAN.R-project.org/package=plotly}
 
-\harvarditem{Tracker}{2022}{CAT2022}
-Tracker, C.~A.  \harvardyearleft 2022\harvardyearright , `China. country
-  summary'.
-\newline\harvardurl{https://climateactiontracker.org/countries/china/}
-
-\harvarditem{UNFCCC}{2015}{UNFCCC2015}
-UNFCCC  \harvardyearleft 2015\harvardyearright , `The paris agreement'.
+\harvarditem{{UNFCCC}}{2015}{UNFCCC2015}
+{UNFCCC}  \harvardyearleft 2015\harvardyearright , `The paris agreement'.
 
 \harvarditem{Wickham}{2022}{R-tidyverse}
 Wickham, H.  \harvardyearleft 2022\harvardyearright , {\em tidyverse: Easily
@@ -179,6 +166,16 @@ Wickham, H.  \harvardyearleft 2022\harvardyearright , {\em tidyverse: Easily
 {World Bank}  \harvardyearleft 2018\harvardyearright , `New country
   classifications by income level: 2019-2020'.
 \newline\harvardurl{https://blogs.worldbank.org/opendata/new-country-classifications-income-level-2019-2020}
+
+\harvarditem{{World Bank}}{2022{\em a}}{WorldBank2022c}
+{World Bank}  \harvardyearleft 2022{\em a}\harvardyearright , `Population,
+  total: China'.
+\newline\harvardurl{https://data.worldbank.org/indicator/SP.POP.TOTL?locations=CN}
+
+\harvarditem{{World Bank}}{2022{\em b}}{WorldBank2022d}
+{World Bank}  \harvardyearleft 2022{\em b}\harvardyearright , `World bank gni
+  per capita operational guidelines and analytical classifications'.
+\newline\harvardurl{http://databank.worldbank.org/data/download/site-content/OGHIST.xlsx}
 
 \harvarditem[Zhou et~al.]{Zhou, Peng \harvardand\ Li}{2022}{Zhou2022}
 Zhou, F., Peng, L. \harvardand\ Li, J.  \harvardyearleft 2022\harvardyearright
