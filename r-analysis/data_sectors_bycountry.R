@@ -6,6 +6,7 @@ PDATA$data_abs = data_base %>%
   rename(GAS := {{GAS}}) %>%
   group_by(year,sector_title) %>%
   summarise(GAS_s=sum(GAS,na.rm=TRUE)) %>%
+  mutate(GAS_s = GAS_s/1e6) %>% 
   na.omit() %>%
   filter(between(year,{{YEAR_L}},{{YEAR_U}}))
 
@@ -17,6 +18,7 @@ PDATA$data_rel = data_base %>%
   mutate(GAS = GAS*1e6) %>%
   group_by(year,sector_title) %>%
   summarise(GAS_s=sum(GAS,na.rm=TRUE)) %>%
+  mutate(GAS_s = GAS_s/1e6) %>% 
   na.omit() %>%
   filter(between(year,{{YEAR_L}},{{YEAR_U}})) %>%
   group_by(year) %>%
